@@ -13,7 +13,7 @@ except Exception as e:
 import datetime
 
 
-def visualize_spell_gvfile(prefix_tree, path="../data/graphviz-default.gv"):
+def visualize_spell_gvfile(prefix_tree, path="../data/graphviz-spell.gv"):
     '''
     产生spell 算法树的gv描述文件 并可视化
     :type path: 描述文件产生的位置
@@ -54,7 +54,7 @@ def visualize_spell_gvfile(prefix_tree, path="../data/graphviz-default.gv"):
     return path
 
 
-def visualize_drain_gvfile(prefix_tree, path="../data/graphviz-default.gv"):
+def visualize_drain_gvfile(prefix_tree, path="../data/graphviz-drain.gv"):
     '''
     产生 drain 算法树的gv描述文件 并可视化
     :type path: 描述文件产生的位置
@@ -75,7 +75,7 @@ def visualize_drain_gvfile(prefix_tree, path="../data/graphviz-default.gv"):
             for _word, _child in node.children.items():
                 current_index += 1
                 # print(_word)
-                dot.node('N_' + str(current_index) , shape='circle')
+                dot.node('N_' + str(current_index), shape='circle')
                 dot.edge('N_' + str(parent_index), 'N_' + str(current_index), label=str(_word))
                 current_index = dfs_traverse(_child, dot, current_index, current_index)
         else:

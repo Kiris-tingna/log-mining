@@ -256,6 +256,6 @@ if __name__ == '__main__':
     spell_parser._online_train('delete block_6', 12)
 
     gc.collect()
-    # where = visualize_spell_gvfile(spell_parser)
+    where = visualize_spell_gvfile(spell_parser)
     # spell_parser.dfs_traverse()
     # FP_tree

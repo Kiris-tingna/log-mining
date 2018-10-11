@@ -302,4 +302,4 @@ if __name__ == '__main__':
     drain_parser._online_train('delete block_6', 12)
 
     gc.collect()
-    # where = visualize_drain_gvfile(drain_parser)
+    where = visualize_drain_gvfile(drain_parser)

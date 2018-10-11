@@ -30,10 +30,10 @@ class TreeParser(object):
         self.root = TreeParserNode()
 
     def _read_config(self, file):
-        _reg = []
+        _reg = [('\s+', ' ')]
         with open(file) as f:
             for line in f.readlines():
-                rule = line.strip().split(' |\t')
+                rule = re.split(" ", line.strip())
                 _reg.append((rule[0], rule[1]))
         return _reg
 

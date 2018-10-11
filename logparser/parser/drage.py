@@ -9,24 +9,43 @@
 from logparser.parser.tree_parser import TreeParser, TreeParserNode
 from logparser.utils import Timer
 import gc, re
+import math
 
 
 class LogClusterObject:
     cluster_id = 1
 
     #  注意 new的时候会自增 这个策略在并行是 可能存在问题！
-    def __init__(self, log_template='', log_ids=[]):
+    def __init__(self, log_template='', similarity_threhold=0.1, out_cell=None):
         self.log_template = log_template
+        self.updateCount = 0
+        self.similarity_threhold = similarity_threhold
+        self.base = -1
+        self.init_st = -1
+        self.out_cell = out_cell
+
         self.cluster_id = LogClusterObject.cluster_id
         LogClusterObject.cluster_id += 1
-        self.log_ids = log_ids
 
 class DragaParserNode(TreeParserNode):
+    '''
+    node for length layer and token layer
+    '''
     def __init__(self, digit_or_token):
         self.children = {}
         # digit_or_token 对于数字是 '*' 对于token 是 单个word
         self.digit_or_token = digit_or_token
 
+class DragaOutputNode(TreeParserNode):
+    '''
+    node for output layer
+    '''
+    def __init__(self, log_ids=[]):
+        self.log_ids = log_ids
+        # 最终这个节点输出的日志模板
+        self.output_templates = ''
+        self.active = True
+        self.parent_layer = []
 
 class Draga(TreeParser):
     '''
@@ -42,7 +61,7 @@ class Draga(TreeParser):
     3）接下来进入token 层 token层主要存放的是日志的第一个词和最后一个词 以及 *通配符 这一点主要用于快速匹配 如果没有的就创建新的token层节点
         另外token 层如果超过最大孩子的限制时 将日志归入* 下查找
     4）将 cluster 结构放入 所在查找位置叶节点 这个叶节点下可能有很多cluser结构体
-    5）查找的时候先根据首尾字串进行匹配 如果找不到就去* 下匹配 到达叶节点就在所有结构体找大于阈值且最相似的那个cluster结构体
+    5）查找的时候先根据首尾字串进行匹配 如果找不到就去* 下匹配 到达叶节点就在所有结构体找大于阈值且最相似的那个cluster结构体 如果没有查找到就新建一个输出层
     6）
 
     ============ threshold is updated dynamically ============
@@ -67,10 +86,16 @@ class Draga(TreeParser):
         self.max_child =
 
         self.root =
+        self.mergethredhold =
+
 
         # 缓存的指针 加速查找
         self.pointer =  dict()
         super(Draga, self).__init__(reg_file)
+
+        # 全局列表
+        self.LogClus = []
+        self.Outputs = []
 
     @Timer
     def _online_train(self, log, id):
@@ -85,15 +110,66 @@ class Draga(TreeParser):
         '''
         # 从字符串到一个list 预处理过程
         filtered_log = self.pre_process_single(log)
-
+        log_length = len(filtered_log)
         # 删除指定的列 （这里需要注意一下 如果该列字段下没有值 也就是日志产生了噪声 这样做会把产生偏移 最好用字段名对应起来）
         # self.filter_column(log) # todo: 暂时没做
 
         matched_cluster = self.lookup(filtered_log)
-
         # Todo:::::::::::::::::::::::::::::::::::
 
-    # Check if there is number
+        # 没有找到合适的叶节点
+        if not matched_cluster:
+            # 新建输出层
+            output_layer_node = DragaOutputNode(log_ids=[id])
+            # 插入前缀树 LogClusterObject
+            new_cluster = LogClusterObject(log_template=filtered_log, out_cell=output_layer_node)
+            # 同一个输出节点可能由不同的叶节点汇集而成
+            output_layer_node.parent_layer.append(new_cluster)
+
+            # the initial value of st is 0.5 times the percentage of non-digit tokens in the log message
+            number_of_parameters = 0
+            for token in filtered_log:
+                if self.hasNumbers(token):
+                    number_of_parameters += 1
+
+            # "similarity_threhold" is the similarity threshold used by the similarity layer
+            # 给 新的集合一个初始的相似阈值
+            new_cluster.similarity_threhold = 0.5 * (log_length - number_of_parameters) / float(log_length)
+            new_cluster.init_st = new_cluster.similarity_threhold
+
+            # 参数个数被合并得越来越多的时候, 这个日志组趋向于生成模板
+            new_cluster.base = max(2, number_of_parameters + 1)  # base 是更新时的对数底数
+
+            # 全局的统计
+            self.LogClus.append(new_cluster)
+            self.Outputs.append(output_layer_node)
+
+            # 插入前缀树
+            self.insert(new_cluster)
+            # 更新缓存策略
+            self.pointer[log_length] = new_cluster
+
+        # successfully match an existing cluster, add the new log message to the existing cluster
+        else:
+            new_template, number_updated_tokens = self.marge_template(filtered_log, matched_cluster.log_template)
+            matched_cluster.out_cell.log_ids.append(id)
+
+            if ' '.join(new_template) != ' '.join(matched_cluster.log_template):
+                matched_cluster.log_template = new_template
+
+                # the update of updateCount
+                matched_cluster.updateCount += number_updated_tokens
+                matched_cluster.similarity_threhold = min(
+                    1, matched_cluster.init_st + 0.5 * math.log(matched_cluster.updateCount + 1, matched_cluster.base)
+                )
+
+                # if the merge mechanism is used, them merge the nodes
+                if self.mergethredhold < 1:
+                    self.adjustOutputCell(matched_cluster, self.LogClus)
+
+
+
+# Check if there is number
     def has_numbers(self, s):
         return any(c.isdigit() for c in s)
 
@@ -352,9 +428,7 @@ class Draga(TreeParser):
 
         return merged_template, combined_tokens
 
-
-
-
+    def adjust
 
 
 
@@ -430,29 +504,3 @@ class Draga(TreeParser):
 
                 removeOutputCell.logIDL = None
                 removeOutputCell.active = False
-
-        def outputResult(self, logClustL, rawoutputCellL):
-            writeTemplate = open(self.para.savePath + self.para.saveTempFileName, 'w')
-
-            outputCellL = []
-            for currenOutputCell in rawoutputCellL:
-                if currenOutputCell.active:
-                    outputCellL.append(currenOutputCell)
-
-            for logClust in logClustL:
-                # it is possible that several logClusts point to the same outcell, so we present all possible templates separated by '\t---\t'
-                currentTemplate = ' '.join(logClust.logTemplate) + '\t---\t'
-                logClust.outcell.outTemplates = logClust.outcell.outTemplates + currentTemplate
-
-            for idx, outputCell in enumerate(outputCellL):
-                writeTemplate.write(str(idx + 1) + '\t' + outputCell.outTemplates + '\n')
-
-                writeID = open(self.para.savePath + self.para.saveFileName + str(idx + 1) + '.txt', 'w')
-
-                for logID in outputCell.logIDL:
-                    writeID.write(str(logID) + '\n')
-                writeID.close()
-
-            # print (outputCell.outTemplates)
-
-            writeTemplate.close()
