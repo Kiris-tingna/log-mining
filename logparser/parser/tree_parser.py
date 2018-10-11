@@ -33,7 +33,8 @@ class TreeParser(object):
         _reg = []
         with open(file) as f:
             for line in f.readlines():
-                _reg.append(line.strip())
+                rule = line.strip().split(' |\t')
+                _reg.append((rule[0], rule[1]))
         return _reg
 
     def pre_process_single(self, x):
@@ -44,7 +45,7 @@ class TreeParser(object):
         """
         for p in self.reg_pattern:
             # 用正则替换已有的str pattern
-            x = re.sub(p, self.REPL, x, flags=re.S)
+            x = re.sub(p[0], p[1], x, flags=re.S)
         log_sequence_list = re.split(" |\.", x)
         log_len = len(log_sequence_list)
         # 删除空格与多余的*
@@ -119,7 +120,7 @@ class TreeParser(object):
                 print_stack = []
         return
 
-    def lookup(self):
+    def lookup(self, log):
         """
         在已有的集合中查找log group
         """
