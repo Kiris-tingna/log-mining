@@ -45,12 +45,6 @@ class Drain(TreeParser):
     5) Update the Parse Tree
     6) At the last output layer we do an overall merge log groups
 
-
-    ============ threshold is updated dynamically ============
-    min_similarity = min{1, min_similarity_init + 0.5 × log_base(yeta + 1)}
-    base = max{2, digLen + 1}
-    where yeta is is the accumulated number of tokens that have been replaced by wildcards when updating the log events
-    yeta get higher indicates the more variables found, and the more difficult for log message to get accepted to a log group.
     '''
     REPL = '*'  # 通配符 wildcards
 
