@@ -90,12 +90,12 @@ class Spell(TreeParser):
                         if comp.c[-1][-1] > max_common_length:
                             cur_idx = idj  # 更新最大值序号
                             max_common_signature = sig_obj.signature  # 更新最大值的签名
-                            comp.backtrack()
+                            comp.backtrack_with_repl()
                             max_common_result = comp.result  # 更新最大值的签名结果
                             max_common_length = comp.c[-1][-1]  # 更新最大值的签名长度
                         elif comp.c[-1][-1] == max_common_length and sig_obj.length < len(max_common_signature):
                             cur_idx = idj
-                            comp.backtrack()
+                            comp.backtrack_with_repl()
                             max_common_result = comp.result
                             max_common_length = len(comp.result)
 
@@ -256,6 +256,6 @@ if __name__ == '__main__':
     spell_parser._online_train('delete block_6', 12)
 
     gc.collect()
-    where = visualize_spell_gvfile(spell_parser)
+    # where = visualize_spell_gvfile(spell_parser)
     # spell_parser.dfs_traverse()
     # FP_tree
