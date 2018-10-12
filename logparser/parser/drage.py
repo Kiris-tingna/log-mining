@@ -7,7 +7,7 @@
  @Software: PyCharm
 """
 from logparser.parser.tree_parser import TreeParser, TreeParserNode
-from logparser.utils import Timer
+from logparser.utils import Timer, LCSUtil
 import gc, re
 import math
 
@@ -16,10 +16,10 @@ class LogClusterObject:
     cluster_id = 1
 
     #  注意 new的时候会自增 这个策略在并行是 可能存在问题！
-    def __init__(self, log_template='', similarity_threhold=0.1, out_cell=None):
+    def __init__(self, log_template='', similarity_threshold=0.1, out_cell=None):
         self.log_template = log_template
         self.updateCount = 0
-        self.similarity_threhold = similarity_threhold
+        self.similarity_threshold = similarity_threshold
         self.base = -1
         self.init_st = -1
         self.out_cell = out_cell
@@ -27,13 +27,14 @@ class LogClusterObject:
         self.cluster_id = LogClusterObject.cluster_id
         LogClusterObject.cluster_id += 1
 
+
 class DragaParserNode(TreeParserNode):
     '''
     node for length layer and token layer
     '''
     def __init__(self, digit_or_token):
         self.children = {}
-        # digit_or_token 对于数字是 '*' 对于token 是 单个word
+        # digit_or_token 对于数字是 self.REPL 对于token 是 单个word
         self.digit_or_token = digit_or_token
 
 class DragaOutputNode(TreeParserNode):
@@ -62,7 +63,9 @@ class Draga(TreeParser):
         另外token 层如果超过最大孩子的限制时 将日志归入* 下查找
     4）将 cluster 结构放入 所在查找位置叶节点 这个叶节点下可能有很多cluser结构体
     5）查找的时候先根据首尾字串进行匹配 如果找不到就去* 下匹配 到达叶节点就在所有结构体找大于阈值且最相似的那个cluster结构体 如果没有查找到就新建一个输出层
-    6）
+    6）输出层合并问题：
+    7) 输出层使用函数 get_final_template 来呈现
+
 
     ============ threshold is updated dynamically ============
     min_similarity = min{1, min_similarity_init + 0.5 × log_base(yeta + 1)}
@@ -82,15 +85,14 @@ class Draga(TreeParser):
     FIRST_TOKEN_KEY = '00_Drain_'
     LAST_TOKEN_KEY = '-1_Drain_'
 
-    def __init__(self, reg_file):
-        self.max_child =
+    def __init__(self, reg_file, max_child, merge_threshold):
+        self.max_child = max_child
 
-        self.root =
-        self.mergethredhold =
-
+        self.root = DragaParserNode(digit_or_token='root')
+        self.mergethreshold = merge_threshold
 
         # 缓存的指针 加速查找
-        self.pointer =  dict()
+        self.pointer = dict()
         super(Draga, self).__init__(reg_file)
 
         # 全局列表
@@ -115,6 +117,8 @@ class Draga(TreeParser):
         # self.filter_column(log) # todo: 暂时没做
 
         matched_cluster = self.lookup(filtered_log)
+
+        print(filtered_log, id, matched_cluster)
         # Todo:::::::::::::::::::::::::::::::::::
 
         # 没有找到合适的叶节点
@@ -129,13 +133,13 @@ class Draga(TreeParser):
             # the initial value of st is 0.5 times the percentage of non-digit tokens in the log message
             number_of_parameters = 0
             for token in filtered_log:
-                if self.hasNumbers(token):
+                if self.has_numbers(token):
                     number_of_parameters += 1
 
-            # "similarity_threhold" is the similarity threshold used by the similarity layer
+            # "similarity_threshold" is the similarity threshold used by the similarity layer
             # 给 新的集合一个初始的相似阈值
-            new_cluster.similarity_threhold = 0.5 * (log_length - number_of_parameters) / float(log_length)
-            new_cluster.init_st = new_cluster.similarity_threhold
+            new_cluster.similarity_threshold = 0.5 * (log_length - number_of_parameters) / float(log_length)
+            new_cluster.init_st = new_cluster.similarity_threshold
 
             # 参数个数被合并得越来越多的时候, 这个日志组趋向于生成模板
             new_cluster.base = max(2, number_of_parameters + 1)  # base 是更新时的对数底数
@@ -159,17 +163,15 @@ class Draga(TreeParser):
 
                 # the update of updateCount
                 matched_cluster.updateCount += number_updated_tokens
-                matched_cluster.similarity_threhold = min(
+                matched_cluster.similarity_threshold = min(
                     1, matched_cluster.init_st + 0.5 * math.log(matched_cluster.updateCount + 1, matched_cluster.base)
                 )
 
                 # if the merge mechanism is used, them merge the nodes
-                if self.mergethredhold < 1:
-                    self.adjustOutputCell(matched_cluster, self.LogClus)
+                if self.mergethreshold < 1:
+                    self.adjust_output_layer(matched_cluster, self.LogClus)
 
-
-
-# Check if there is number
+    # Check if there is number
     def has_numbers(self, s):
         return any(c.isdigit() for c in s)
 
@@ -220,11 +222,11 @@ class Draga(TreeParser):
                 and not self.has_special(log_sequence[-1]) # 第二个满足特征 尾词相同并且不是数字和不包含特殊字符
             ) or \
             (  # 第三个满足特征 以通配符涵盖起始和结束的
-                log_cluster_cached.log_template[0] == '*' and log_cluster_cached.log_template[-1] == '*'
+                log_cluster_cached.log_template[0] == self.REPL and log_cluster_cached.log_template[-1] == self.REPL
             ):
             # 计算当前日志和缓存的模板日志的相似度 若大于阈值则返回缓存的cluster
             current_similarity, current_parameters = self.pattern_dist(log_cluster_cached.log_template, log_sequence)
-            if current_similarity >= log_cluster_cached.similarity_threhold:
+            if current_similarity >= log_cluster_cached.similarity_threshold:
                 log_cluster = log_cluster_cached
                 return log_cluster
         #  --------------------- -------------------------------- -------------------------
@@ -243,8 +245,8 @@ class Draga(TreeParser):
         elif token_last_key in prefix_tree_parent.children:
             token_layer_node = prefix_tree_parent.children[token_first_key]
         # 都没有就是 * 下查找 （这里也是相当于分情况查找策略符合 构建时使用的快速策略）
-        elif self.has_numbers(first_token) and self.has_numbers(last_token) and '*' in prefix_tree_parent.children:
-            token_layer_node = prefix_tree_parent.children['*']
+        elif self.has_numbers(first_token) and self.has_numbers(last_token) and self.REPL in prefix_tree_parent.children:
+            token_layer_node = prefix_tree_parent.children[self.REPL]
         else:
             # 其实就是没有查找到 返回None
             return None
@@ -259,7 +261,6 @@ class Draga(TreeParser):
             self.pointer[n] = log_cluster
 
         return log_cluster
-
 
     def insert(self, log_cluster):
         '''
@@ -280,8 +281,8 @@ class Draga(TreeParser):
             # add an others-node for the token layer
             # 这一个比较重要 应为第二层开始每一个节点对应要么是通配符要么是普通字符
             # 通配符要挂在长度节点下面的孩子节点中
-            wildcard_node = DragaParserNode(digit_or_token='*')
-            first_layer_node.children['*'] = wildcard_node
+            wildcard_node = DragaParserNode(digit_or_token=self.REPL)
+            first_layer_node.children[self.REPL] = wildcard_node
         else:
             first_layer_node = self.root.children[n]
 
@@ -307,14 +308,14 @@ class Draga(TreeParser):
             # **************   比较复杂的插入策略 ****************
             # 如果超过了最大孩子的限制 就把其归入到 * 下
             if len(first_layer_node.children) == self.max_child:
-                token_layer_node = first_layer_node.children['*']
+                token_layer_node = first_layer_node.children[self.REPL]
             # 否则 用首尾上部位数字的单词作为节点插入
             else:
                 # CASE1 : first token has numbers  12 ....
                 if self.has_numbers(first_token):
                     # last token has numbers : 12 w w w w w 12
                     if self.has_numbers(last_token):
-                        token_layer_node = first_layer_node.children['*']
+                        token_layer_node = first_layer_node.children[self.REPL]
                     # last token does not have numbers: 12 w w w w
                     else:
                         # 用last token 作为 节点插入
@@ -339,14 +340,14 @@ class Draga(TreeParser):
                         # first/last token has punctuations  头尾词都有特殊字符
                         else:
                             token_layer_node = DragaParserNode(digit_or_token=token_first_key)
-                            first_layer_node.childD[token_first_key] = token_layer_node
+                            first_layer_node.children[token_first_key] = token_layer_node
 
         # ------------ Stage 3. add the cluster to the leave node -----------
         # 需要注意的是一个叶节点下面log_cluster结构体可以有多个
         if len(token_layer_node.children) == 0:
             token_layer_node.children = [log_cluster]
         else:
-            token_layer_node.childD.append(log_cluster)
+            token_layer_node.children.append(log_cluster)
 
     def pattern_dist(self, seq_1, seq_2):
         '''
@@ -359,7 +360,7 @@ class Draga(TreeParser):
         number_of_parameters = 0  # * 的个数
 
         for token_1, token_2 in zip(seq_1, seq_2):
-            if token_1 == '*':
+            if token_1 == self.REPL:
                 number_of_parameters += 1
             elif token_1 == token_2:
                 similar_tokens += 1
@@ -399,7 +400,7 @@ class Draga(TreeParser):
                 max_parameter = n_parameter
                 max_cluster_group = log_cluster
         #  判断相对于之前的版本多了 阈值的判断 这里的阈值已经不再是一个预设的定值了
-        if max_cluster_group is not None and max_similarity >= max_cluster_group.similarity_threhold:
+        if max_cluster_group is not None and max_similarity >= max_cluster_group.similarity_threshold:
             return max_cluster_group
         else:
             return None  # 没有最相似的日志组
@@ -428,79 +429,97 @@ class Draga(TreeParser):
 
         return merged_template, combined_tokens
 
-    def adjust
+    def adjust_output_layer(self, log_cluster, clusterGroup):
+        '''
+        输出层的合并
+        :return:
+        '''
+        similar_cluster = None
+        lcs = []
+        # 记录的相似度
+        max_similarity = -1
+        n = len(log_cluster.log_template)
+
+        for current_log_clust in clusterGroup:
+            # 每个日志模板结构体上template的长度
+            cn = len(current_log_clust.log_template)
+            # 不合并已进在同一个输出单元里的日志组
+            if cn == n or current_log_clust.out_cell == log_cluster.out_cell:
+                continue
+            # 计算不再同一个单元里的日志组 使用LCS动态规划算法
+            lcs_object = LCSUtil(log_cluster.log_template, current_log_clust.log_template)
+            lcs_object.backtrack()
+
+            current_lcs_str = lcs_object.result
+
+            # 相似度的计算使用 max_similarity = （A B 公共子串 / A B 的长度最小值）
+            current_similarity = float(len(current_lcs_str)) / min(n, cn)
+
+            # 取最大的相似度 相同相似度的情况下取长度更长的
+            if current_similarity > max_similarity or (current_similarity == max_similarity and len(current_lcs_str) > len(lcs)):
+                similar_cluster = current_log_clust
+                lcs = current_lcs_str
+                max_similarity = current_similarity
+
+        # 合并进入最相似得日志组
+        if similar_cluster is not None and max_similarity > self.mergethreshold:
+            similar_cluster.out_cell.log_ids = similar_cluster.out_cell.log_ids + log_cluster.out_cell.log_ids
+
+            # DAG删除输出组的父节点
+            remove_output_node = log_cluster.out_cell
+
+            for parent in remove_output_node.parent_layer:
+                # similar_cluster 的输出层节点吸收所有待删除的节点
+                similar_cluster.out_cell.parent_layer.append(parent)
+                parent.out_cell = similar_cluster.out_cell
+
+            remove_output_node.log_ids = None
+            remove_output_node.active = False
+
+    def get_final_tempalte(self):
+        '''
+        输出现有的log template
+        :return:
+        '''
+        # 删除所有不活跃的输出节点 输出到 periodic_output_nodes
+        periodic_output_nodes = []
+        for current_output_node in self.Outputs:
+            if current_output_node.active:
+                periodic_output_nodes.append(current_output_node)
+
+        # 合并template输出
+        for log_cluster in self.LogClus:
+            # it is possible that several logClusts point to the same outcell, so we present
+            # all possible templates separated by '\t---\t'
+            current_template = ' '.join(log_cluster.log_template) + '\t---\t'
+            log_cluster.out_cell.output_templates = log_cluster.out_cell.output_templates + current_template
+            # print(log_cluster.out_cell.output_templates)
+
+        for idx, output_node in enumerate(periodic_output_nodes):
+            # reporter.write(str(idx + 1) + '\t' + output_node.output_templates + '\n')
+            print(idx+1, output_node.output_templates, output_node.log_ids)
 
 
+if __name__ == '__main__':
+    draga_parser = Draga(max_child=120,  merge_threshold=0.9, reg_file='./config.reg_exps.txt')
+    gc.disable()
 
+    draga_parser._online_train('blk 124219214 asa Receive from node 4', 1)
+    # drain_parser._online_train('blk 124219214 asa Receive from node 4', 2)
+    draga_parser._online_train('blk 124219214 ffwqwq * Done to node 4', 2)
+    draga_parser._online_train('blk 124219214 ffwqwq Done to node 4', 3)
+    draga_parser._online_train('blk 782174184 Instance raer1421MManf142v Receive from node 356', 4)
 
+    draga_parser._online_train('Tcp net down daafa aswf qe 1241', 5)
+    draga_parser._online_train('Tcp net down daafa 12 qe 1241', 6)
+    draga_parser._online_train('Tcp qws down daafa 214 qe 1241', 7)
+    draga_parser._online_train('Tcp qws down daafa 421 qe 1241', 8)
+    draga_parser._online_train('Tcp qws down daafa 14 qe 1241', 9)
 
+    draga_parser._online_train('delete block_1', 10)
+    draga_parser._online_train('delete block_3 block_4', 11)
+    draga_parser._online_train('delete block_6', 12)
 
+    gc.collect()
+    draga_parser.get_final_tempalte()
 
-
-
-
-
-
-
-
-
-
-
-
-
-        # return the lcs in a list
-        def LCS(self, seq1, seq2):
-            lengths = [[0 for j in range(len(seq2) + 1)] for i in range(len(seq1) + 1)]
-            # row 0 and column 0 are initialized to 0 already
-            for i in range(len(seq1)):
-                for j in range(len(seq2)):
-                    if seq1[i] == seq2[j]:
-                        lengths[i + 1][j + 1] = lengths[i][j] + 1
-                    else:
-                        lengths[i + 1][j + 1] = max(lengths[i + 1][j], lengths[i][j + 1])
-
-            # read the substring out from the matrix
-            result = []
-            lenOfSeq1, lenOfSeq2 = len(seq1), len(seq2)
-            while lenOfSeq1 != 0 and lenOfSeq2 != 0:
-                if lengths[lenOfSeq1][lenOfSeq2] == lengths[lenOfSeq1 - 1][lenOfSeq2]:
-                    lenOfSeq1 -= 1
-                elif lengths[lenOfSeq1][lenOfSeq2] == lengths[lenOfSeq1][lenOfSeq2 - 1]:
-                    lenOfSeq2 -= 1
-                else:
-                    assert seq1[lenOfSeq1 - 1] == seq2[lenOfSeq2 - 1]
-                    result.insert(0, seq1[lenOfSeq1 - 1])
-                    lenOfSeq1 -= 1
-                    lenOfSeq2 -= 1
-            return result
-
-        def adjustOutputCell(self, logClust, logClustL):
-
-            similarClust = None
-            lcs = []
-            similarity = -1
-            logClustLen = len(logClust.logTemplate)
-
-            for currentLogClust in logClustL:
-                currentClustLen = len(currentLogClust.logTemplate)
-                if currentClustLen == logClustLen or currentLogClust.outcell == logClust.outcell:
-                    continue
-                currentlcs = self.LCS(logClust.logTemplate, currentLogClust.logTemplate)
-                currentSim = float(len(currentlcs)) / min(logClustLen, currentClustLen)
-
-                if currentSim > similarity or (currentSim == similarity and len(currentlcs) > len(lcs)):
-                    similarClust = currentLogClust
-                    lcs = currentlcs
-                    similarity = currentSim
-
-            if similarClust is not None and similarity > self.para.mt:
-                similarClust.outcell.logIDL = similarClust.outcell.logIDL + logClust.outcell.logIDL
-
-                removeOutputCell = logClust.outcell
-
-                for parent in removeOutputCell.parentL:
-                    similarClust.outcell.parentL.append(parent)
-                    parent.outcell = similarClust.outcell
-
-                removeOutputCell.logIDL = None
-                removeOutputCell.active = False
