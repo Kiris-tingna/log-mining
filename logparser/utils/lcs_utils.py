@@ -14,7 +14,7 @@ class LCSUtil(object):
     UP = 2
     EQUAL = 3
 
-    def __init__(self, a, b, repl):
+    def __init__(self, a, b, repl="*"):
         self.a = a
         self.b = b
         self.repl = repl
@@ -41,23 +41,50 @@ class LCSUtil(object):
                     self.c[i + 1][j + 1] = self.c[i][j + 1]
                     self.path[i + 1][j + 1] = LCSUtil.UP
 
-    def backtrack(self, i=-1, j=-1):
+    def backtrack_with_repl(self, i=-1, j=-1):
+        '''
+        重复的用repl替换
+        :param i:
+        :param j:
+        :return:
+        '''
         if i == -1 and j == -1:
             i = self.len_a
             j = self.len_b
         if i == 0 or j == 0:
             return
         if self.path[i][j] == LCSUtil.EQUAL:
-            self.backtrack(i - 1, j - 1)
+            self.backtrack_with_repl(i - 1, j - 1)
             self.result.append(self.a[i - 1])
+
+        elif self.path[i][j] == LCSUtil.LEFT:
+            self.backtrack_with_repl(i, j - 1)
+
+        elif self.path[i][j] == LCSUtil.UP:
+            self.backtrack_with_repl(i - 1, j)
+
+            if self.result and self.result[-1] != self.repl:
+                self.result.append(self.repl)
+
+    def backtrack(self, i=-1, j=-1):
+        '''
+        单纯的回溯
+        :param i:
+        :param j:
+        :return:
+        '''
+        if i == -1 and j == -1:
+            i = self.len_a
+            j = self.len_b
+        if i == 0 or j == 0:
+            return
+        if self.path[i][j] == LCSUtil.EQUAL:
+            if self.a[i-1] != self.repl:
+                self.result.insert(0, self.a[i-1])
+            self.backtrack(i - 1, j - 1)
 
         elif self.path[i][j] == LCSUtil.LEFT:
             self.backtrack(i, j - 1)
 
         elif self.path[i][j] == LCSUtil.UP:
             self.backtrack(i - 1, j)
-
-            if self.result and self.result[-1] != self.repl:
-                self.result.append(self.repl)
-
-
