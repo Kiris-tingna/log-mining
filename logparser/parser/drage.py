@@ -501,7 +501,7 @@ class Draga(TreeParser):
 
 
 if __name__ == '__main__':
-    draga_parser = Draga(max_child=120,  merge_threshold=0.9, reg_file='./config.reg_exps.txt')
+    draga_parser = Draga(max_child=120,  merge_threshold=0.9, reg_file='../config/config.reg_exps.txt')
     gc.disable()
 
     draga_parser._online_train('blk 124219214 asa Receive from node 4', 1)
