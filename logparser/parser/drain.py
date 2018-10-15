@@ -277,7 +277,7 @@ class Drain(TreeParser):
             current_depth += 1
 
 if __name__ == '__main__':
-    drain_parser = Drain(max_child=10, max_depth=3, min_similarity=0.5, reg_file='./config.reg_exps.txt')
+    drain_parser = Drain(max_child=10, max_depth=3, min_similarity=0.5, reg_file='../config/config.reg_exps.txt')
 
     drain_parser._online_train('blk 124219214 asa Receive from node 4', 1)
     # drain_parser._online_train('blk 124219214 asa Receive from node 4', 2)
