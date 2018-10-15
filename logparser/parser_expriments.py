@@ -19,8 +19,8 @@ import gc
 #   2. drain 能识别异常日志模式（突增的日志长度）， 但是drain算法被noise影响的问题比较严重 （有大量重复的日志signature 在不同的bucket上）
 
 # ---------------- step 1 : construct a parser with domain knowledge ---------------
-spell_parser = Spell(reg_file='./parser/config.hdfs.txt', threshold=0.5)
-drain_parser = Drain(reg_file='./parser/config.hdfs.txt', max_child=10, max_depth=4, min_similarity=0.5)
+spell_parser = Spell(reg_file='./config/config.hdfs.txt', threshold=0.5)
+drain_parser = Drain(reg_file='./config/config.hdfs.txt', max_child=10, max_depth=4, min_similarity=0.5)
 
 
 # -------------------- step 2 : train data line step by line  -------------------
