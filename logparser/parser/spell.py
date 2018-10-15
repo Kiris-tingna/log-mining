@@ -237,7 +237,7 @@ class Spell(TreeParser):
         ptr.signature_id = log_id
 
 if __name__ == '__main__':
-    spell_parser = Spell(reg_file='./config.reg_exps.txt', threshold=0.5)
+    spell_parser = Spell(reg_file='../config/config.reg_exps.txt', threshold=0.5)
 
     spell_parser._online_train('blk 124219214 asa Receive from node 4', 1)
     # spell_parser._online_train('blk 124219214 asa Receive from node 4', 2)
