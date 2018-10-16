@@ -53,7 +53,7 @@ class ZTEFormatter(BasicFormatter):
         =================================================
         '''
         self.pid = re.compile("\d{1,}")
-        self.ip = re.compile('\d{1,}-\d{1,}-\d{1,}-\d{1,}')
+        self.ip = re.compile('\d{1,}\.\d{1,}\.\d{1,}\.\d{1,}')
         self.ms_id = re.compile('[0-9 a-z A-Z]{8}-[0-9 a-z A-Z]{4}-[0-9 a-z A-Z]{4}-[0-9 a-z A-Z]{4}-[0-9 a-z A-Z]{12}')
         self.pod_id = re.compile(
             '[0-9 a-z A-Z]{8}-[0-9 a-z A-Z]{4}-[0-9 a-z A-Z]{4}-[0-9 a-z A-Z]{4}-[0-9 a-z A-Z]{12}-[0-9 a-z A-Z]{1}-[0-9 a-z A-Z]{5}'
@@ -68,6 +68,7 @@ class ZTEFormatter(BasicFormatter):
         # 文件映射表
         self.rmappings = rm
         self.omappings = om
+
         # 读取的数据
         self.read_data_frame = None
 
