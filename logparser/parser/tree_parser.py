@@ -48,7 +48,10 @@ class TreeParser(object):
             # 用正则替换已有的str pattern
             x = re.sub(p[0], p[1], x, flags=re.S)
 
-        # 消去在括号 或者 引号之间的分隔符  (aim is to split with rule)
+        # 消去括号之间的空格
+        x = re.sub('\(.*\)', lambda str: re.sub('\s+|\.', '-', str.group(0)), x)
+
+        # 消去引号之间的分隔符  (aim is to split with rule)
         # Example1:
         #       During sync_power_state the instance has a pending task (spawning safas)
         #       'During', 'sync_power_state', 'the', 'instance', 'has', 'a', 'pending', 'task', '(spawning-safas)'
