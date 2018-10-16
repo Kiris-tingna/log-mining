@@ -7,6 +7,7 @@
  @Software: PyCharm
 """
 import re
+import shlex
 
 
 class TreeParserNode(object):
@@ -46,7 +47,20 @@ class TreeParser(object):
         for p in self.reg_pattern:
             # 用正则替换已有的str pattern
             x = re.sub(p[0], p[1], x, flags=re.S)
-        log_sequence_list = re.split(" |\.", x)
+
+        # 消去在括号 或者 引号之间的分隔符  (aim is to split with rule)
+        # Example1:
+        #       During sync_power_state the instance has a pending task (spawning safas)
+        #       'During', 'sync_power_state', 'the', 'instance', 'has', 'a', 'pending', 'task', '(spawning-safas)'
+        # Example2:
+        #       nova.osapi_compute.wsgi.server  192.168.111.8 ""POST /v2.1/servers HTTP/1.1"" status: 202 len: 796
+        #       ['nova', 'osapi_compute', 'wsgi', 'server', '<ip>', '"POST /v2.1/servers HTTP/1.1"', 'status:',
+        #           '202', 'len:', '796']
+        lex_object = shlex.shlex(x)
+        lex_object.whitespace = " |\."
+        lex_object.whitespace_split = True
+
+        log_sequence_list = list(lex_object)
         log_len = len(log_sequence_list)
         # 删除空格与多余的*
         i = 1
