@@ -1,3 +1,5 @@
-\d+(.)?\d*\sGB <size1>
-\d+(.)?\d*\sMB <size2>
-\d{1,}.\d{1,}.\d{1,}.\d{1,} <ip>
+\d+(.)?\d*\s?GB <size1>
+\d+(.)?\d*\s?MB <size2>
+\d+(.)?\d*\s?VCPU <size3>
+\d{1,}\.\d{1,}\.\d{1,}\.\d{1,} <ip>
+-\s- <nothing>
