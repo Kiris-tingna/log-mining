@@ -130,7 +130,6 @@ class ZTEFormatter(BasicFormatter):
         df['level'] = df['origin'].apply(lambda x: self.log_level.search(x).group(0))
         # 只是3个ms id里的第一个
         df['ms_id'] = df['origin'].apply(lambda x: self.ms_id.search(x).group(0))
-
         df['message'] = df['origin'].apply(lambda x: self.filter_origin(x, RULE_LIST))
 
         df.drop(['origin'], axis=1, inplace=True)
@@ -149,12 +148,14 @@ class ZTEFormatter(BasicFormatter):
 
 if __name__ == '__main__':
     read_mapping = {
-        'VM_DELETE_SAMPLE': '../data/zte_data_2018_10_15/instance_delete0802'
         # 'VM_SYN_ERROR': '../data/zte_data_2018_10_15/pod11_tongbu_sort'
+        # 'VM_DELETE_SAMPLE': '../data/zte_data_2018_10_15/instance_delete0802'
+        'VM_FAILED': '../data/zte_data_2018_10_15/pod11_failed'
     }
     output_mapping = {
         # 'VM_SYN_ERROR': '../data/zte_tongbu_filtered.csv'
-        'VM_DELETE_SAMPLE': '../data/zte_delete_filtered.csv'
+        # 'VM_DELETE_SAMPLE': '../data/zte_delete_filtered.csv'
+        'VM_FAILED': '../data/zte_failed_filtered.csv'
     }
 
     zte = ZTEFormatter(rm=read_mapping, om=output_mapping)
