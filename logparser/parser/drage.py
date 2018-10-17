@@ -118,7 +118,7 @@ class Draga(TreeParser):
 
         matched_cluster = self.lookup(filtered_log)
 
-        print(filtered_log, id, matched_cluster)
+        # print(filtered_log, id, matched_cluster)
         # Todo:::::::::::::::::::::::::::::::::::
 
         # 没有找到合适的叶节点
@@ -497,7 +497,8 @@ class Draga(TreeParser):
 
         for idx, output_node in enumerate(periodic_output_nodes):
             # reporter.write(str(idx + 1) + '\t' + output_node.output_templates + '\n')
-            print(idx+1, output_node.output_templates, output_node.log_ids)
+            # print(idx+1, output_node.output_templates, output_node.log_ids)
+            print(idx+1, output_node.output_templates)
 
 
 if __name__ == '__main__':
