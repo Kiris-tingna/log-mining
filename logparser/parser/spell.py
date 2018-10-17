@@ -236,10 +236,11 @@ class Spell(TreeParser):
         # 将log 的 id 给予叶子节点
         ptr.signature_id = log_id
 
-if __name__ == '__main__':
-    spell_parser = Spell(reg_file='../config/config.reg_exps.txt', threshold=0.5)
 
-    spell_parser._online_train('blk 124219214 asa Receive from node 4', 1)
+if __name__ == '__main__':
+    spell_parser = Spell(reg_file='../config/config.nova.txt', threshold=0.5)
+
+    spell_parser._online_train('nova.osapi_compute.wsgi.server  192.168.111.8 "POST /v2.1/servers HTTP/1.1" status: 202 len: 796 time: 0.5544269', 1)
     # spell_parser._online_train('blk 124219214 asa Receive from node 4', 2)
     spell_parser._online_train('blk 124219214 ffwqwq 1241241 Done to node 4', 2)
     spell_parser._online_train('blk 124219214 ffwqwq Done to node 4', 3)
