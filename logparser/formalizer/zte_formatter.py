@@ -7,7 +7,7 @@
  @Software: PyCharm
 """
 import pandas as pd
-from os import listdir
+import os
 from logparser.formalizer.basic_formatter import BasicFormatter
 import re
 
@@ -71,6 +71,21 @@ class ZTEFormatter(BasicFormatter):
 
         # 读取的数据
         self.read_data_frame = None
+        self.files = []
+
+    def list_all_file(self, path):
+        '''
+        得到所有的文件路径
+        :param path:
+        :return:
+        '''
+        for file in os.listdir(path):
+            file_path = os.path.join(path, file)
+            if os.path.isdir(file_path):
+                self.list_all_file(file_path)
+            else:
+                self.files.append(file_path)
+        return
 
     def transform(self):
         # 转换所有文件 并合并到一个大文件中
@@ -100,8 +115,10 @@ class ZTEFormatter(BasicFormatter):
         log_dataset = []
 
         # 装在所有的日志文件到一个数组中
-        for file in listdir(file_address):
-            abs_path = file_address + '/' + file
+        self.list_all_file(file_address)
+
+        for file in self.files:
+            abs_path = file
             # print(abs_path)
 
             with open(abs_path, 'r', encoding='utf-8') as f:
