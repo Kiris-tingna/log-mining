@@ -37,7 +37,7 @@ class Drain(TreeParser):
     *********************************************
     Drain 解析算法简述
     1）Preprocess by Domain Knowledge
-    2) construct prefix tree and search using the length layer to accelerate match parse
+    2) construct prefix tree and search using the length layer to accelerate match reader
         where log messages with the same log event will probably have the same log message length
     3) Search by Preceding Tokens in prefix tree
     4）to leaf node where store a list of log groups and we search by Token Similarity using threshold to decide which group
@@ -275,6 +275,15 @@ class Drain(TreeParser):
                 prefix_tree_parent = prefix_tree_parent.children[token]
 
             current_depth += 1
+
+    def get_final_template(self):
+        '''
+        输出结果
+        :return:
+        '''
+        for item in self.LogClusterMap:
+            print("template {} has {} log records: {}".format(item.cluster_id, len(item.log_ids),
+                                                              ' '.join(item.log_template)))
 
 if __name__ == '__main__':
     drain_parser = Drain(max_child=10, max_depth=3, min_similarity=0.5, reg_file='../config/config.reg_exps.txt')
