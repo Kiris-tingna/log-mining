@@ -11,6 +11,7 @@ try:
 except Exception as e:
     print("can't import graphviz")
 import datetime
+import re
 
 
 def visualize_spell_gvfile(prefix_tree, path="../data/graphviz-spell.gv"):
@@ -34,7 +35,8 @@ def visualize_spell_gvfile(prefix_tree, path="../data/graphviz-spell.gv"):
             for _word, _child in node.children.items():
                 current_index += 1
                 dot.node('N_'+str(current_index), label="", shape='circle')
-                dot.edge('N_'+str(parent_index), 'N_'+str(current_index), label=_word)
+                # _word = re.sub(r"\"|\@|\\", '', _word)
+                dot.edge('N_'+str(parent_index), 'N_'+str(current_index), label=str(_word))
                 current_index = dfs_traverse(_child, dot, current_index, current_index)
         else:
             return current_index
