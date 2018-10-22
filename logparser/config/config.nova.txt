@@ -3,5 +3,5 @@ zte.com.cn zte_company
 \d+(.)?\d*\s?MB <size2>
 \d+(.)?\d*\s?VCPU <size3>
 \d{1,}\.\d{1,}\.\d{1,}\.\d{1,} <ip>
--\s- nothing
-\s[,\.\';]\s *
+-\s- <nothing>
+[\:\=]{1}\s?[\d]+ :<param>
