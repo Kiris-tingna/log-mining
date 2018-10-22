@@ -49,9 +49,9 @@ class TreeParser(object):
             x = re.sub(p[0], p[1], x, flags=re.S)
 
         # 消去括号之间的空格
-        x = re.sub('\(.*\)', lambda str: re.sub('\s+|\.', '-', str.group(0)), x)
+        x = re.sub('\(.*\)', lambda str: re.sub('\s+|\\n|\.', '-', str.group(0)), x)
 
-        # 消去引号之间的分隔符  (aim is to split with rule)
+        # ---------------- 消去引号之间的分隔符  (aim is to split with rule) -------------------
         # Example1:
         #       During sync_power_state the instance has a pending task (spawning safas)
         #       'During', 'sync_power_state', 'the', 'instance', 'has', 'a', 'pending', 'task', '(spawning-safas)'
@@ -59,20 +59,26 @@ class TreeParser(object):
         #       nova.osapi_compute.wsgi.server  192.168.111.8 ""POST /v2.1/servers HTTP/1.1"" status: 202 len: 796
         #       ['nova', 'osapi_compute', 'wsgi', 'server', '<ip>', '"POST /v2.1/servers HTTP/1.1"', 'status:',
         #           '202', 'len:', '796']
+
         lex_object = shlex.shlex(x)
         lex_object.whitespace = " |\."
         lex_object.whitespace_split = True
 
         log_sequence_list = list(lex_object)
         log_len = len(log_sequence_list)
-        # 删除空格与多余的*
-        i = 1
-        while i < log_len:
-            if not log_sequence_list[i].strip():
-                log_sequence_list.pop(i)
-                log_len -= 1
-            else:
-                i += 1
+
+        # # 删除空格与多余的*
+        # i = 1
+        # while i < log_len:
+        #     if not log_sequence_list[i].strip():
+        #         log_sequence_list.pop(i)
+        #         log_len -= 1
+        #     else:
+        #         i += 1
+
+        if log_len > 100:
+            log_sequence_list = ['too', 'long']
+        # print(log_sequence_list)
         return log_sequence_list
 
     def dfs_traverse(self, node=None, depth=0):
