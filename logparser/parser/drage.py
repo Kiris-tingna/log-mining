@@ -37,6 +37,7 @@ class DragaParserNode(TreeParserNode):
         # digit_or_token 对于数字是 self.REPL 对于token 是 单个word
         self.digit_or_token = digit_or_token
 
+
 class DragaOutputNode(TreeParserNode):
     '''
     node for output layer
@@ -117,9 +118,7 @@ class Draga(TreeParser):
         # self.filter_column(log) # todo: 暂时没做
 
         matched_cluster = self.lookup(filtered_log)
-
         # print(filtered_log, id, matched_cluster)
-        # Todo:::::::::::::::::::::::::::::::::::
 
         # 没有找到合适的叶节点
         if not matched_cluster:
