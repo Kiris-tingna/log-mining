@@ -10,6 +10,7 @@ from logparser.parser.tree_parser import TreeParser, TreeParserNode
 from logparser.utils import LCSUtil, Timer, visualize_spell_gvfile
 import gc
 
+
 class SignatureObject(object):
     '''
     Spell 使用的签名对象结构
@@ -236,9 +237,17 @@ class Spell(TreeParser):
         # 将log 的 id 给予叶子节点
         ptr.signature_id = log_id
 
+    def get_final_template(self):
+        '''
+        输出结果
+        :return:
+        '''
+        for item in self.signature_map.values():
+            print("template {} has {} log records: {}".format(item.sig_id, len(item.log_ids), ' '.join(item.signature)))
+
 
 if __name__ == '__main__':
-    spell_parser = Spell(reg_file='../config/config.nova.txt', threshold=0.5)
+    spell_parser = Spell(reg_file='../config/config.iaas.txt', threshold=0.5)
 
     spell_parser._online_train('nova.osapi_compute.wsgi.server  192.168.111.8 "POST /v2.1/servers HTTP/1.1" status: 202 len: 796 time: 0.5544269', 1)
     # spell_parser._online_train('blk 124219214 asa Receive from node 4', 2)
