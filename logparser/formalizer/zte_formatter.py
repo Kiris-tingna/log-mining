@@ -17,54 +17,7 @@ class ZTEFormatter(BasicFormatter):
     ZTE 输入数据格式化
     注意 必须使用csv 文件
     '''
-    def __init__(self, rm ,om):
-        '''
-        提取日志时间戳
-        =================
-        Example:
-            2018-06-26 01:12:11.190
-        '''
-        self.time_stamp_1 = re.compile("\d{4} \d{2}:\d{2}:\d{2}.\d{6}")
-        self.time_stamp_2 = re.compile("\d{4}/\d{2}/\d{2} \d{2}:\d{2}:\d{2}")
-        self.time_stamp_3 = re.compile("\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}.\d{3}")
-        self.time_stamp_4 = re.compile("\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2},\d{3}")
-        self.time_stamp_5 = re.compile("\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}")
-        self.time_stamp_6 = re.compile("\[\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}")
-
-        '''
-        提取日志级别
-        =========
-        Example: 
-        CRIT DEBUG INFO WARNING TRACE WARN ERROR
-        FATAL error warning info
-        =========
-        '''
-        self.log_level = re.compile(
-            r'(\bCRIT\b)|(\bDEBUG\b)|(\bINFO\b)|(\bWARNING\b)|(\bTRACE\b)|(\bWARN\b)|(\bERROR\b)|'
-            r'(\bFATAL\b)|(\berror\b)|(\bwarning\b)|(\binfo\b)')
-
-        '''
-        正则提取PID 和ID ms_id pod_id？？？（what is pid ms_id?）
-        
-        =================================================
-        Example:
-            ms_id : e6aafc85-ab39-41f4-8c07-77754e34c0e5
-            pod_id : c56ee986-5de0-44f1-b6bb-f6617056483f-1-kc5wx
-        =================================================
-        '''
-        self.pid = re.compile("\d{1,}")
-        self.ip = re.compile('\d{1,}\.\d{1,}\.\d{1,}\.\d{1,}')
-        self.ms_id = re.compile('[0-9 a-z A-Z]{8}-[0-9 a-z A-Z]{4}-[0-9 a-z A-Z]{4}-[0-9 a-z A-Z]{4}-[0-9 a-z A-Z]{12}')
-        self.pod_id = re.compile(
-            '[0-9 a-z A-Z]{8}-[0-9 a-z A-Z]{4}-[0-9 a-z A-Z]{4}-[0-9 a-z A-Z]{4}-[0-9 a-z A-Z]{12}-[0-9 a-z A-Z]{1}-[0-9 a-z A-Z]{5}'
-        )
-
-        # _LOG_LEVEL_POS = 0
-        # _REQID_LEN = 40
-        # _INSTACEID_LEN = 32
-        # _UUID_LEN = 36
-        # _MSID_LEN = 32
-
+    def __init__(self, rm, om):
         # 文件映射表
         self.rmappings = rm
         self.omappings = om
@@ -135,13 +88,12 @@ class ZTEFormatter(BasicFormatter):
 
         # 数组转dataset
         df = pd.DataFrame(log_dataset, columns=['origin'])
-        '(\bCRIT\b)|(\bDEBUG\b)|(\bINFO\b)|(\bWARNING\b)|(\bTRACE\b)|(\bWARN\b)|(\bERROR\b)|'
-        r'(\bFATAL\b)|(\berror\b)|(\bwarning\b)|(\binfo\b)'
+
         RULE_LIST = [
             '\[.*?\]',
             '\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}.\d{3} \d+',
             '\sINFO|\sWARNING|\sWARN|\sCRIT|\sDEBUG|\sTRACE|\sFATAL|\sERROR|\serror|\swarning|\sinfo',
-            '[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}',
+            '(req-)?[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}',
         ]
         df['time'] = df['origin'].apply(lambda x: self.time_stamp_3.search(x).group(0))
         df['level'] = df['origin'].apply(lambda x: self.log_level.search(x).group(0))
