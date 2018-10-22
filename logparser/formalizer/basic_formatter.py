@@ -6,9 +6,60 @@
  @File    : basic_formatter.py
  @Software: PyCharm
 """
+import re
 
 
 class BasicFormatter(object):
+    '''
+    提取日志时间戳
+        =================
+        Example:
+            2018-06-26 01:12:11.190
+    '''
+
+    time_stamp_1 = re.compile("\d{4} \d{2}:\d{2}:\d{2}.\d{6}")
+    time_stamp_2 = re.compile("\d{4}/\d{2}/\d{2} \d{2}:\d{2}:\d{2}")
+    time_stamp_3 = re.compile("\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}.\d{3}")
+    time_stamp_4 = re.compile("\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2},\d{3}")
+    time_stamp_5 = re.compile("\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}")
+    time_stamp_6 = re.compile("\[\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}")
+    time_stamp_7 = re.compile("\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2},?")
+
+    time_stamps = [
+        time_stamp_1, time_stamp_2,
+        time_stamp_3, time_stamp_4,
+        time_stamp_5, time_stamp_6,
+        time_stamp_7
+    ]
+
+    '''
+    提取日志级别
+        =========
+        Example: 
+            CRIT DEBUG INFO WARNING TRACE WARN ERROR
+            FATAL error warning info
+        =========
+    '''
+    log_level = re.compile(
+        r'(\bCRIT\b)|(\bDEBUG\b)|(\bINFO\b)|(\bWARNING\b)|(\bTRACE\b)|(\bWARN\b)|(\bERROR\b)|'
+        r'(\bFATAL\b)|(\berror\b)|(\bwarning\b)|(\binfo\b)')
+
+    '''
+    正则提取PID 和ID ms_id pod_id？？？（what is pid ms_id?）
+
+    =================================================
+    Example:
+        ms_id : e6aafc85-ab39-41f4-8c07-77754e34c0e5
+        pod_id : c56ee986-5de0-44f1-b6bb-f6617056483f-1-kc5wx
+    =================================================
+    '''
+    pid = re.compile("\d{1,}")
+    ip = re.compile('\d{1,}\.\d{1,}\.\d{1,}\.\d{1,}')
+    ms_id = re.compile('[0-9 a-z A-Z]{8}-[0-9 a-z A-Z]{4}-[0-9 a-z A-Z]{4}-[0-9 a-z A-Z]{4}-[0-9 a-z A-Z]{12}')
+    pod_id = re.compile(
+        '[0-9 a-z A-Z]{8}-[0-9 a-z A-Z]{4}-[0-9 a-z A-Z]{4}-[0-9 a-z A-Z]{4}-[0-9 a-z A-Z]{12}-[0-9 a-z A-Z]{1}-[0-9 a-z A-Z]{5}'
+    )
+
     '''
     格式化工具基类
     '''
