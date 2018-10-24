@@ -14,6 +14,10 @@ import gc
 class SignatureObject(object):
     '''
     Spell 使用的签名对象结构
+    - sig_id:     模板的event id 号
+    - log_ids:    当前模板下面的日志号
+    - signature:  当前模板的文本串
+    - length：     当前模板的长度
     '''
     signature_id = 1  # 全局计数器
 
@@ -118,11 +122,6 @@ class Spell(TreeParser):
                     # 将sig 直接的插入进去
                     self.signature_map[n_sig_obj.sig_id] = n_sig_obj
                     self.insert(filtered_log, n_sig_obj.sig_id)
-
-        # print('---------information---------')
-        # print(self.current_signature_ids)
-        # for _, item in self.signature_map.items():
-        #     print(item.sig_id, item.signature, item.log_ids)
 
     def jaccard(self, p, q):
         '''
@@ -249,7 +248,8 @@ class Spell(TreeParser):
 if __name__ == '__main__':
     spell_parser = Spell(reg_file='../config/config.iaas.txt', threshold=0.5)
 
-    spell_parser._online_train('nova.osapi_compute.wsgi.server  192.168.111.8 "POST /v2.1/servers HTTP/1.1" status: 202 len: 796 time: 0.5544269', 1)
+    spell_parser._online_train('nova.osapi_compute.wsgi.server  192.168.111.8 "POST /v2.1/servers HTTP/1.1" '
+                               'status: 202 len: 796 time: 0.5544269', 1)
     # spell_parser._online_train('blk 124219214 asa Receive from node 4', 2)
     spell_parser._online_train('blk 124219214 ffwqwq 1241241 Done to node 4', 2)
     spell_parser._online_train('blk 124219214 ffwqwq Done to node 4', 3)

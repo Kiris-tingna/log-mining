@@ -17,6 +17,12 @@ class LogClusterObject:
 
     #  注意 new的时候会自增 这个策略在并行是 可能存在问题！
     def __init__(self, log_template='', similarity_threshold=0.1, out_cell=None):
+        '''
+        日志模板结构体
+        :param log_template:
+        :param similarity_threshold:
+        :param out_cell: 输出单元
+        '''
         self.log_template = log_template
         self.updateCount = 0
         self.similarity_threshold = similarity_threshold
@@ -96,7 +102,7 @@ class Draga(TreeParser):
         self.pointer = dict()
         super(Draga, self).__init__(reg_file)
 
-        # 全局列表
+        # 全局列表 LogClus 记录所有日志模板组 Outputs 记录所有输出层上的东西
         self.LogClus = []
         self.Outputs = []
 
@@ -407,9 +413,6 @@ class Draga(TreeParser):
     def marge_template(self, seq_1, seq_2):
         '''
         合并签名 template = signature 返回合并之后的签名 和 之中被通配符替换的字符个数
-        :param seq_1:
-        :param seq_2:
-        :return:
         '''
         if not len(seq_1) == len(seq_2):
             raise AssertionError("two sequence must have same length")

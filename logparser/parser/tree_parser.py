@@ -18,6 +18,9 @@ class TreeParserNode(object):
 
 
 class TreeParser(object):
+    '''
+    树形解析器基类，执行流程大致为读取对应的正则列表（可配），然后替换匹配的串，消除括号或者引号之间的分隔符号然后输出分割的token序列
+    '''
     def __init__(self, reg_file):
         '''
         初始化树形解析器
@@ -31,6 +34,11 @@ class TreeParser(object):
         self.root = TreeParserNode()
 
     def _read_config(self, file):
+        """
+        读取正则文件
+        :param file:
+        :return:
+        """
         _reg = [('\s+', ' ')]
         with open(file) as f:
             for line in f.readlines():
@@ -65,19 +73,10 @@ class TreeParser(object):
         lex_object.whitespace_split = True
 
         log_sequence_list = list(lex_object)
-        log_len = len(log_sequence_list)
+        # log_len = len(log_sequence_list)
 
-        # # 删除空格与多余的*
-        # i = 1
-        # while i < log_len:
-        #     if not log_sequence_list[i].strip():
-        #         log_sequence_list.pop(i)
-        #         log_len -= 1
-        #     else:
-        #         i += 1
-
-        if log_len > 100:
-            log_sequence_list = ['too', 'long']
+        # if log_len > 100:
+        #     log_sequence_list = ['too', 'long']
         # print(log_sequence_list)
         return log_sequence_list
 
