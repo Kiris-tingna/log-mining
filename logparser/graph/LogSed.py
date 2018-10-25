@@ -56,6 +56,7 @@ class LogSed(object):
     """
     @author: Tong Jia, Lin Yang
     @paper:  LogSed: Anomaly Diagnosis through Mining Time-weighted Control Flow Graph in Logs
+
     *********************************************
     LogSed
     1). Log Parsing Raw Logs -> template set

@@ -7,9 +7,7 @@
  @Software: PyCharm
 """
 from logparser.parser.tree_parser import TreeParser, TreeParserNode
-from logparser.utils import LCSUtil, Timer #, visualize_bsg_gvfile
-import gc
-import re
+from logparser.utils import Timer #, visualize_bsg_gvfile
 import math
 import collections, itertools
 
@@ -250,7 +248,7 @@ class BasicSignatureGren(TreeParser):
                 for cluster in pos[key]:
                     log_template = cluster.log_template
                     compactness += [cluster.nc / len(cluster.log_template)]
-                    terms = tuple(self.template_to_token_pairs(log_template))
+                    terms = self.template_to_token_pairs(log_template)
                     term_pairs.append(terms)
         n = len(term_pairs)
         total_similarity = 0
@@ -282,8 +280,8 @@ class BasicSignatureGren(TreeParser):
             print(signature, ans[signature])
 
 if __name__ == '__main__':
-
-    for i in range(10,11):
+    # 0.7 是最好的阈值
+    for i in range(1, 11):
         st = i * 0.1
 
         bsg_parser = BasicSignatureGren(reg_file='../config/config.reg_exps.txt', global_st=st)
