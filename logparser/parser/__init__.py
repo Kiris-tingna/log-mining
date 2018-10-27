@@ -6,6 +6,9 @@
  @File    : __init__.py.py
  @Software: PyCharm
 """
-from .spell import *
-from .drain import *
-from .drage import *
+from .spell import Spell
+from .drain import Drain
+from .draga import Draga
+from .bsg import BasicSignatureGren
+
+__all__ = ['Spell', 'Drain', 'Draga', 'BasicSignatureGren']

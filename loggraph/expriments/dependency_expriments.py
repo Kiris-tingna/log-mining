@@ -6,9 +6,11 @@
  @File    : dependency_expriments.py
  @Software: PyCharm
 """
-from logparser.dependency import LagEM, LagICE
-import math
 import gc
+import math
+
+from logparser.dependency import LagEM, LagICE
+
 gc.disable()
 # ================ Ex2. 用于分析 event 之间的相关性 ===================
 # experiment record:

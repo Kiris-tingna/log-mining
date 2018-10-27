@@ -7,7 +7,7 @@
  @Software: PyCharm
 """
 # import multiprocessing
-from logparser.parser import Spell, Drain, Draga
+from logparser.parser import Spell, Drain, Draga, BasicSignatureGren
 from logparser.utils import visualize_spell_gvfile, visualize_drain_gvfile, strict_time
 import gc
 import pandas as pd
@@ -37,6 +37,7 @@ gc.disable()
 spell_parser = Spell(reg_file='../config/config.iaas.txt', threshold=0.7)
 drain_parser = Drain(reg_file='../config/config.iaas.txt', max_child=10, max_depth=4, min_similarity=0.5)
 draga_parser = Draga(reg_file='../config/config.iaas.txt', max_child=10, merge_threshold=0.9)
+bsg_parser = BasicSignatureGren(reg_file='../config/config.iaas.txt', global_st=0.7)
 
 '''
  -------------------- step 2 : train data line step by line  -------------------
@@ -54,6 +55,7 @@ for idx, row in df.iterrows():
     # spell_parser.online_train(row.message, row.log_id)
     drain_parser.online_train(row.message, row.log_id)
     # draga_parser.online_train(row.message, row.log_id)
+    # bsg_parser.online_train(row.message, row.log_id)
 
 end = strict_time()
 print(end - start)
@@ -75,3 +77,6 @@ visualize_drain_gvfile(drain_parser, path="../data/Ex1/graphviz_drain_iaas.gv")
 
 # 3. drage 的模板可视化
 # draga_parser.get_final_tempalte()
+
+# 4. bsg 的模板可视化
+# bsg_parser.get_final_template()
