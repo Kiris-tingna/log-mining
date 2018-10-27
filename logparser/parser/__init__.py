@@ -11,4 +11,9 @@ from .drain import Drain
 from .draga import Draga
 from .bsg import BasicSignatureGren
 
-__all__ = ['Spell', 'Drain', 'Draga', 'BasicSignatureGren']
+__all__ = [
+    'Spell',
+    'Drain',
+    'Draga',
+    'BasicSignatureGren'
+]

@@ -3,10 +3,9 @@
 """
  @Time    : 2018/10/15 15:21
  @Author  : Kiristingna
- @File    : zte_formatter.py
+ @File    : stream_formatter.py
  @Software: PyCharm
 """
-import pandas as pd
 import os
 from logparser.formalizer.basic_formatter import BasicFormatter
 import re

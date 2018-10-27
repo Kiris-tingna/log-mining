@@ -7,7 +7,7 @@
  @Software: PyCharm
 """
 # import multiprocessing
-from logparser.parser import Spell, Drain, Draga
+from logparser.parser import *
 from logparser.utils import visualize_spell_gvfile, visualize_drain_gvfile, strict_time
 import gc
 from logparser.formalizer import STREAMFormatter
@@ -19,7 +19,7 @@ from logparser.formalizer import STREAMFormatter
 # experiment record:
 #   1. 需要结解决多行日志的问题
 # Solutions:
-#   1. 使用正则去掉 所有（）{} [] 之间的换行
+#   1. 使用正则去掉 所有（）{} [] 之间的换行 判断每一行前30个字符是否能提取出一个时间模式
 # =========================================================================
 gc.disable()
 
@@ -32,6 +32,7 @@ gc.disable()
 spell_parser = Spell(reg_file='../config/config.paas.txt', threshold=0.7)
 drain_parser = Drain(reg_file='../config/config.paas.txt', max_child=10, max_depth=4, min_similarity=0.5)
 draga_parser = Draga(reg_file='../config/config.paas.txt', max_child=10, merge_threshold=0.9)
+bsg_parser = BasicSignatureGren(reg_file='../config/config.paas.txt', global_st=0.7)
 
 data_dir = '../../../Paas/54534/192.169.8.230'
 stream = STREAMFormatter()
@@ -41,6 +42,7 @@ stream = STREAMFormatter()
  Example: 以下用法适用于dataframe的部分
 '''
 start = strict_time()
+# bsg_parser ...
 stream.online_parse_one_dir(data_dir, spell_parser)
 end = strict_time()
 print(end - start)
@@ -61,3 +63,6 @@ visualize_spell_gvfile(spell_parser, path='../data/Ex2/graphviz_spell_paas.gv')
 
 # 3. drage 的模板可视化
 # draga_parser.get_final_tempalte()
+
+# 4. bsg 的模板可视化
+# bsg_parser.get_final_template()

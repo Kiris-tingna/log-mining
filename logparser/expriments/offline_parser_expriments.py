@@ -7,7 +7,7 @@
  @Software: PyCharm
 """
 # import multiprocessing
-from logparser.parser import Spell, Drain, Draga, BasicSignatureGren
+from logparser.parser import *
 from logparser.utils import visualize_spell_gvfile, visualize_drain_gvfile, strict_time
 import gc
 import pandas as pd
