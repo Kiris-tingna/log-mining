@@ -34,7 +34,8 @@ drain_parser = Drain(reg_file='../config/config.paas.txt', max_child=10, max_dep
 draga_parser = Draga(reg_file='../config/config.paas.txt', max_child=10, merge_threshold=0.9)
 bsg_parser = BasicSignatureGren(reg_file='../config/config.paas.txt', global_st=0.7)
 
-data_dir = '../../../Paas/54534/192.169.8.230'
+# data_dir = '../../../Paas/54534/192.169.8.230'
+data_dir = '../data/test'
 stream = STREAMFormatter()
 
 '''
@@ -43,23 +44,22 @@ stream = STREAMFormatter()
 '''
 start = strict_time()
 # bsg_parser ...
-stream.online_parse_one_dir(data_dir, spell_parser)
+stream.online_parse_one_dir(data_dir, drain_parser)
 end = strict_time()
 print(end - start)
 
 gc.collect()
-
 '''
 ----------------------------- step3-1. result debug + 可视化树结构 ------------------------------------
  Example: 
 '''
 # 1. spell 的模板可视化
-spell_parser.get_final_template()
-visualize_spell_gvfile(spell_parser, path='../data/Ex2/graphviz_spell_paas.gv')
+# spell_parser.get_final_template()
+# visualize_spell_gvfile(spell_parser, path='../data/Ex2/graphviz_spell_paas.gv')
 
 # 2. drain的 模板可视化
-# drain_parser.get_final_template()
-# visualize_drain_gvfile(drain_parser, path="./data/Ex2/graphviz_drain_paas.gv")
+drain_parser.get_final_template()
+visualize_drain_gvfile(drain_parser, path="../data/Ex2/graphviz_drain_paas.gv")
 
 # 3. drage 的模板可视化
 # draga_parser.get_final_tempalte()

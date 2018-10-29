@@ -26,6 +26,13 @@ class ZTEFormatter(BasicFormatter):
         self.read_data_frame = None
         self.files = []
 
+        self.RULE_LIST = [
+            '\[.*?\]',
+            '\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}.\d{3} \d+',
+            '\sINFO|\sWARNING|\sWARN|\sCRIT|\sDEBUG|\sTRACE|\sFATAL|\sERROR|\serror|\swarning|\sinfo',
+            '(req-)?[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}',
+        ]
+
     def list_all_file(self, path):
         '''
         得到所有的文件路径
@@ -47,17 +54,6 @@ class ZTEFormatter(BasicFormatter):
             if k in self.omappings:
                 self.writer(self.omappings[k])
             self.read_data_frame = None
-
-    def filter_origin(self, line, patterns):
-        '''
-        从原始日志中去除某些字段
-        :param line:
-        :param patterns:
-        :return:
-        '''
-        for p in patterns:
-            line = re.sub(p, '', line)
-        return line
 
     def reader(self, file_address):
         '''
@@ -105,22 +101,15 @@ class ZTEFormatter(BasicFormatter):
                     # 合并到同一个文件中
                     log_dataset.extend(line_dataset)
 
-
         # 数组转dataset
         df = pd.DataFrame(log_dataset, columns=['origin'])
 
-        RULE_LIST = [
-            '\[.*?\]',
-            '\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}.\d{3} \d+',
-            '\sINFO|\sWARNING|\sWARN|\sCRIT|\sDEBUG|\sTRACE|\sFATAL|\sERROR|\serror|\swarning|\sinfo',
-            '(req-)?[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}',
-        ]
         df['time'] = df['origin'].apply(lambda x: self.time_origin(x))
         df['level'] = df['origin'].apply(lambda x: self.level_origin(x))
         # 只是3个ms id里的第一个
 
         df['ms_id'] = df['origin'].apply(lambda x: self.ms_origin(x))
-        df['message'] = df['origin'].apply(lambda x: self.filter_origin(x, RULE_LIST))
+        df['message'] = df['origin'].apply(lambda x: self.filter_origin(x))
 
         df.drop(['origin'], axis=1, inplace=True)
 

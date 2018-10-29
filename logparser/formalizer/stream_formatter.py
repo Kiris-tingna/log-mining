@@ -9,6 +9,7 @@
 import os
 from logparser.formalizer.basic_formatter import BasicFormatter
 import re
+import datetime
 
 
 class STREAMFormatter(BasicFormatter):
@@ -20,28 +21,14 @@ class STREAMFormatter(BasicFormatter):
     def __init__(self):
         # id 号
         self.current_id_accumulate = 0
-
+        self.this_year = str(datetime.datetime.now().year)
         # 过滤的条件
         self.RULE_LIST = [
+            '\[.*?\]',
+            '\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}.\d{3} \d+',
             '\sINFO|\sWARNING|\sWARN|\sCRIT|\sDEBUG|\sTRACE|\sFATAL|\sERROR|\serror|\swarning|\sinfo',
             '(req-)?[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}'
         ]
-
-    def filter_origin(self, line):
-        '''
-        从原始日志中去除某些字段
-        :param line:
-        :param patterns:
-        :return:
-        '''
-
-        for p in self.time_stamps:
-            line = re.sub(p, '', line)
-
-        for p in self.RULE_LIST:
-            line = re.sub(p, '', line)
-
-        return line
 
     def online_parse_one_file(self, file, parser):
         '''
@@ -50,60 +37,38 @@ class STREAMFormatter(BasicFormatter):
         :param parser:
         :return:
         '''
-        i =0
         with open(file, 'r', encoding='utf-8') as f:
-            need_to_read = True
+            prev_line = f.readline()
+            next_line = f.readline()
             while True:
-                if need_to_read:
-                    line = f.readline()
-                else:
-                    line = line_next
-                    need_to_read = True
-
-                i +=1
-                if i > 100:
-                    return
-
-                if not line:
+                if not next_line:
                     break
+                # 判断改行是否有效
+                elif 0 < len(next_line) < 20:
+                    prev_line += next_line
+                    next_line = f.readline()
+                else:
+                    # 行起始特征不满足
+                    if next_line[:4] != self.this_year:
+                        prev_line += next_line
+                        next_line = f.readline()
+                    # 行起始特征满足
+                    elif next_line[:4] == self.this_year:
+                        # 超长截断处理
+                        if len(prev_line) > 1000:
+                            prev_line = prev_line[:1000]
 
-                log_message = self.filter_origin(line).strip('\n')
-                log_id = self.current_id_accumulate
+                        parse_line = re.sub(r'\n', '', prev_line)
+                        log_message = self.filter_origin(parse_line)
+                        log_id = self.current_id_accumulate
 
-                # 多行日志问题
-                if '(' in log_message or '{' in log_message:
-                    line_next = f.readline()
-                    # need to contact
-                    if not self.time_origin(line_next[:26]):
-                        while True:
-                            log_message += line_next
-                            line_next = f.readline()
-                            print(log_message)
-                            if self.time_origin(line_next[:26]) or not line_next:
-                                break
+                        # core: 处理一行日志
+                        parser.online_train(log_message, log_id)
 
-                        need_to_read = False
-
-                    # no need to contact
-                    else:
-                        need_to_read = False
-
-
-
-
-
-                print(log_id, log_message)
-                self.current_id_accumulate += 1
-
-                 # log_id, log_message
-
-
-        # 超长截断处理
-        #
-        # if line != '\n':
-        #     log_id, _, _, _ = self.transform(line)
-        #
-        #     parser.online_train(log_message, log_id)
+                        # 为新行做准备
+                        prev_line = next_line
+                        next_line = f.readline()
+                        self.current_id_accumulate += 1
 
     def list_all_file(self, path, file_list):
         '''

@@ -102,6 +102,20 @@ class BasicFormatter(object):
         else:
             return None
 
+    def filter_origin(self, line):
+        '''
+        从原始日志中去除某些字段
+        :param line:
+        :param patterns:
+        :return:
+        '''
+        for p in self.RULE_LIST:
+            line = re.sub(p, '', line)
+
+        for p in self.time_stamps:
+            line = re.sub(p, '', line)
+        return line
+
     def reader(self, file):
         '''
         读取数据

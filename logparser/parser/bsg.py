@@ -115,7 +115,7 @@ class BasicSignatureGren(TreeParser):
 
     def online_train(self, log, id):
         """
-
+        处理某一条日志的插入的逻辑
         :param log:
         :return:
         """
