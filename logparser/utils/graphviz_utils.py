@@ -13,6 +13,52 @@ except Exception as e:
 import datetime
 import re
 
+def visualize_bsg_gvfile(parser, path = '../data/graphviz-bsg.gv'):
+    '''
+    产生bsg 算法树的gv描述文件 并可视化
+    :param parser:
+    :param path: 描述文件产生的位置
+    :return:
+    '''
+    if not parser:
+        raise ValueError("Must give a parser object")
+
+    tree_gv_object = Digraph(strict=True, comment='The visualization of bsg '+ str(datetime.date.today()))
+    tree_gv_object.node('N_0', label="root", shape='circle')
+
+    offset2map = {0:'start', 1:'end', 2:'arbitrarily'}
+    cur_index = 1
+    for pos in parser.bucket:
+        length = pos // 3
+        offset = pos % 3
+        keyValue_index = cur_index
+        cur_index += 1
+        tree_gv_object.node('N_'+str(keyValue_index), shape = "box")
+        tree_gv_object.edge('N_0', 'N_'+str(keyValue_index), label= str(length) + '_' + offset2map[offset])
+        for keyvalue in parser.bucket[pos]:
+            tree_gv_object.node('N_' + str(cur_index), shape="circle")
+            tree_gv_object.edge('N_' + str(keyValue_index), 'N_' + str(cur_index), \
+                                label=keyvalue)
+            kv = cur_index
+            cur_index += 1
+            for logcluster in parser.bucket[pos][keyvalue]:
+                last = kv
+                for token in logcluster.log_template:
+                    tree_gv_object.node('N_' + str(cur_index), shape="circle")
+                    tree_gv_object.edge('N_'+str(last), 'N_' + str(cur_index), label=token)
+                    last = cur_index
+                    cur_index += 1
+
+    ext = '.gv'
+    if ext in path:
+        path = path[:-3] + "-" + str(datetime.date.today()) + ext
+
+    with open(path, 'w', encoding='utf-8') as f:
+        f.write(tree_gv_object.source)
+
+    tree_gv_object.render(path, view=True)
+    return path
+
 
 def visualize_spell_gvfile(prefix_tree, path="../data/graphviz-spell.gv"):
     '''

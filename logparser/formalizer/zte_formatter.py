@@ -10,7 +10,7 @@ import pandas as pd
 import os
 from logparser.formalizer.basic_formatter import BasicFormatter
 import re
-
+import gzip
 
 class ZTEFormatter(BasicFormatter):
     '''
@@ -72,19 +72,39 @@ class ZTEFormatter(BasicFormatter):
 
         for file in self.files:
             abs_path = file
+            if '.DS_Store' in abs_path:
+                continue
             # print(abs_path)
+            if 'gz' not in abs_path:
+                with open(abs_path, 'r', encoding='utf-8') as f:
+                    line_dataset = []
+                    while True:
+                        line = f.readline()
+                        if line:
+                            if line[0] == '2':
+                                line_dataset.append(line.strip('\n'))
+                            else:
+                                line_dataset[-1] += ' ' + line.strip('\n')
+                        else:
+                            break
+                    # 合并到同一个文件中
+                    log_dataset.extend(line_dataset)
+            else:
+                with gzip.open(abs_path, 'rt', encoding='utf-8') as f:
+                    line_dataset = []
+                    while True:
+                        line = f.readline()
+                        if line:
+                            if line != '\n':
+                                if line[0] == '2':
+                                    line_dataset.append(line.strip('\n'))
+                                else:
+                                    line_dataset[-1]+=' '+ line.strip('\n')
+                        else:
+                            break
+                    # 合并到同一个文件中
+                    log_dataset.extend(line_dataset)
 
-            with open(abs_path, 'r', encoding='utf-8') as f:
-                line_dataset = []
-                while True:
-                    line = f.readline()
-                    if line:
-                        if line != '\n':
-                            line_dataset.append(line.strip('\n'))
-                    else:
-                        break
-                # 合并到同一个文件中
-                log_dataset.extend(line_dataset)
 
         # 数组转dataset
         df = pd.DataFrame(log_dataset, columns=['origin'])
@@ -98,7 +118,10 @@ class ZTEFormatter(BasicFormatter):
         df['time'] = df['origin'].apply(lambda x: self.time_stamp_3.search(x).group(0))
         df['level'] = df['origin'].apply(lambda x: self.log_level.search(x).group(0))
         # 只是3个ms id里的第一个
-        df['ms_id'] = df['origin'].apply(lambda x: self.ms_id.search(x).group(0))
+        def find_ms_id(x):
+            ret = self.ms_id.search(x)
+            return ret.group(0) if ret else 'null'
+        df['ms_id'] = df['origin'].apply(lambda x: find_ms_id(x))
         df['message'] = df['origin'].apply(lambda x: self.filter_origin(x, RULE_LIST))
 
         df.drop(['origin'], axis=1, inplace=True)
@@ -119,7 +142,7 @@ if __name__ == '__main__':
     read_mapping = {
         # 'VM_SYN_ERROR': '../data/zte_data_2018_10_15/pod11_tongbu_sort'
         # 'VM_DELETE_SAMPLE': '../data/zte_data_2018_10_15/instance_delete0802'
-        'VM_FAILED': '../data/zte_data_2018_10_15/pod11_failed'
+        'VM_FAILED': '../data/slot1'
     }
     output_mapping = {
         # 'VM_SYN_ERROR': '../data/zte_tongbu_filtered.csv'

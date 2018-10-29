@@ -229,7 +229,7 @@ def visualize_logsed_gvfile(control_flow_graph, transaction_flow_graph, path="..
     return path
 
 if __name__ == '__main__':
-    file = '../message.csv'
+    file = '../data/message.csv'
     df = pd.read_csv(file)#,nrows=10000)
     '''
     df.time_stamp = df.time_stamp.map(lambda x:datetime_timestamp(x))

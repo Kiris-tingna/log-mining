@@ -6,10 +6,11 @@
  @File    : bsg.py
  @Software: PyCharm
 """
-from logparser.parser.tree_parser import TreeParser, TreeParserNode
-from logparser.utils import Timer #, visualize_bsg_gvfile
-import math
 import collections, itertools
+from logparser.parser.tree_parser import TreeParser
+from logparser.utils import Timer , visualize_bsg_gvfile
+import math
+import gc
 
 
 class LogCluster(object):
@@ -24,6 +25,8 @@ class LogCluster(object):
         self.st = similarity_threshold
         self.nc = len(log_template)
         self.log_ids = [idx]
+        self.cnt = 1
+        self.entropy = [0 for _ in range(self.nc)]
         # token_dict=[
         #     模板上词的相应位置: {替换的参数列表}
         # ]
@@ -32,7 +35,7 @@ class LogCluster(object):
         for i, token in enumerate(log_template):
             self.token_dict[i][token] = 1
 
-    def update(self, nc, new_log_template, new_log_seq, idx):
+    def update(self, nc, new_log_template, new_log_seq, idx, change_entropy):
         '''
         Example：
             new_log_template: [a, b, * , d]
@@ -51,17 +54,21 @@ class LogCluster(object):
         # 当前常量字符的长度
         self.nc = nc
         self.log_template = new_log_template
+        self.cnt += 1
         # log_seq 为新的日志序列
         for i, token in enumerate(new_log_seq):
             self.token_dict[i][token] += 1
         #  当前日志组日志id的增加
         self.log_ids.append(idx)
+        # 修改熵值
+        for i in change_entropy:
+            self.entropy[i] = change_entropy[i]
 
 
 class BasicSignatureGren(TreeParser):
     """
     @author: Shuting Guo
-    @paper:
+    @paper: Event Extraction from Streaming System Logs
 
     ********************************************
     BSG 解析器过程简述
@@ -99,8 +106,7 @@ class BasicSignatureGren(TreeParser):
         #       该长度日志 终止字符位置可以用作分桶情况: { 尾token: [对应的模板] ....}
         #       该长度日志 中间字符位置可以用作分桶情况: { 中间token: [对应的模板] ....}
         # ]
-        # Todo: 将list 转为dict 节省空间
-        self.bucket = [collections.defaultdict(list) for _ in range(self.max_length * 3)]
+        self.bucket = dict()
         super(BasicSignatureGren, self).__init__(reg_file)  # 装载正则表达式
 
     @Timer
@@ -132,6 +138,9 @@ class BasicSignatureGren(TreeParser):
             pos = log_length * 3 + 2
 
         # 3.Token Layer匹配
+        if pos not in self.bucket:
+            self.bucket[pos] = collections.defaultdict(list)
+
         if keyValue not in self.bucket[pos]:
             # 在bucket中尚未存在当前的模板则新建一个新的模板 并放在相应位置的字典中
             new_cluster = self.create_cluster(log_filter, log_length, id)
@@ -139,18 +148,19 @@ class BasicSignatureGren(TreeParser):
         else:
             # 存在就从template列表中找出最合适（熵变最小的情况）的插入
             token_layer = self.bucket[pos][keyValue]
-            sim, new_nc, new_template, idx, entropy = -1, -1, -1, -1, 100000
+            sim, new_nc, new_template, idx, entropy, change_entropy = -1, -1, -1, -1, 100000, dict()
 
-            # Todo：1. 熵值存储   2. 熵计算变为基尼系数
+            # Todo：1. 熵计算变为基尼系数
             for i, cluster in enumerate(token_layer):
                 # sim: 相似度 new_nc: 常量字符的长度 entropy: 熵
-                sim_, new_nc_, new_template_, entropy_ = self.min_entropy_diff(log_filter, cluster)
+                sim_, new_nc_, new_template_, entropy_, change_entropy_ = self.min_entropy_diff(log_filter, cluster)
                 if sim_ > -1 and entropy_ < entropy:
-                    sim, new_nc, new_template, entropy = sim_, new_nc_, new_template_, entropy_
+                    sim, new_nc, new_template, entropy, change_entropy = sim_, new_nc_, new_template_, \
+                                                                         entropy_, change_entropy_
                     idx = i
             if sim > -1:
                 # token layer 更新
-                token_layer[idx].update(new_nc, new_template, log_filter, id)
+                token_layer[idx].update(new_nc, new_template, log_filter, id, change_entropy_)
             else:
                 # new cluster 的创建
                 new_cluster = self.create_cluster(log_filter, log_length, id)
@@ -190,35 +200,39 @@ class BasicSignatureGren(TreeParser):
         '''
         log_template = cluster.log_template
         token_dict = cluster.token_dict
+        cluster_entropy = cluster.entropy
+
         new_template = []
         st = cluster.st
         nc = cluster.nc
+        cnt = cluster.cnt
         threshold = math.ceil((1 - st) * nc)
+
         # 与模板不同的个数
         diff = 0
-        entropy = 0
+        diff_entropy = 0
+        change_entropy = dict()
         for i in range(len(seq)):
             s1 = seq[i]
             s2 = log_template[i]
             if s1 != s2:
+                old_entropy = cluster_entropy[i]
                 diff += 1
-                old_cnt, old_entropy, new_entropy = 0, 0, 0
+                new_entropy = 0
                 for token in token_dict[i]:
-                    old_cnt += token_dict[i][token]
-                    old_entropy += token_dict[i][token] * math.log(token_dict[i][token])
                     if s1 == token:
                         new_entropy += (token_dict[i][token] + 1) * math.log((token_dict[i][token] + 1))
                     else:
                         new_entropy += token_dict[i][token] * math.log(token_dict[i][token])
-                old_entropy = - (1.0 / old_cnt * old_entropy - math.log(old_cnt))
-                new_entropy = - (1.0 / (old_cnt + 1) * new_entropy - math.log(old_cnt + 1))
-                entropy += abs(old_entropy - new_entropy)
+                new_entropy = - (1.0 / (cnt + 1) * new_entropy - math.log(cnt + 1))
+                diff_entropy += abs(old_entropy - new_entropy)
+                change_entropy[i] = new_entropy
                 if diff > threshold:
-                    return -1, -1, [], -1
+                    return -1, -1, [], -1, dict()
                 new_template.append('*')
             else:
                 new_template.append(s1)
-        return 1 - float(diff) / nc, len(seq) - diff, new_template, entropy
+        return 1 - float(diff) / nc, len(seq) - diff, new_template, diff_entropy, change_entropy
 
     def template_to_token_pairs(self, log_template):
         """
@@ -244,11 +258,11 @@ class BasicSignatureGren(TreeParser):
         # 类内紧密程度： sum (常量 / 长度)
         compactness = []
         for pos in self.bucket:
-            for key in pos:
-                for cluster in pos[key]:
+            for key in self.bucket[pos]:
+                for cluster in self.bucket[pos][key]:
                     log_template = cluster.log_template
                     compactness += [cluster.nc / len(cluster.log_template)]
-                    terms = self.template_to_token_pairs(log_template)
+                    terms = (self.template_to_token_pairs(log_template))
                     term_pairs.append(terms)
         n = len(term_pairs)
         total_similarity = 0
@@ -273,15 +287,15 @@ class BasicSignatureGren(TreeParser):
         '''
         ans = collections.defaultdict(list)
         for pos in self.bucket:
-            for key in pos:
-                for cluster in pos[key]:
+            for key in self.bucket[pos]:
+                for cluster in self.bucket[pos][key]:
                     ans[' '.join(cluster.log_template)] += cluster.log_ids
         for signature in ans:
             print(signature, ans[signature])
 
 if __name__ == '__main__':
     # 0.7 是最好的阈值
-    for i in range(1, 11):
+    for i in range(7, 8):
         st = i * 0.1
 
         bsg_parser = BasicSignatureGren(reg_file='../config/config.reg_exps.txt', global_st=st)
@@ -302,8 +316,6 @@ if __name__ == '__main__':
         bsg_parser.get_final_template()
 
         print(bsg_parser.quality())
-    # # where = visualize_bsg_gvfile(bsg_parser)
+    where = visualize_bsg_gvfile(bsg_parser)
     #
-    # gc.collect()
-
-
+    gc.collect()
