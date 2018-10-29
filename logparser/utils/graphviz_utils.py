@@ -8,12 +8,54 @@
 """
 try:
     from graphviz import Digraph
+    from graphviz import render
 except Exception as e:
     print("can't import graphviz")
 import datetime
-import re
 
-def visualize_bsg_gvfile(parser, path = '../data/graphviz-bsg.gv'):
+
+def visualize_logsed_gvfile(control_flow_graph, transaction_flow_graph, path="../graphviz-logsed.gv"):
+    '''
+    可视化事物流图
+    :param control_flow_graph:
+    :param transaction_flow_graph: dict value 为 事件i到事件j的转移时间
+    :param path:
+    :return:
+    '''
+    gv_object = Digraph(strict=True, comment='The visualization of prefix tree ' + str(datetime.date.today()))
+    length = len(control_flow_graph)
+    visited = [False for _ in range(length)]
+    nodes = 0
+    edges = 0
+    for i in range(length):
+        for j in range(length):
+            if transaction_flow_graph[i][j] > -1:
+                # 编号逻辑
+                if not visited[i]:
+                    nodes +=1
+                    visited[i] = True
+                    gv_object.node('E_'+str(i), shape='circle')
+
+                if not visited[j]:
+                    nodes +=1
+                    visited[j] = True
+                    gv_object.node('E_'+str(j), shape='circle')
+                # 连接两个点形成一条边
+                gv_object.edge('E_'+str(i), 'E_'+str(j), label=str(round(transaction_flow_graph[i][j], 3)))
+                edges += 1
+    print('There are {} edges with {} nodes'.format(edges, nodes))
+    ext = '.gv'
+    if ext in path:
+        path = path[:-3] + "-" + str(datetime.date.today()) + ext
+
+    with open(path, 'w', encoding='utf-8') as f:
+        f.write(gv_object.source)
+    # circo ; sfdp 这两个布局比较好
+    render(engine='sfdp', format='pdf', filepath=path, quiet=False)
+    return path
+
+
+def visualize_bsg_gvfile(parser, path='../data/graphviz-bsg.gv'):
     '''
     产生bsg 算法树的gv描述文件 并可视化
     :param parser:
@@ -81,7 +123,6 @@ def visualize_spell_gvfile(prefix_tree, path="../data/graphviz-spell.gv"):
             for _word, _child in node.children.items():
                 current_index += 1
                 dot.node('N_'+str(current_index), label="", shape='circle')
-                # _word = re.sub(r"\"|\@|\\", '', _word)
                 dot.edge('N_'+str(parent_index), 'N_'+str(current_index), label=str(_word))
                 current_index = dfs_traverse(_child, dot, current_index, current_index)
         else:

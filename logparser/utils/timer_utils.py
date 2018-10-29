@@ -32,3 +32,19 @@ def Timer(func):
         print('{} cost：{}s seconds'.format(func.__name__, _end_time - _start_time))
         return _func_result
     return fn
+
+
+def datetime_to_timestamp(dt):
+    """
+    用于将时间戳转换为unix时间值
+    :param dt: string
+    :return: Unix time stamp
+    """
+    if ',' in dt:
+        [t1, t2] = dt.split(',')
+        micro_seconds = round(float('0.' + t2), 3)
+        unix_seconds = int(time.mktime(time.strptime(t1, '%Y-%m-%d %H:%M:%S')))
+        return unix_seconds + micro_seconds
+    else:
+        unix_seconds = int(time.mktime(time.strptime(dt, '%Y-%m-%d %H:%M:%S')))
+        return unix_seconds
