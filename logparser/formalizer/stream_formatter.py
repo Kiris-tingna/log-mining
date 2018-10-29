@@ -43,42 +43,6 @@ class STREAMFormatter(BasicFormatter):
 
         return line
 
-    def time_origin(self, line):
-        '''
-        从日志中得到时间
-        :param line:
-        :return:
-        '''
-        for t in self.time_stamps:
-            r = t.search(line)
-            if r:
-                return r.group(0)
-        return None
-
-    def level_origin(self, line):
-        '''
-        提取级别
-        :param line:
-        :return:
-        '''
-        r = self.log_level.search(line)
-        if r:
-            return r.group(0)
-        else:
-            return None
-
-    def ms_origin(self, line):
-        '''
-        提取ms 号
-        :param line:
-        :return:
-        '''
-        r = self.ms_id.search(line)
-        if r:
-            return r.group(0)
-        else:
-            return None
-
     def online_parse_one_file(self, file, parser):
         '''
         对一个文件的在线处理

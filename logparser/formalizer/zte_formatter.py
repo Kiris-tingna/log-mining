@@ -115,13 +115,11 @@ class ZTEFormatter(BasicFormatter):
             '\sINFO|\sWARNING|\sWARN|\sCRIT|\sDEBUG|\sTRACE|\sFATAL|\sERROR|\serror|\swarning|\sinfo',
             '(req-)?[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}',
         ]
-        df['time'] = df['origin'].apply(lambda x: self.time_stamp_3.search(x).group(0))
-        df['level'] = df['origin'].apply(lambda x: self.log_level.search(x).group(0))
+        df['time'] = df['origin'].apply(lambda x: self.time_origin(x))
+        df['level'] = df['origin'].apply(lambda x: self.level_origin(x))
         # 只是3个ms id里的第一个
-        def find_ms_id(x):
-            ret = self.ms_id.search(x)
-            return ret.group(0) if ret else 'null'
-        df['ms_id'] = df['origin'].apply(lambda x: find_ms_id(x))
+
+        df['ms_id'] = df['origin'].apply(lambda x: self.ms_origin(x))
         df['message'] = df['origin'].apply(lambda x: self.filter_origin(x, RULE_LIST))
 
         df.drop(['origin'], axis=1, inplace=True)
