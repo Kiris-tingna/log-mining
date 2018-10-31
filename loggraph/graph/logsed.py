@@ -44,7 +44,7 @@ class LogSed(object):
                  cluster_threshold=0.7,
                  time_period=5,
                  FS_threshold=0.8,
-                 transaction_epsilon=1,
+                 transaction_epsilon=0.5,
                  outlier_epsilon=3,
                  max_event=1000
                  ):
@@ -124,8 +124,7 @@ class LogSed(object):
         :param time_series:
         :return:
         '''
-        # step 1: FS group computation 挖掘继承事件
-        # construct successor group
+        # ------------------- step 1: FS group computation 挖掘继承事件 ---------------------
         FS_group = collections.defaultdict(list)
         event_count = collections.defaultdict(int)
 
@@ -136,74 +135,94 @@ class LogSed(object):
             # 寻找时间窗口上的最后一个点
             while pos < length and (time_series[pos][1] - time_series[start][1]) < self.time_period:
                 pos += 1
+            # 当前的窗口的起始时间和起始时间
             cur_event = time_series[start][0]
             cur_time = time_series[start][1]
-            # 计算时滞
+
+            # 计算当前窗口后继时间与起始事件之间的时滞 并将其作为 series 对象
             series = sorted(list(map(lambda x: (x[0], x[1] - cur_time), time_series[start + 1: pos])),
                             key=lambda x: x[0])
-            #  去除世家窗口内冗余项  这里使用最近的那个事件
+
+            # todo: 1. need consider how to strip window
+
+            #  去除series 对象 时间窗口内冗余项 冗余项包括：
+            # 1. 窗口起始事件
+            # 2. 在series 中第二次出现的相同事（这里使用离起始事件最近的那个事件）
             unique_series = [series[i] for i in range(len(series))
                              if series[i][0] != cur_event and
                              (i == 0 or (i > 0 and series[i][0] != series[i-1][0]))]
-
-            FS_group[cur_event] += unique_series
+            #  拼接当前这个时间之后的总和序列
+            FS_group[cur_event].extend(unique_series)
+            # 事件在长序列中总共出现的次数
             event_count[cur_event] += 1
-            # todo: need consider how to strip window
+            # 滑动窗口
             start += 1
 
         # 过滤偶然出现的事件
         for event in FS_group:
-            group = list(map(lambda x:x[0], FS_group[event]))
+            group = list(map(lambda x: x[0], FS_group[event]))
             unique_group = list(set(group))
             unique_group = list(filter(lambda x: group.count(x) / event_count[event] > self.FS_threshold,
                                        unique_group))
             FS_group[event] = list(filter(lambda x: x[0] in unique_group, FS_group[event]))
 
-        # todo Tinkle: Verify sub-structure
+        # todo Tinkle: 2. Verify sub-structure
 
-        # step 2: Edge time weight computation
-        control_flow_graph = [[-1 for i in range(self.max_event)] for j in range(self.max_event)]
-        successor_map = dict()
+        # ----------------------------- step 2: Edge time weight computation --------------------------------------
+        # cfg : 控制图上的节点对的邻接矩阵
+        cfg = [[-1 for _ in range(self.max_event)] for _ in range(self.max_event)]
+        time_weight_mapping = dict()
+        # event: 指当前起始事件 successor_id: 指当前起始事件开头的窗口内的后继事件
         for event in FS_group:
-            for successor_time in FS_group[event]:
-                successor = successor_time[0]
-                transfer_time = successor_time[1]
-                if event not in successor_map:
-                    successor_map[event] = collections.defaultdict(list)
-                bisect.insort_left(successor_map[event][successor], transfer_time)
+            if event not in time_weight_mapping:
+                time_weight_mapping[event] = collections.defaultdict(list)
 
+            for successor in FS_group[event]:
+                successor_id = successor[0]
+                transfer_time = successor[1]
+                # item: {事件id:[时间差的有序列表]}
+                bisect.insort_left(time_weight_mapping[event][successor_id], transfer_time)
+
+        # 取最大的时间间隔
         for i in range(self.max_event):
             for j in range(self.max_event):
-                if i != j and i in successor_map and len(successor_map[i][j]):
-                    control_flow_graph[i][j] = successor_map[i][j][-1]
-        return control_flow_graph, successor_map
+                if i != j and i in time_weight_mapping and len(time_weight_mapping[i][j]):
+                    cfg[i][j] = time_weight_mapping[i][j][-1]
+        return cfg, time_weight_mapping
 
     @Timer
-    def determine_transaction_flow(self, successor_map):
-        transaction_flow_graph = [[-1 for i in range(self.max_event)] for j in range(self.max_event)]
-        for event in successor_map:
-            for successor in successor_map[event]:
+    def determine_transaction_flow(self, time_weight_mapping):
+        '''
+        切分事物流，确定事物的起点和终点
+        :param time_weight_mapping:
+        :return:
+        '''
+        # tfg: transaction control graph  事物流图
+        tfg = [[-1 for _ in range(self.max_event)] for _ in range(self.max_event)]
+        for event in time_weight_mapping:
+            for successor in time_weight_mapping[event]:
                 count, transaction_time = -1, -1
-                times = successor_map[event][successor]
+                # 两个事件 所有的 时间差列表
+                times = time_weight_mapping[event][successor]
+
                 for transfer_time in times:
+                    # 搜索区间
                     left = bisect.bisect_right(times, transfer_time - self.transaction_epsilon)
                     right = bisect.bisect_left(times, transfer_time + self.transaction_epsilon)
+                    # 集中区域作为 最终的 分割事物流的依据
                     if right - left >= count:
                         count = right - left
                         transaction_time = transfer_time
-                if transaction_time > -1 and transaction_time < self.outlier_epsilon:
-                    transaction_flow_graph[event][successor] = transaction_time
-        return transaction_flow_graph
+                # 去掉转移时间超过outlier_epsilon的 事件对
+                if -1 < transaction_time < self.outlier_epsilon:
+                    tfg[event][successor] = transaction_time
+        return tfg
 
 if __name__ == '__main__':
-    # df.time_stamp = df.time_stamp.map(lambda x:datetime_to_timestamp(x))
-    # df = df.sort_values(by=['time_stamp'])
-    # df.to_csv('../message.csv', index = None)
-
     # 1. 读取数据 格式如下
     # ===========================================================
     # event(事件id) | instance_name(实例名) | time_stamp(时间戳)
-    # ===========================================================
+    # ====================================================
     # 54,da5bf2a5-6af4-4c06-88b1-61b83fb2f9cf,1504589505
     # 117,da5bf2a5-6af4-4c06-88b1-61b83fb2f9cf,1504590497
     # 288,83d92ad3-b83f-43c0-962b-ed79b153236a,1504627040
@@ -219,7 +238,6 @@ if __name__ == '__main__':
     # 过滤操作日志
     LSGraph = LogSed(vicinity_window=10, vicinity_threshold=100, max_event=id_max)
     normal_series = LSGraph.filter_operational_logs(time_series=time_series)
-    # print(normal_series)
 
     # 挖掘控制流图
     control_flow_graph, successor_map = LSGraph.time_weighted_cfg_mining(normal_series)

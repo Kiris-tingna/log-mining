@@ -41,7 +41,7 @@ def visualize_logsed_gvfile(control_flow_graph, transaction_flow_graph, path="..
                     visited[j] = True
                     gv_object.node('E_'+str(j), shape='circle')
                 # 连接两个点形成一条边
-                gv_object.edge('E_'+str(i), 'E_'+str(j), label=str(round(transaction_flow_graph[i][j], 3)))
+                gv_object.edge('E_'+str(i), 'E_'+str(j), label=str(round(control_flow_graph[i][j], 3)))
                 edges += 1
     print('There are {} edges with {} nodes'.format(edges, nodes))
     ext = '.gv'
