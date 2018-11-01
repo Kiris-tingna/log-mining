@@ -19,6 +19,8 @@ def visualize_logsed_gvfile(control_flow_graph, transaction_flow_graph, path="..
     可视化事物流图
     :param control_flow_graph:
     :param transaction_flow_graph: dict value 为 事件i到事件j的转移时间
+                                使用 cfg 就是最大的转移时间（时滞 用于异常检测）
+                                使用 tfg 就是正态分布的均值转移时间
     :param path:
     :return:
     '''
@@ -50,7 +52,7 @@ def visualize_logsed_gvfile(control_flow_graph, transaction_flow_graph, path="..
 
     with open(path, 'w', encoding='utf-8') as f:
         f.write(gv_object.source)
-    # circo ; sfdp 这两个布局比较好
+    # 效果综合来看  circo 和  sfdp 这两个布局比较好
     render(engine='sfdp', format='pdf', filepath=path, quiet=False)
     return path
 

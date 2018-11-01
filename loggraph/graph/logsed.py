@@ -36,7 +36,11 @@ class LogSed(object):
 
     ***********************************************
     Example:
-        1. 输入
+        1. 原始输入 [(635, 1508606072.958) ...]
+        2. 以635为起点事件， 找到若干满足一个时间窗口约束的 模式对 [635-> 666, 635-> 1,...] 构建count matrix
+        3. 根据统计 算出counter matrix 下的阈值， 用于过滤操作日志（低频）
+        4. 得到key event 记录， 并使用 滑动时窗 挖掘继承事件 得到控制流图（控制冗余 ）
+        5. 同样利用统计 得到事物的边界 形成 事务流图（适用阈值进行二分搜索 得到最大的那个区间）
     """
     def __init__(self,
                  vicinity_window=3,
@@ -78,7 +82,7 @@ class LogSed(object):
         :param time_series: [(event id, event time) , ....]
         :return: 去除操作日志后的序列
         '''
-        # Step1：count matrix for events
+        # ------------------ Step1：count matrix for events ------------------------
         vicinity_matrix = [[0 for _ in range(self.max_event)] for _ in range(self.max_event)]
         # 检查长度必须一致
         if len(time_series) != len(time_series):
@@ -93,7 +97,7 @@ class LogSed(object):
                     vicinity_matrix[root][vicinity] += 1
                     vicinity_matrix[vicinity][root] += 1
 
-        # Step2：考察每一个事件领域内事件的个数情况
+        # -------------------- Step2：考察每一个事件领域内事件的个数情况 -----------------
         operational_logs = []
         ob_matrix = []
 
@@ -108,7 +112,7 @@ class LogSed(object):
                 else:
                     ob_matrix.append([eventID] + vicinity_matrix[eventID])
 
-        # 记录观察矩阵
+        # ---------------------- for debug : 记录统计矩阵 ---------------------
         np.savetxt('../data/matrix.sample', np.asarray((ob_matrix)), fmt='%s')
         print("There are {} templates, {} of them are operational logs. \n"
               "these operational logs are event {}".format(noraml_log_number, opt_log_number, operational_logs)
@@ -124,7 +128,7 @@ class LogSed(object):
         :param time_series:
         :return:
         '''
-        # ------------------- step 1: FS group computation 挖掘继承事件 ---------------------
+        # ------------------- step 1: FS group computation 挖掘继承事件 组成列表集 ---------------------
         FS_group = collections.defaultdict(list)
         event_count = collections.defaultdict(int)
 
@@ -158,7 +162,7 @@ class LogSed(object):
             # 滑动窗口
             start += 1
 
-        # 过滤偶然出现的事件
+        # --------------------------- step2. 过滤事件集合上偶然出现的事件 ----------------------------
         for event in FS_group:
             group = list(map(lambda x: x[0], FS_group[event]))
             unique_group = list(set(group))
@@ -176,7 +180,7 @@ class LogSed(object):
         for event in FS_group:
             if event not in time_weight_mapping:
                 time_weight_mapping[event] = collections.defaultdict(list)
-
+            # successor 是每个后继事件 包括事件ID 和 事件的时间time 两个部分
             for successor in FS_group[event]:
                 successor_id = successor[0]
                 transfer_time = successor[1]
@@ -201,7 +205,7 @@ class LogSed(object):
         tfg = [[-1 for _ in range(self.max_event)] for _ in range(self.max_event)]
         for event in time_weight_mapping:
             for successor in time_weight_mapping[event]:
-                count, transaction_time = -1, -1
+                time_stamp_count, transaction_time = -1, -1
                 # 两个事件 所有的 时间差列表
                 times = time_weight_mapping[event][successor]
 
@@ -210,8 +214,8 @@ class LogSed(object):
                     left = bisect.bisect_right(times, transfer_time - self.transaction_epsilon)
                     right = bisect.bisect_left(times, transfer_time + self.transaction_epsilon)
                     # 集中区域作为 最终的 分割事物流的依据
-                    if right - left >= count:
-                        count = right - left
+                    if right - left >= time_stamp_count:
+                        time_stamp_count = right - left
                         transaction_time = transfer_time
                 # 去掉转移时间超过outlier_epsilon的 事件对
                 if -1 < transaction_time < self.outlier_epsilon:
