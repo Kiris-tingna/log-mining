@@ -8,7 +8,7 @@
 """
 # import multiprocessing
 from logparser.parser import *
-from logparser.utils import visualize_spell_gvfile, visualize_drain_gvfile, strict_time
+from logparser.utils import *
 import gc
 from logparser.formalizer import STREAMFormatter
 
@@ -30,13 +30,13 @@ gc.disable()
  1. 使用的 paas 日志 对应解析规则在 config.paas.txt 中
 '''
 spell_parser = Spell(reg_file='../config/config.paas.txt', threshold=0.7)
-drain_parser = Drain(reg_file='../config/config.paas.txt', max_child=10, max_depth=4, min_similarity=0.7)
-draga_parser = Draga(reg_file='../config/config.paas.txt', max_child=10, merge_threshold=0.9)
+drain_parser = Drain(reg_file='../config/config.paas.txt', max_child=20, max_depth=4, min_similarity=0.7)
+draga_parser = Draga(reg_file='../config/config.paas.txt', max_child=20, merge_threshold=0.7)
 bsg_parser = BSG(reg_file='../config/config.paas.txt', global_st=0.7)
 bsgi_parser = BSGI(reg_file='../config/config.paas.txt', global_st=0.7)
 
-#data_dir = '../../../Paas/54534'
-data_dir = '../data/test'
+data_dir = '../../../Paas/54556'
+# data_dir = '../data/test'
 stream = STREAMFormatter()
 
 '''
@@ -44,12 +44,12 @@ stream = STREAMFormatter()
  Example: 以下用法适用于dataframe的部分
 '''
 start = strict_time()
-# bsg_parser ...
+# following part is for call parsers ...
 # stream.online_parse_one_dir(data_dir, spell_parser)
 # stream.online_parse_one_dir(data_dir, drain_parser)
 # stream.online_parse_one_dir(data_dir, draga_parser)
 # stream.online_parse_one_dir(data_dir, bsg_parser)
-stream.online_parse_one_dir(data_dir, bsgi_parser)
+# stream.online_parse_one_dir(data_dir, bsgi_parser)
 end = strict_time()
 print(end - start)
 
@@ -71,6 +71,14 @@ gc.collect()
 
 # 4. bsg 的模板可视化
 # bsg_parser.get_final_template()
+# visualize_bsg_gvfile(bsg_parser, path='../data/Ex2/graphviz_bsg_paas.gv')
 
 # 5. bsgi 的模板可视化
-bsgi_parser.get_final_template()
+# bsgi_parser.get_final_template()
+# visualize_bsg_gvfile(bsgi_parser, path='../data/Ex2/graphviz_bsgi_paas.gv')
+
+
+# 部分的手动可视化
+# visualize_gv_manually('../data/Ex2/graphviz_spell_paas-2018-11-06.gv', render_mode='twopi')
+# visualize_gv_manually('../data/Ex2/graphviz_drain_paas-2018-11-06.gv', render_mode='twopi')
+visualize_gv_manually('../data/Ex2/graphviz_bsgi_paas-2018-11-06.gv', render_mode='twopi')
