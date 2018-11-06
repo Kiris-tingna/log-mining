@@ -62,7 +62,6 @@ class LogCluster(object):
         self.log_ids.append(idx)
 
 
-
 class BasicSignatureGrenGini(TreeParser):
     """
     @author: Shuting Guo
@@ -260,6 +259,11 @@ class BasicSignatureGrenGini(TreeParser):
         return average_compactness * average_similarity
 
     def cluster_refinement(self, cluster):
+        '''
+        将keyword 从* 中提取出来
+        :param cluster:
+        :return:
+        '''
         cnt = cluster.cnt
         log_template = cluster.log_template
         split_pos, split_gini = -1, 1
@@ -293,10 +297,12 @@ class BasicSignatureGrenGini(TreeParser):
                         cluster.log_template[c_pos] = '*'
                     else:
                         ans[' '.join(cluster.log_template)] += cluster.log_ids
-        for signature in ans:
-            print(signature, ans[signature])
+
+        for sid, signature in enumerate(ans):
+            print('template {} has {} logs: {}'.format(sid, len(ans[signature]), signature))
             ret.append((signature, ans[signature]))
         return ret
+
 
 if __name__ == '__main__':
     # 0.7 是最好的阈值
