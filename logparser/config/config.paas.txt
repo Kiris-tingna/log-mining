@@ -8,4 +8,4 @@ InstanceID=[\w]* *
 ObjectID=[\w]* *
 ObjectType=[\w]* *
 File\s\".*\" File:file_path
-tasks\s\[.*\]? task:task_param
+u\'.*\' *
