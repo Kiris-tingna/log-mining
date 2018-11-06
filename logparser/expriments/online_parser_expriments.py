@@ -35,8 +35,8 @@ draga_parser = Draga(reg_file='../config/config.paas.txt', max_child=10, merge_t
 bsg_parser = BSG(reg_file='../config/config.paas.txt', global_st=0.7)
 bsgi_parser = BSGI(reg_file='../config/config.paas.txt', global_st=0.7)
 
-data_dir = '../../../Paas/54534'
-# data_dir = '../data/test'
+#data_dir = '../../../Paas/54534'
+data_dir = '../data/test'
 stream = STREAMFormatter()
 
 '''

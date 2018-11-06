@@ -246,7 +246,7 @@ class Spell(TreeParser):
 
 
 if __name__ == '__main__':
-    spell_parser = Spell(reg_file='../config/config.iaas.txt', threshold=0.5)
+    spell_parser = Spell(reg_file='../config/config.iaas.txt', threshold=0.7)
 
     spell_parser._online_train('nova.osapi_compute.wsgi.server  192.168.111.8 "POST /v2.1/servers HTTP/1.1" '
                                'status: 202 len: 796 time: 0.5544269', 1)
