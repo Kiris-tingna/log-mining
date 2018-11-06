@@ -9,11 +9,13 @@
 from .spell import Spell
 from .drain import Drain
 from .draga import Draga
-from .bsg import BasicSignatureGren
+from .bsg import BasicSignatureGren as BSG
+from .bsg_gini import BasicSignatureGrenGini as BSGI
 
 __all__ = [
     'Spell',
     'Drain',
     'Draga',
-    'BasicSignatureGren'
+    'BSG',
+    'BSGI'
 ]
