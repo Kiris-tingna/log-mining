@@ -3,7 +3,7 @@
 """
  @Time    : 2018/10/30 09:05
  @Author  : Tinkle
- @File    : bsg-gini.py
+ @File    : bsg_gini.py
  @Software: PyCharm
 """
 import collections, itertools
@@ -65,7 +65,7 @@ class LogCluster(object):
             self.token_square_sum[i] = change_gini[i]
 
 
-class BasicSignatureGren(TreeParser):
+class BasicSignatureGrenGini(TreeParser):
     """
     @author: Shuting Guo
     @paper: Event Extraction from Streaming System Logs
