@@ -493,7 +493,7 @@ class Draga(TreeParser):
         for log_cluster in self.LogClus:
             # it is possible that several logClusts point to the same outcell, so we present
             # all possible templates separated by '\t---\t'
-            current_template = ' '.join(log_cluster.log_template) + '\t---\t'
+            current_template = ' '.join(log_cluster.log_template) + '\n'
             log_cluster.out_cell.output_templates = log_cluster.out_cell.output_templates + current_template
             # print(log_cluster.out_cell.output_templates)
 
