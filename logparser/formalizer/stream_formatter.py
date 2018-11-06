@@ -24,7 +24,7 @@ class STREAMFormatter(BasicFormatter):
         # 过滤的条件
         self.RULE_LIST = [
             '\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}.\d{3} \d+',
-            '\sINFO|\sWARNING|\sWARN|\sCRIT|\sDEBUG|\sTRACE|\sFATAL|\sERROR|\serror|\swarning|\sinfo',
+            '\sINFO|\sWARNING|\sWARN|\sCRIT|\sDEBUG|\sTRACE|\sFATAL|\sERROR|\swarning|\sinfo',
             '(req-)?[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}'
         ]
 
@@ -73,14 +73,19 @@ class STREAMFormatter(BasicFormatter):
                         parse_line = re.sub(r'\(.*\)', '', parse_line)
 
                         # 超长截断处理
-                        if len(parse_line) > 1000:
-                            parse_line = parse_line[:1000]
+                        # if len(parse_line) > 1000:
+                        #     parse_line = parse_line[:1000]
 
                         log_message = self.filter_origin(parse_line)
                         log_id = self.current_id_accumulate
 
                         # core: 处理一行日志
-                        parser.online_train(log_message, log_id)
+                        try:
+                            parser.online_train(log_message, log_id)
+                        except Exception as e:
+                            print(file)
+                            print(log_message)
+                            exit(-1)
 
                         # 为新行做准备
                         prev_line = next_line
