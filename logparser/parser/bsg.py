@@ -290,8 +290,9 @@ class BasicSignatureGren(TreeParser):
             for key in self.bucket[pos]:
                 for cluster in self.bucket[pos][key]:
                     ans[' '.join(cluster.log_template)] += cluster.log_ids
-        for signature in ans:
-            print(signature, ans[signature])
+
+        for sid, signature in enumerate(ans):
+            print('template {} has {} logs: {}'.format(sid, len(ans[signature]), signature))
 
 if __name__ == '__main__':
     # 0.7 是最好的阈值
