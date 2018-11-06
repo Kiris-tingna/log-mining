@@ -32,7 +32,8 @@ gc.disable()
 spell_parser = Spell(reg_file='../config/config.paas.txt', threshold=0.5)
 drain_parser = Drain(reg_file='../config/config.paas.txt', max_child=10, max_depth=4, min_similarity=0.5)
 draga_parser = Draga(reg_file='../config/config.paas.txt', max_child=10, merge_threshold=0.9)
-bsg_parser = BasicSignatureGren(reg_file='../config/config.paas.txt', global_st=0.7)
+bsg_parser = BSG(reg_file='../config/config.paas.txt', global_st=0.7)
+bsgi_parser = BSGI(reg_file='../config/config.paas.txt', global_st=0.7)
 
 data_dir = '../../../Paas/54534'
 # data_dir = '../data/test'
@@ -44,10 +45,11 @@ stream = STREAMFormatter()
 '''
 start = strict_time()
 # bsg_parser ...
-stream.online_parse_one_dir(data_dir, spell_parser)
+# stream.online_parse_one_dir(data_dir, spell_parser)
 # stream.online_parse_one_dir(data_dir, drain_parser)
 # stream.online_parse_one_dir(data_dir, draga_parser)
 # stream.online_parse_one_dir(data_dir, bsg_parser)
+stream.online_parse_one_dir(data_dir, bsgi_parser)
 end = strict_time()
 print(end - start)
 
@@ -57,8 +59,8 @@ gc.collect()
  Example: 
 '''
 # 1. spell 的模板可视化
-spell_parser.get_final_template()
-visualize_spell_gvfile(spell_parser, path='../data/Ex2/graphviz_spell_paas.gv')
+# spell_parser.get_final_template()
+# visualize_spell_gvfile(spell_parser, path='../data/Ex2/graphviz_spell_paas.gv')
 
 # 2. drain的 模板可视化
 # drain_parser.get_final_template()
@@ -69,3 +71,6 @@ visualize_spell_gvfile(spell_parser, path='../data/Ex2/graphviz_spell_paas.gv')
 
 # 4. bsg 的模板可视化
 # bsg_parser.get_final_template()
+
+# 5. bsgi 的模板可视化
+bsgi_parser.get_final_template()
