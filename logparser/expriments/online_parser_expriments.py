@@ -29,8 +29,8 @@ gc.disable()
           stream.online_parse_one_dir(dir, parser name)
  1. 使用的 paas 日志 对应解析规则在 config.paas.txt 中
 '''
-spell_parser = Spell(reg_file='../config/config.paas.txt', threshold=0.5)
-drain_parser = Drain(reg_file='../config/config.paas.txt', max_child=10, max_depth=4, min_similarity=0.5)
+spell_parser = Spell(reg_file='../config/config.paas.txt', threshold=0.7)
+drain_parser = Drain(reg_file='../config/config.paas.txt', max_child=10, max_depth=4, min_similarity=0.7)
 draga_parser = Draga(reg_file='../config/config.paas.txt', max_child=10, merge_threshold=0.9)
 bsg_parser = BSG(reg_file='../config/config.paas.txt', global_st=0.7)
 bsgi_parser = BSGI(reg_file='../config/config.paas.txt', global_st=0.7)
