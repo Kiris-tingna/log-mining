@@ -65,12 +65,12 @@ class LogSed(object):
         :param outlier_epsilon: outlier transaction time
         :param max_event: 事件最大序号 用于构建matrix
         '''
-        self.vicinity_window = vicinity_window
-        self.vicinity_threshold = vicinity_threshold
+        self.vicinity_window = vicinity_window  # 确定后继节点集合的范围的 用于找可能存在关联的点集
+        self.vicinity_threshold = vicinity_threshold   # 利用统计 过滤操作日志的
         self.cluster_threshold = cluster_threshold
-        self.time_period = time_period
-        self.FS_threshold = FS_threshold
-        self.transaction_epsilon = transaction_epsilon
+        self.time_period = time_period  # 确定视窗大小的 时窗用于再点集的基础上找点与点构成边的概率
+        self.FS_threshold = FS_threshold  # 利用统计 确定边的存在关系的
+        self.transaction_epsilon = transaction_epsilon  # 利用统计 确定时滞的
         self.outlier_epsilon = outlier_epsilon
         self.max_event = max_event + 1
 
@@ -222,6 +222,7 @@ class LogSed(object):
                     tfg[event][successor] = transaction_time
         return tfg
 
+
 if __name__ == '__main__':
     # 1. 读取数据 格式如下
     # ===========================================================
@@ -240,7 +241,7 @@ if __name__ == '__main__':
         time_series.append((row.event, row.time_stamp))
 
     # 过滤操作日志
-    LSGraph = LogSed(vicinity_window=10, vicinity_threshold=100, max_event=id_max)
+    LSGraph = LogSed(time_period=5, vicinity_threshold=100, max_event=id_max)
     normal_series = LSGraph.filter_operational_logs(time_series=time_series)
 
     # 挖掘控制流图
