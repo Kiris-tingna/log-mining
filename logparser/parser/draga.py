@@ -248,7 +248,7 @@ class Draga(TreeParser):
         if token_first_key in prefix_tree_parent.children:
             token_layer_node = prefix_tree_parent.children[token_first_key]
         elif token_last_key in prefix_tree_parent.children:
-            token_layer_node = prefix_tree_parent.children[token_first_key]
+            token_layer_node = prefix_tree_parent.children[token_last_key]
         # 都没有就是 * 下查找 （这里也是相当于分情况查找策略符合 构建时使用的快速策略）
         elif self.has_numbers(first_token) and self.has_numbers(last_token) and self.REPL in prefix_tree_parent.children:
             token_layer_node = prefix_tree_parent.children[self.REPL]
