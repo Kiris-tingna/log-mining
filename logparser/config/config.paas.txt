@@ -1,0 +1,10 @@
+[\*]+ <lines>
+=\d+ =*
+\d{1,}\.\d{1,}\.\d{1,}\.\d{1,} <ip>
+localhost <ip>
+-\s\d+\s- *
+TransactionID=[\w]* *
+InstanceID=[\w]* *
+ObjectID=[\w]* *
+ObjectType=[\w]* *
+File\s\".*\" File:file_path
