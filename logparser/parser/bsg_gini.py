@@ -104,7 +104,7 @@ class BasicSignatureGrenGini(TreeParser):
         #       该长度日志 中间字符位置可以用作分桶情况: { 中间token: [对应的模板] ....}
         # ]
         self.bucket = dict()
-        super(BasicSignatureGren, self).__init__(reg_file)  # 装载正则表达式
+        super(BasicSignatureGrenGini, self).__init__(reg_file)  # 装载正则表达式
 
     @Timer
     def _online_train(self, log, id):
@@ -296,7 +296,7 @@ if __name__ == '__main__':
     for i in range(7, 8):
         st = i * 0.1
 
-        bsg_parser = BasicSignatureGren(reg_file='../config/config.reg_exps.txt', global_st=st)
+        bsg_parser = BasicSignatureGrenGini(reg_file='../config/config.reg_exps.txt', global_st=st)
         bsg_parser._online_train('blk 124219214 asa Receive from node 4', 1)
         bsg_parser._online_train('blk 124219214 ffwqwq 1241241 Done to node 4', 2)
         bsg_parser._online_train('blk 124219214 ffwqwq Done to node 4', 3)
@@ -314,6 +314,6 @@ if __name__ == '__main__':
         bsg_parser.get_final_template()
 
         print(bsg_parser.quality())
-    where = visualize_bsg_gvfile(bsg_parser)
-    #
+    # where = visualize_bsg_gvfile(bsg_parser)
+
     gc.collect()
