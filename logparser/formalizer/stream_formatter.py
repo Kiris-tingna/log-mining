@@ -9,7 +9,7 @@
 import os
 from logparser.formalizer.basic_formatter import BasicFormatter
 import re
-import datetime
+import time
 
 
 class STREAMFormatter(BasicFormatter):
@@ -21,14 +21,27 @@ class STREAMFormatter(BasicFormatter):
     def __init__(self):
         # id 号
         self.current_id_accumulate = 0
-        self.this_year = str(datetime.datetime.now().year)
         # 过滤的条件
         self.RULE_LIST = [
-            '\[.*?\]',
             '\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}.\d{3} \d+',
             '\sINFO|\sWARNING|\sWARN|\sCRIT|\sDEBUG|\sTRACE|\sFATAL|\sERROR|\serror|\swarning|\sinfo',
             '(req-)?[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}'
         ]
+
+    def is_valid_date(self, str):
+        '''
+        判断一个字符串是不是合法的日期
+        :param str:
+        :return:
+        '''
+        try:
+            if ":" in str:
+                time.strptime(str, "%Y-%m-%d %H:%M:%S")
+            else:
+                time.strptime(str, "%Y-%m-%d")
+            return True
+        except:
+            return False
 
     def online_parse_one_file(self, file, parser):
         '''
@@ -49,16 +62,20 @@ class STREAMFormatter(BasicFormatter):
                     next_line = f.readline()
                 else:
                     # 行起始特征不满足
-                    if next_line[:4] != self.this_year:
+                    is_valid = self.is_valid_date(next_line[:19])
+                    if not is_valid:
                         prev_line += next_line
                         next_line = f.readline()
                     # 行起始特征满足
-                    elif next_line[:4] == self.this_year:
-                        # 超长截断处理
-                        if len(prev_line) > 1000:
-                            prev_line = prev_line[:1000]
-
+                    elif is_valid:
                         parse_line = re.sub(r'\n', '', prev_line)
+                        parse_line = re.sub(r'\{.*\}', '', parse_line)
+                        parse_line = re.sub(r'\(.*\)', '', parse_line)
+
+                        # 超长截断处理
+                        if len(parse_line) > 1000:
+                            parse_line = parse_line[:1000]
+
                         log_message = self.filter_origin(parse_line)
                         log_id = self.current_id_accumulate
 
