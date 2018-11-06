@@ -185,3 +185,15 @@ def visualize_drain_gvfile(prefix_tree, path="../data/graphviz-drain.gv"):
 
     tree_gv_object.render(path, view=True)
     return path
+
+
+def visualize_gv_manually(gv_file, render_mode='dot'):
+    '''
+    手动生成可视化图
+    :param gv_file:
+    :param render_mode:
+    :return:
+    '''
+
+    render(engine=render_mode, format='pdf', filepath=gv_file, quiet=False)
+    return
