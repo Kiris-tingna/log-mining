@@ -58,10 +58,10 @@ class Spell(TreeParser):
         super(Spell, self).__init__(reg_file)  # 装在正则表达式
 
     @Timer
-    def _online_train(self, log, id):
-        return self.online_train(log=log, id=id)
+    def _online_train(self, log, id, timestamp):
+        return self.online_train(log=log, id=id, timestamp=timestamp)
 
-    def online_train(self, log, id):
+    def online_train(self, log, id, timestamp):
         """
         处理某一条日志的插入的逻辑
         :param log:
@@ -73,12 +73,12 @@ class Spell(TreeParser):
         # 2.查找是否在树上有匹配的模式
         sig_id = self.lookup(filtered_log)
         if sig_id != -1:
-            self.signature_map[sig_id].log_ids.append(id)  # 精确的找到
+            self.signature_map[sig_id].log_ids.append((id, timestamp))  # 精确的找到
         else:
             # print('cant find in prefix tree, current log:', filtered_log)
             sig_id = self.lookup_template(filtered_log)
             if sig_id != -1:
-                self.signature_map[sig_id].log_ids.append(id)  # 模糊查找到
+                self.signature_map[sig_id].log_ids.append((id, timestamp))  # 模糊查找到
             else:
                 # new group
                 cur_idx = -1
@@ -112,12 +112,12 @@ class Spell(TreeParser):
 
                     self.signature_map[cur_idx].signature = new_template
                     self.signature_map[cur_idx].length = len(new_template)
-                    self.signature_map[cur_idx].log_ids.append(id)
+                    self.signature_map[cur_idx].log_ids.append((id, timestamp))
 
                     self.insert(new_template, cur_idx)
                 else:
                     # 新建一个sig object
-                    n_sig_obj = SignatureObject(filtered_log, id)
+                    n_sig_obj = SignatureObject(filtered_log, (id, timestamp))
                     self.current_signature_ids = n_sig_obj.sig_id
                     # 将sig 直接的插入进去
                     self.signature_map[n_sig_obj.sig_id] = n_sig_obj
@@ -242,11 +242,11 @@ class Spell(TreeParser):
         :return:
         '''
         for item in self.signature_map.values():
-            print("template {} has {} log records: {}".format(item.sig_id, len(item.log_ids), ' '.join(item.signature)))
+            print("template {} has {} log records: {}, {}".format(item.sig_id, len(item.log_ids), ' '.join(item.signature), item.log_ids))
 
 
 if __name__ == '__main__':
-    spell_parser = Spell(reg_file='../config/config.iaas.txt', threshold=0.7)
+    spell_parser = Spell(reg_file='../config/config.iaas.txt', threshold=0.5)
 
     spell_parser._online_train('nova.osapi_compute.wsgi.server  192.168.111.8 "POST /v2.1/servers HTTP/1.1" '
                                'status: 202 len: 796 time: 0.5544269', 1)
