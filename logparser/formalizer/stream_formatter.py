@@ -76,12 +76,14 @@ class STREAMFormatter(BasicFormatter):
                         # if len(parse_line) > 1000:
                         #     parse_line = parse_line[:1000]
 
+                        # 每一条日志的时间戳
+                        log_timestamp = self.time_origin(parse_line)
                         log_message = self.filter_origin(parse_line)
                         log_id = self.current_id_accumulate
 
                         # core: 处理一行日志
                         try:
-                            parser.online_train(log_message, log_id)
+                            parser.online_train(log_message, log_id, log_timestamp)
                         except Exception as e:
                             print(file)
                             print(log_message)
