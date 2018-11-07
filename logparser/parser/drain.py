@@ -61,10 +61,10 @@ class Drain(TreeParser):
         self.LogClusterMap = []
 
     @Timer
-    def _online_train(self, log, id):
-        return self.online_train(log=log, id=id)
+    def _online_train(self, log, id, timestamp):
+        return self.online_train(log=log, id=id, timestamp=timestamp)
 
-    def online_train(self, log, id):
+    def online_train(self, log, id, timestamp):
         '''
         处理某一条日志的插入的逻辑
         :param log:
@@ -77,14 +77,14 @@ class Drain(TreeParser):
         # Match no existing log cluster
         if matched_cluster is None:
             # 插入前缀树 LogClusterObject每new一次 其id自增1
-            new_cluster = LogClusterObject(log_template=filtered_log, log_ids=[id])
+            new_cluster = LogClusterObject(log_template=filtered_log, log_ids=[(id, timestamp)])
             self.LogClusterMap.append(new_cluster)
             self.insert(new_cluster)
         # Add the new log message to the existing cluster
         else:
             # 这里的template 就是signature 这一步是combine的过程 由于长度相同不再需要找最长公共子序列了
             new_template = self.marge_template(filtered_log, matched_cluster.log_template)
-            matched_cluster.log_ids.append(id)
+            matched_cluster.log_ids.append((id, timestamp))
             if ' '.join(new_template) != ' '.join(matched_cluster.log_template):
                 matched_cluster.log_template = new_template
 
@@ -282,8 +282,8 @@ class Drain(TreeParser):
         :return:
         '''
         for item in self.LogClusterMap:
-            print("template {} has {} log records: {}".format(item.cluster_id, len(item.log_ids),
-                                                              ' '.join(item.log_template)))
+            print("template {} has {} log records: {}, {}".format(item.cluster_id, len(item.log_ids),
+                                                              ' '.join(item.log_template), item.log_ids))
 
 if __name__ == '__main__':
     drain_parser = Drain(max_child=10, max_depth=3, min_similarity=0.5, reg_file='../config/config.reg_exps.txt')
