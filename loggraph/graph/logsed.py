@@ -10,7 +10,7 @@ import bisect
 import collections
 import pandas as pd
 import numpy as np
-from logparser.utils import Timer, visualize_logsed_gvfile, datetime_to_timestamp
+from logparser.utils import Timer, visualize_logsed_gvfile, datetime_to_timestamp, visualize_gv_manually
 
 
 class LogSed(object):
@@ -232,21 +232,28 @@ if __name__ == '__main__':
     # 117,da5bf2a5-6af4-4c06-88b1-61b83fb2f9cf,1504590497
     # 288,83d92ad3-b83f-43c0-962b-ed79b153236a,1504627040
     # ====================================================
-    file = '../data/message.csv'
+    # file = '../data/message.csv'
+    file = '../data/Spell.csv'
     df = pd.read_csv(file)
     time_series = []
     id_max = 0
-    for idx, row in df.iterrows():
-        id_max = max(id_max, row.event)
-        time_series.append((row.event, row.time_stamp))
 
-    # 过滤操作日志
-    LSGraph = LogSed(time_period=5, vicinity_threshold=100, max_event=id_max)
+    # 2. 构建series
+    for idx, row in df.iterrows():
+        id_max = max(id_max, int(row.event))
+        time_series.append((int(row.event), row.time_stamp))
+
+    # 3. 过滤操作日志
+    LSGraph = LogSed(time_period=10, vicinity_window=10, vicinity_threshold=3000, FS_threshold=0.8, outlier_epsilon=6,
+                     max_event=id_max)
     normal_series = LSGraph.filter_operational_logs(time_series=time_series)
 
-    # 挖掘控制流图
+    # 4. 挖掘控制流图 包括节点和边
     control_flow_graph, successor_map = LSGraph.time_weighted_cfg_mining(normal_series)
-    # 生成事物流图
+
+    # 5. 生成事物流图, 主要是确定事务流的边界
     transaction_flow_graph = LSGraph.determine_transaction_flow(successor_map)
+
     # 可视化图构建
     visualize_logsed_gvfile(control_flow_graph, transaction_flow_graph, path="../data/graphviz-logsed.gv")
+    visualize_gv_manually('../data/graphviz-logsed-2018-11-07.gv', render_mode='dot')
