@@ -68,4 +68,4 @@ def parser_tocsv(parser, path):
     df = pd.DataFrame(data)
     df[['event', 'template']].drop_duplicates().to_csv('%s/%s_template.csv' % (path, parser_name), index=None)
     del df['template']
-    df.to_csv('%s/%s.csv' % (path, parser_name), index=None)
+    df.sort_index(by=['time_stamp']).to_csv('%s/%s.csv' % (path, parser_name), index=None)
