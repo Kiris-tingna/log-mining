@@ -107,10 +107,10 @@ class BasicSignatureGrenGini(TreeParser):
         super(BasicSignatureGrenGini, self).__init__(reg_file)  # 装载正则表达式
 
     @Timer
-    def _online_train(self, log, id):
-        return self.online_train(log=log, id=id)
+    def _online_train(self, log, id, timestamp):
+        return self.online_train(log=log, id=id, timestamp=timestamp)
 
-    def online_train(self, log, id):
+    def online_train(self, log, id, timestamp):
         """
         处理某一条日志的插入的逻辑
         :param log:
@@ -140,7 +140,7 @@ class BasicSignatureGrenGini(TreeParser):
 
         if keyValue not in self.bucket[pos]:
             # 在bucket中尚未存在当前的模板则新建一个新的模板 并放在相应位置的字典中
-            new_cluster = self.create_cluster(log_filter, log_length, id)
+            new_cluster = self.create_cluster(log_filter, log_length, (id, timestamp))
             self.bucket[pos][keyValue].append(new_cluster)
         else:
             # 存在就从template列表中找出最合适（熵变最小的情况）的插入
@@ -156,10 +156,10 @@ class BasicSignatureGrenGini(TreeParser):
                     idx = i
             if sim > -1:
                 # token layer 更新
-                token_layer[idx].update(new_nc, new_template, log_filter, id, change_gini)
+                token_layer[idx].update(new_nc, new_template, log_filter, (id, timestamp), change_gini)
             else:
                 # new cluster 的创建
-                new_cluster = self.create_cluster(log_filter, log_length, id)
+                new_cluster = self.create_cluster(log_filter, log_length, (id, timestamp))
                 self.bucket[pos][keyValue].append(new_cluster)
 
     # Check if there is number
@@ -288,7 +288,7 @@ class BasicSignatureGrenGini(TreeParser):
                 for cluster in self.bucket[pos][key]:
                     ans[' '.join(cluster.log_template)] += cluster.log_ids
         for sid, signature in enumerate(ans):
-            print('template {} has {} logs: {}'.format(sid, len(ans[signature]), signature))
+            print('template {} has {} logs: {}, {}'.format(sid, len(ans[signature]), signature, ans[signature]))
             ret.append((signature, ans[signature]))
         return ret
 
