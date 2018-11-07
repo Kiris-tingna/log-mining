@@ -42,9 +42,12 @@ def datetime_to_timestamp(dt):
     """
     if ',' in dt:
         [t1, t2] = dt.split(',')
-        micro_seconds = round(float('0.' + t2), 3)
-        unix_seconds = int(time.mktime(time.strptime(t1, '%Y-%m-%d %H:%M:%S')))
-        return unix_seconds + micro_seconds
+    elif '.' in dt:
+        [t1, t2] = dt.split('.')
     else:
         unix_seconds = int(time.mktime(time.strptime(dt, '%Y-%m-%d %H:%M:%S')))
         return unix_seconds
+
+    micro_seconds = round(float('0.' + t2), 3)
+    unix_seconds = int(time.mktime(time.strptime(t1, '%Y-%m-%d %H:%M:%S')))
+    return unix_seconds + micro_seconds
