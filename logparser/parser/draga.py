@@ -107,10 +107,10 @@ class Draga(TreeParser):
         self.Outputs = []
 
     @Timer
-    def _online_train(self, log, id):
-        return self.online_train(log=log, id=id)
+    def _online_train(self, log, id, timestamp):
+        return self.online_train(log=log, id=id, timestamp=timestamp)
 
-    def online_train(self, log, id):
+    def online_train(self, log, id, timestamp):
         '''
         处理某一条日志的插入的逻辑
         :param log:
@@ -129,7 +129,7 @@ class Draga(TreeParser):
         # 没有找到合适的叶节点
         if not matched_cluster:
             # 新建输出层
-            output_layer_node = DragaOutputNode(log_ids=[id])
+            output_layer_node = DragaOutputNode(log_ids=[(id, timestamp)])
             # 插入前缀树 LogClusterObject
             new_cluster = LogClusterObject(log_template=filtered_log, out_cell=output_layer_node)
             # 同一个输出节点可能由不同的叶节点汇集而成
@@ -161,7 +161,7 @@ class Draga(TreeParser):
         # successfully match an existing cluster, add the new log message to the existing cluster
         else:
             new_template, number_updated_tokens = self.marge_template(filtered_log, matched_cluster.log_template)
-            matched_cluster.out_cell.log_ids.append(id)
+            matched_cluster.out_cell.log_ids.append((id,  timestamp))
 
             if ' '.join(new_template) != ' '.join(matched_cluster.log_template):
                 matched_cluster.log_template = new_template
@@ -499,8 +499,8 @@ class Draga(TreeParser):
 
         for idx, output_node in enumerate(periodic_output_nodes):
             # reporter.write(str(idx + 1) + '\t' + output_node.output_templates + '\n')
-            # print(idx+1, output_node.output_templates, output_node.log_ids)
-            print(idx+1, output_node.output_templates)
+            print(idx+1, output_node.output_templates, output_node.log_ids)
+            # print(idx+1, output_node.output_templates)
 
 
 if __name__ == '__main__':
