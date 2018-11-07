@@ -47,7 +47,7 @@ start = strict_time()
 # following part is for call parsers ...
 # stream.online_parse_one_dir(data_dir, spell_parser)
 # stream.online_parse_one_dir(data_dir, drain_parser)
-# stream.online_parse_one_dir(data_dir, draga_parser)
+stream.online_parse_one_dir(data_dir, draga_parser)
 # stream.online_parse_one_dir(data_dir, bsg_parser)
 # stream.online_parse_one_dir(data_dir, bsgi_parser)
 end = strict_time()
@@ -67,7 +67,7 @@ gc.collect()
 # visualize_drain_gvfile(drain_parser, path="../data/Ex2/graphviz_drain_paas.gv")
 
 # 3. drage 的模板可视化
-# draga_parser.get_final_tempalte()
+draga_parser.get_final_tempalte()
 
 # 4. bsg 的模板可视化
 # bsg_parser.get_final_template()
@@ -78,7 +78,7 @@ gc.collect()
 # visualize_bsg_gvfile(bsgi_parser, path='../data/Ex2/graphviz_bsgi_paas.gv')
 
 
-# 部分的手动可视化
+# ========== 部分的手动可视化  for gv 的 大图bug ==============
 # visualize_gv_manually('../data/Ex2/graphviz_spell_paas-2018-11-06.gv', render_mode='twopi')
 # visualize_gv_manually('../data/Ex2/graphviz_drain_paas-2018-11-06.gv', render_mode='twopi')
-visualize_gv_manually('../data/Ex2/graphviz_bsgi_paas-2018-11-06.gv', render_mode='twopi')
+# visualize_gv_manually('../data/Ex2/graphviz_bsgi_paas-2018-11-06.gv', render_mode='twopi')
