@@ -37,7 +37,8 @@ gc.disable()
 spell_parser = Spell(reg_file='../config/config.iaas.txt', threshold=0.7)
 drain_parser = Drain(reg_file='../config/config.iaas.txt', max_child=10, max_depth=4, min_similarity=0.5)
 draga_parser = Draga(reg_file='../config/config.iaas.txt', max_child=10, merge_threshold=0.9)
-bsg_parser = BasicSignatureGren(reg_file='../config/config.iaas.txt', global_st=0.7)
+bsg_parser = BSG(reg_file='../config/config.iaas.txt', global_st=0.7)
+bsgi_parser = BSGI(reg_file='../config/config.iaas.txt', global_st=0.7)
 
 '''
  -------------------- step 2 : train data line step by line  -------------------
@@ -52,10 +53,11 @@ file = '../data/zte_tongbu_filtered.csv'
 df = pd.read_csv(file)
 start = strict_time()
 for idx, row in df.iterrows():
-    # spell_parser.online_train(row.message, row.log_id)
-    drain_parser.online_train(row.message, row.log_id)
-    # draga_parser.online_train(row.message, row.log_id)
-    # bsg_parser.online_train(row.message, row.log_id)
+    # spell_parser.online_train(row.message, row.log_id, row.time)
+    # drain_parser.online_train(row.message, row.log_id, row.time)
+    # draga_parser.online_train(row.message, row.log_id, row.time)
+    # bsg_parser.online_train(row.message, row.log_id, row.time)
+    bsgi_parser.online_train(row.message, row.log_id, row.time)
 
 end = strict_time()
 print(end - start)
@@ -72,11 +74,14 @@ gc.collect()
 # visualize_spell_gvfile(spell_parser, path='../data/Ex1/graphviz_spell_iaas.gv')
 
 # 2. drain的 模板可视化
-drain_parser.get_final_template()
-visualize_drain_gvfile(drain_parser, path="../data/Ex1/graphviz_drain_iaas.gv")
+# drain_parser.get_final_template()
+# visualize_drain_gvfile(drain_parser, path="../data/Ex1/graphviz_drain_iaas.gv")
 
 # 3. drage 的模板可视化
 # draga_parser.get_final_tempalte()
 
 # 4. bsg 的模板可视化
 # bsg_parser.get_final_template()
+
+# 5. bsgi 的 模板可视化
+bsgi_parser.get_final_template()
