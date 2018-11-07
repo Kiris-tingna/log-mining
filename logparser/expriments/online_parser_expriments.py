@@ -45,9 +45,9 @@ stream = STREAMFormatter()
 '''
 start = strict_time()
 # following part is for call parsers ...
-# stream.online_parse_one_dir(data_dir, spell_parser)
+stream.online_parse_one_dir(data_dir, spell_parser)
 # stream.online_parse_one_dir(data_dir, drain_parser)
-stream.online_parse_one_dir(data_dir, draga_parser)
+# stream.online_parse_one_dir(data_dir, draga_parser)
 # stream.online_parse_one_dir(data_dir, bsg_parser)
 # stream.online_parse_one_dir(data_dir, bsgi_parser)
 end = strict_time()
@@ -67,7 +67,7 @@ gc.collect()
 # visualize_drain_gvfile(drain_parser, path="../data/Ex2/graphviz_drain_paas.gv")
 
 # 3. drage 的模板可视化
-draga_parser.get_final_tempalte()
+# draga_parser.get_final_tempalte()
 
 # 4. bsg 的模板可视化
 # bsg_parser.get_final_template()
@@ -82,3 +82,13 @@ draga_parser.get_final_tempalte()
 # visualize_gv_manually('../data/Ex2/graphviz_spell_paas-2018-11-06.gv', render_mode='twopi')
 # visualize_gv_manually('../data/Ex2/graphviz_drain_paas-2018-11-06.gv', render_mode='twopi')
 # visualize_gv_manually('../data/Ex2/graphviz_bsgi_paas-2018-11-06.gv', render_mode='twopi')
+
+'''
+----------------------------- step3-2. 记录并解析结果转为csv文件存储 ------------------------------------
+ Example: 
+'''
+parser_tocsv(spell_parser, '../../data/loggraph/data/')
+# parser_tocsv(drain_parser, '../../data/loggraph/data/')
+# parser_tocsv(draga_parser, '../../data/loggraph/data/')
+# parser_tocsv(bsg_parser, '../../data/loggraph/data/')
+# parser_tocsv(bsgi_parser, '../../data/loggraph/data/')
