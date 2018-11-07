@@ -87,8 +87,8 @@ gc.collect()
 ----------------------------- step3-2. 记录并解析结果转为csv文件存储 ------------------------------------
  Example: 
 '''
-parser_tocsv(spell_parser, '../../data/loggraph/data/')
-# parser_tocsv(drain_parser, '../../data/loggraph/data/')
-# parser_tocsv(draga_parser, '../../data/loggraph/data/')
-# parser_tocsv(bsg_parser, '../../data/loggraph/data/')
-# parser_tocsv(bsgi_parser, '../../data/loggraph/data/')
+parser_tocsv(spell_parser, '../../data/loggraph/data')
+# parser_tocsv(drain_parser, '../../data/loggraph/data')
+# parser_tocsv(draga_parser, '../../data/loggraph/data')
+# parser_tocsv(bsg_parser, '../../data/loggraph/data')
+# parser_tocsv(bsgi_parser, '../../data/loggraph/data')
