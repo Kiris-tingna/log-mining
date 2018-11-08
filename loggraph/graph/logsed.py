@@ -244,7 +244,7 @@ if __name__ == '__main__':
         time_series.append((int(row.event), row.time_stamp))
 
     # 3. 过滤操作日志
-    LSGraph = LogSed(time_period=10, vicinity_window=10, vicinity_threshold=3000, FS_threshold=0.8, outlier_epsilon=6,
+    LSGraph = LogSed(time_period=10, vicinity_window=10, vicinity_threshold=1000, FS_threshold=0.95, outlier_epsilon=4,
                      max_event=id_max)
     normal_series = LSGraph.filter_operational_logs(time_series=time_series)
 
