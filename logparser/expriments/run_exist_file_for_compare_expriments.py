@@ -69,7 +69,8 @@ if __name__ == '__main__':
      Example: 以下用法适用于dataframe的部分
     '''
 
-    file = '../../../event_type_ansible.csv'
+    # file = '../../../event_type_ansible.csv'
+    file = '../data/cc.csv'
     RULE_LIST = [
         '\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}.\d{3} \d+',
         '\sINFO|\sWARNING|\sWARN|\sCRIT|\sDEBUG|\sTRACE|\sFATAL|\sERROR|\swarning|\sinfo',
