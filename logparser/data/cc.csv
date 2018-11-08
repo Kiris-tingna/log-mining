@@ -1,0 +1,1001 @@
+time,deploy_id,service,component,event_id,level,ip,log_txt
+2018-10-23 09:44:02.747,59442,cf-pdman,cf-pdman,1,INFO,192.169.7.98,"2018-10-23 09:44:02.747 INFO  cloudframe.pdman.cmd.worker Configuration: 
+"
+2018-10-23 09:44:02.750,59442,cf-pdman,cf-pdman,2,WARNING,192.169.7.98,"2018-10-23 09:44:02.750 WARNING  oslo_config.cfg Option ""rabbit_hosts"" from group ""oslo_messaging_rabbit"" is deprecated for removal.  Its value may be silently ignored in the future. 
+"
+2018-10-23 09:44:02.750,59442,cf-pdman,cf-pdman,3,WARNING,192.169.7.98,"2018-10-23 09:44:02.750 WARNING  oslo_config.cfg Option ""rabbit_max_retries"" from group ""oslo_messaging_rabbit"" is deprecated for removal.  Its value may be silently ignored in the future. 
+"
+2018-10-23 09:44:02.751,59442,cf-pdman,cf-pdman,2,WARNING,192.169.7.98,"2018-10-23 09:44:02.751 WARNING  oslo_config.cfg Option ""rabbit_password"" from group ""oslo_messaging_rabbit"" is deprecated for removal.  Its value may be silently ignored in the future. 
+"
+2018-10-23 09:44:02.751,59442,cf-pdman,cf-pdman,2,WARNING,192.169.7.98,"2018-10-23 09:44:02.751 WARNING  oslo_config.cfg Option ""rabbit_userid"" from group ""oslo_messaging_rabbit"" is deprecated for removal.  Its value may be silently ignored in the future. 
+"
+2018-10-23 09:44:02.949,59442,cf-pdman,cf-pdman,4,INFO,192.169.7.98,"2018-10-23 09:44:02.949 INFO  sqlalchemy.orm.mapper.Mapper (Server|servers) _configure_property(node_list, RelationshipProperty) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.949,59442,cf-pdman,cf-pdman,5,INFO,192.169.7.98,"2018-10-23 09:44:02.949 INFO  sqlalchemy.orm.mapper.Mapper (Server|servers) _configure_property(created_at, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.950,59442,cf-pdman,cf-pdman,6,INFO,192.169.7.98,"2018-10-23 09:44:02.950 INFO  sqlalchemy.orm.mapper.Mapper (Server|servers) _configure_property(updated_at, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.951,59442,cf-pdman,cf-pdman,7,INFO,192.169.7.98,"2018-10-23 09:44:02.951 INFO  sqlalchemy.orm.mapper.Mapper (Server|servers) _configure_property(id, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.951,59442,cf-pdman,cf-pdman,7,INFO,192.169.7.98,"2018-10-23 09:44:02.951 INFO  sqlalchemy.orm.mapper.Mapper (Server|servers) _configure_property(uuid, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.952,59442,cf-pdman,cf-pdman,8,INFO,192.169.7.98,"2018-10-23 09:44:02.952 INFO  sqlalchemy.orm.mapper.Mapper (Server|servers) _configure_property(name, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.952,59442,cf-pdman,cf-pdman,9,INFO,192.169.7.98,"2018-10-23 09:44:02.952 INFO  sqlalchemy.orm.mapper.Mapper (Server|servers) _configure_property(nodes_num, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.953,59442,cf-pdman,cf-pdman,10,INFO,192.169.7.98,"2018-10-23 09:44:02.953 INFO  sqlalchemy.orm.mapper.Mapper (Server|servers) _configure_property(nodepool_uuid, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.953,59442,cf-pdman,cf-pdman,11,INFO,192.169.7.98,"2018-10-23 09:44:02.953 INFO  sqlalchemy.orm.mapper.Mapper (Server|servers) _configure_property(state, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.953,59442,cf-pdman,cf-pdman,12,INFO,192.169.7.98,"2018-10-23 09:44:02.953 INFO  sqlalchemy.orm.mapper.Mapper (Server|servers) _configure_property(deploy_state, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.954,59442,cf-pdman,cf-pdman,13,INFO,192.169.7.98,"2018-10-23 09:44:02.954 INFO  sqlalchemy.orm.mapper.Mapper (Server|servers) _configure_property(deploy_progress, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.954,59442,cf-pdman,cf-pdman,14,INFO,192.169.7.98,"2018-10-23 09:44:02.954 INFO  sqlalchemy.orm.mapper.Mapper (Server|servers) _configure_property(info, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.955,59442,cf-pdman,cf-pdman,15,INFO,192.169.7.98,"2018-10-23 09:44:02.955 INFO  sqlalchemy.orm.mapper.Mapper (Server|servers) _configure_property(deploy_info, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.955,59442,cf-pdman,cf-pdman,16,INFO,192.169.7.98,"2018-10-23 09:44:02.955 INFO  sqlalchemy.orm.mapper.Mapper (Server|servers) _configure_property(timestamp, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.956,59442,cf-pdman,cf-pdman,17,INFO,192.169.7.98,"2018-10-23 09:44:02.956 INFO  sqlalchemy.orm.mapper.Mapper (Server|servers) _configure_property(lock, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.956,59442,cf-pdman,cf-pdman,18,INFO,192.169.7.98,"2018-10-23 09:44:02.956 INFO  sqlalchemy.orm.mapper.Mapper (Server|servers) _configure_property(try_times, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.957,59442,cf-pdman,cf-pdman,19,INFO,192.169.7.98,"2018-10-23 09:44:02.957 INFO  sqlalchemy.orm.mapper.Mapper (Server|servers) _configure_property(fail_reason, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.957,59442,cf-pdman,cf-pdman,20,INFO,192.169.7.98,"2018-10-23 09:44:02.957 INFO  sqlalchemy.orm.mapper.Mapper (Server|servers) _configure_property(session_id, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.958,59442,cf-pdman,cf-pdman,21,INFO,192.169.7.98,"2018-10-23 09:44:02.958 INFO  sqlalchemy.orm.mapper.Mapper (Server|servers) Identified primary key columns: ColumnSet([Column('id', Integer(), table=<servers>, primary_key=True, nullable=False)]) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.958,59442,cf-pdman,cf-pdman,22,INFO,192.169.7.98,"2018-10-23 09:44:02.958 INFO  sqlalchemy.orm.mapper.Mapper (Server|servers) constructed req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.963,59442,cf-pdman,cf-pdman,23,INFO,192.169.7.98,"2018-10-23 09:44:02.963 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) _configure_property(created_at, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.963,59442,cf-pdman,cf-pdman,24,INFO,192.169.7.98,"2018-10-23 09:44:02.963 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) _configure_property(updated_at, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.964,59442,cf-pdman,cf-pdman,25,INFO,192.169.7.98,"2018-10-23 09:44:02.964 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) _configure_property(id, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.964,59442,cf-pdman,cf-pdman,25,INFO,192.169.7.98,"2018-10-23 09:44:02.964 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) _configure_property(uuid, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.964,59442,cf-pdman,cf-pdman,25,INFO,192.169.7.98,"2018-10-23 09:44:02.964 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) _configure_property(name, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.965,59442,cf-pdman,cf-pdman,25,INFO,192.169.7.98,"2018-10-23 09:44:02.965 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) _configure_property(apptype, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.965,59442,cf-pdman,cf-pdman,25,INFO,192.169.7.98,"2018-10-23 09:44:02.965 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) _configure_property(vertype, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.966,59442,cf-pdman,cf-pdman,25,INFO,192.169.7.98,"2018-10-23 09:44:02.966 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) _configure_property(version, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.966,59442,cf-pdman,cf-pdman,26,INFO,192.169.7.98,"2018-10-23 09:44:02.966 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) _configure_property(is_in_controller, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.967,59442,cf-pdman,cf-pdman,27,INFO,192.169.7.98,"2018-10-23 09:44:02.967 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) _configure_property(is_alone, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.967,59442,cf-pdman,cf-pdman,28,INFO,192.169.7.98,"2018-10-23 09:44:02.967 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) _configure_property(res_para, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.967,59442,cf-pdman,cf-pdman,25,INFO,192.169.7.98,"2018-10-23 09:44:02.967 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) _configure_property(state, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.968,59442,cf-pdman,cf-pdman,29,INFO,192.169.7.98,"2018-10-23 09:44:02.968 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) _configure_property(try_times, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.968,59442,cf-pdman,cf-pdman,25,INFO,192.169.7.98,"2018-10-23 09:44:02.968 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) _configure_property(taskuuid, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.969,59442,cf-pdman,cf-pdman,25,INFO,192.169.7.98,"2018-10-23 09:44:02.969 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) _configure_property(nodeuuid, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.969,59442,cf-pdman,cf-pdman,25,INFO,192.169.7.98,"2018-10-23 09:44:02.969 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) _configure_property(info, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.970,59442,cf-pdman,cf-pdman,30,INFO,192.169.7.98,"2018-10-23 09:44:02.970 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) _configure_property(deploy_info, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.970,59442,cf-pdman,cf-pdman,31,INFO,192.169.7.98,"2018-10-23 09:44:02.970 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) _configure_property(msb_info, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.971,59442,cf-pdman,cf-pdman,25,INFO,192.169.7.98,"2018-10-23 09:44:02.971 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) _configure_property(timestamp, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.971,59442,cf-pdman,cf-pdman,25,INFO,192.169.7.98,"2018-10-23 09:44:02.971 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) _configure_property(lock, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.972,59442,cf-pdman,cf-pdman,31,INFO,192.169.7.98,"2018-10-23 09:44:02.972 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) _configure_property(msb_info_v2, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.972,59442,cf-pdman,cf-pdman,25,INFO,192.169.7.98,"2018-10-23 09:44:02.972 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) _configure_property(tenant_id, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.972,59442,cf-pdman,cf-pdman,25,INFO,192.169.7.98,"2018-10-23 09:44:02.972 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) _configure_property(replicas, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.973,59442,cf-pdman,cf-pdman,32,INFO,192.169.7.98,"2018-10-23 09:44:02.973 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) _configure_property(ha_framework, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.973,59442,cf-pdman,cf-pdman,33,INFO,192.169.7.98,"2018-10-23 09:44:02.973 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) _configure_property(all_in_one, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.974,59442,cf-pdman,cf-pdman,34,INFO,192.169.7.98,"2018-10-23 09:44:02.974 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) _configure_property(ha_mode, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.974,59442,cf-pdman,cf-pdman,35,INFO,192.169.7.98,"2018-10-23 09:44:02.974 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) _configure_property(vip_ip, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.975,59442,cf-pdman,cf-pdman,25,INFO,192.169.7.98,"2018-10-23 09:44:02.975 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) _configure_property(storage, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.975,59442,cf-pdman,cf-pdman,35,INFO,192.169.7.98,"2018-10-23 09:44:02.975 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) _configure_property(vip_ip_v6, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.976,59442,cf-pdman,cf-pdman,36,INFO,192.169.7.98,"2018-10-23 09:44:02.976 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) Identified primary key columns: ColumnSet([Column('id', Integer(), table=<com_servers>, primary_key=True, nullable=False)]) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.976,59442,cf-pdman,cf-pdman,37,INFO,192.169.7.98,"2018-10-23 09:44:02.976 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) constructed req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.980,59442,cf-pdman,cf-pdman,38,INFO,192.169.7.98,"2018-10-23 09:44:02.980 INFO  sqlalchemy.orm.mapper.Mapper (Node|nodes) _configure_property(servers, RelationshipProperty) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.980,59442,cf-pdman,cf-pdman,5,INFO,192.169.7.98,"2018-10-23 09:44:02.980 INFO  sqlalchemy.orm.mapper.Mapper (Node|nodes) _configure_property(created_at, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.980,59442,cf-pdman,cf-pdman,6,INFO,192.169.7.98,"2018-10-23 09:44:02.980 INFO  sqlalchemy.orm.mapper.Mapper (Node|nodes) _configure_property(updated_at, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.981,59442,cf-pdman,cf-pdman,7,INFO,192.169.7.98,"2018-10-23 09:44:02.981 INFO  sqlalchemy.orm.mapper.Mapper (Node|nodes) _configure_property(id, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.981,59442,cf-pdman,cf-pdman,7,INFO,192.169.7.98,"2018-10-23 09:44:02.981 INFO  sqlalchemy.orm.mapper.Mapper (Node|nodes) _configure_property(uuid, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.982,59442,cf-pdman,cf-pdman,39,INFO,192.169.7.98,"2018-10-23 09:44:02.982 INFO  sqlalchemy.orm.mapper.Mapper (Node|nodes) _configure_property(server_id, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.982,59442,cf-pdman,cf-pdman,11,INFO,192.169.7.98,"2018-10-23 09:44:02.982 INFO  sqlalchemy.orm.mapper.Mapper (Node|nodes) _configure_property(state, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.982,59442,cf-pdman,cf-pdman,12,INFO,192.169.7.98,"2018-10-23 09:44:02.982 INFO  sqlalchemy.orm.mapper.Mapper (Node|nodes) _configure_property(deploy_state, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.983,59442,cf-pdman,cf-pdman,15,INFO,192.169.7.98,"2018-10-23 09:44:02.983 INFO  sqlalchemy.orm.mapper.Mapper (Node|nodes) _configure_property(deploy_info, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.983,59442,cf-pdman,cf-pdman,16,INFO,192.169.7.98,"2018-10-23 09:44:02.983 INFO  sqlalchemy.orm.mapper.Mapper (Node|nodes) _configure_property(timestamp, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.984,59442,cf-pdman,cf-pdman,17,INFO,192.169.7.98,"2018-10-23 09:44:02.984 INFO  sqlalchemy.orm.mapper.Mapper (Node|nodes) _configure_property(lock, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.984,59442,cf-pdman,cf-pdman,40,INFO,192.169.7.98,"2018-10-23 09:44:02.984 INFO  sqlalchemy.orm.mapper.Mapper (Node|nodes) _configure_property(nodeuuid, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.985,59442,cf-pdman,cf-pdman,41,INFO,192.169.7.98,"2018-10-23 09:44:02.985 INFO  sqlalchemy.orm.mapper.Mapper (Node|nodes) Identified primary key columns: ColumnSet([Column('id', Integer(), table=<nodes>, primary_key=True, nullable=False)]) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.985,59442,cf-pdman,cf-pdman,22,INFO,192.169.7.98,"2018-10-23 09:44:02.985 INFO  sqlalchemy.orm.mapper.Mapper (Node|nodes) constructed req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.987,59442,cf-pdman,cf-pdman,5,INFO,192.169.7.98,"2018-10-23 09:44:02.987 INFO  sqlalchemy.orm.mapper.Mapper (CtrlSwitch|ctrl_switch) _configure_property(created_at, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.988,59442,cf-pdman,cf-pdman,6,INFO,192.169.7.98,"2018-10-23 09:44:02.988 INFO  sqlalchemy.orm.mapper.Mapper (CtrlSwitch|ctrl_switch) _configure_property(updated_at, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.988,59442,cf-pdman,cf-pdman,42,INFO,192.169.7.98,"2018-10-23 09:44:02.988 INFO  sqlalchemy.orm.mapper.Mapper (CtrlSwitch|ctrl_switch) _configure_property(id, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.989,59442,cf-pdman,cf-pdman,42,INFO,192.169.7.98,"2018-10-23 09:44:02.989 INFO  sqlalchemy.orm.mapper.Mapper (CtrlSwitch|ctrl_switch) _configure_property(uuid, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.989,59442,cf-pdman,cf-pdman,43,INFO,192.169.7.98,"2018-10-23 09:44:02.989 INFO  sqlalchemy.orm.mapper.Mapper (CtrlSwitch|ctrl_switch) _configure_property(all_in_one, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.989,59442,cf-pdman,cf-pdman,44,INFO,192.169.7.98,"2018-10-23 09:44:02.989 INFO  sqlalchemy.orm.mapper.Mapper (CtrlSwitch|ctrl_switch) _configure_property(is_in_controller, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.990,59442,cf-pdman,cf-pdman,45,INFO,192.169.7.98,"2018-10-23 09:44:02.990 INFO  sqlalchemy.orm.mapper.Mapper (CtrlSwitch|ctrl_switch) _configure_property(timestamp, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.990,59442,cf-pdman,cf-pdman,46,INFO,192.169.7.98,"2018-10-23 09:44:02.990 INFO  sqlalchemy.orm.mapper.Mapper (CtrlSwitch|ctrl_switch) _configure_property(lock, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.991,59442,cf-pdman,cf-pdman,47,INFO,192.169.7.98,"2018-10-23 09:44:02.991 INFO  sqlalchemy.orm.mapper.Mapper (CtrlSwitch|ctrl_switch) Identified primary key columns: ColumnSet([Column('id', Integer(), table=<ctrl_switch>, primary_key=True, nullable=False)]) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.991,59442,cf-pdman,cf-pdman,48,INFO,192.169.7.98,"2018-10-23 09:44:02.991 INFO  sqlalchemy.orm.mapper.Mapper (CtrlSwitch|ctrl_switch) constructed req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.994,59442,cf-pdman,cf-pdman,5,INFO,192.169.7.98,"2018-10-23 09:44:02.994 INFO  sqlalchemy.orm.mapper.Mapper (Lock|locks) _configure_property(created_at, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.994,59442,cf-pdman,cf-pdman,6,INFO,192.169.7.98,"2018-10-23 09:44:02.994 INFO  sqlalchemy.orm.mapper.Mapper (Lock|locks) _configure_property(updated_at, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.995,59442,cf-pdman,cf-pdman,7,INFO,192.169.7.98,"2018-10-23 09:44:02.995 INFO  sqlalchemy.orm.mapper.Mapper (Lock|locks) _configure_property(id, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.995,59442,cf-pdman,cf-pdman,8,INFO,192.169.7.98,"2018-10-23 09:44:02.995 INFO  sqlalchemy.orm.mapper.Mapper (Lock|locks) _configure_property(name, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.995,59442,cf-pdman,cf-pdman,11,INFO,192.169.7.98,"2018-10-23 09:44:02.995 INFO  sqlalchemy.orm.mapper.Mapper (Lock|locks) _configure_property(state, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.996,59442,cf-pdman,cf-pdman,16,INFO,192.169.7.98,"2018-10-23 09:44:02.996 INFO  sqlalchemy.orm.mapper.Mapper (Lock|locks) _configure_property(timestamp, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.996,59442,cf-pdman,cf-pdman,49,INFO,192.169.7.98,"2018-10-23 09:44:02.996 INFO  sqlalchemy.orm.mapper.Mapper (Lock|locks) Identified primary key columns: ColumnSet([Column('id', Integer(), table=<locks>, primary_key=True, nullable=False)]) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.997,59442,cf-pdman,cf-pdman,22,INFO,192.169.7.98,"2018-10-23 09:44:02.997 INFO  sqlalchemy.orm.mapper.Mapper (Lock|locks) constructed req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:02.999,59442,cf-pdman,cf-pdman,5,INFO,192.169.7.98,"2018-10-23 09:44:02.999 INFO  sqlalchemy.orm.mapper.Mapper (Monitor|monitor) _configure_property(created_at, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.000,59442,cf-pdman,cf-pdman,6,INFO,192.169.7.98,"2018-10-23 09:44:03.000 INFO  sqlalchemy.orm.mapper.Mapper (Monitor|monitor) _configure_property(updated_at, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.000,59442,cf-pdman,cf-pdman,7,INFO,192.169.7.98,"2018-10-23 09:44:03.000 INFO  sqlalchemy.orm.mapper.Mapper (Monitor|monitor) _configure_property(id, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.001,59442,cf-pdman,cf-pdman,50,INFO,192.169.7.98,"2018-10-23 09:44:03.001 INFO  sqlalchemy.orm.mapper.Mapper (Monitor|monitor) _configure_property(svrname, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.001,59442,cf-pdman,cf-pdman,51,INFO,192.169.7.98,"2018-10-23 09:44:03.001 INFO  sqlalchemy.orm.mapper.Mapper (Monitor|monitor) _configure_property(version, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.001,59442,cf-pdman,cf-pdman,52,INFO,192.169.7.98,"2018-10-23 09:44:03.001 INFO  sqlalchemy.orm.mapper.Mapper (Monitor|monitor) _configure_property(srcname, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.002,59442,cf-pdman,cf-pdman,53,INFO,192.169.7.98,"2018-10-23 09:44:03.002 INFO  sqlalchemy.orm.mapper.Mapper (Monitor|monitor) _configure_property(module, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.002,59442,cf-pdman,cf-pdman,54,INFO,192.169.7.98,"2018-10-23 09:44:03.002 INFO  sqlalchemy.orm.mapper.Mapper (Monitor|monitor) _configure_property(roles, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.003,59442,cf-pdman,cf-pdman,55,INFO,192.169.7.98,"2018-10-23 09:44:03.003 INFO  sqlalchemy.orm.mapper.Mapper (Monitor|monitor) _configure_property(node, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.003,59442,cf-pdman,cf-pdman,16,INFO,192.169.7.98,"2018-10-23 09:44:03.003 INFO  sqlalchemy.orm.mapper.Mapper (Monitor|monitor) _configure_property(timestamp, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.004,59442,cf-pdman,cf-pdman,56,INFO,192.169.7.98,"2018-10-23 09:44:03.004 INFO  sqlalchemy.orm.mapper.Mapper (Monitor|monitor) Identified primary key columns: ColumnSet([Column('id', Integer(), table=<monitor>, primary_key=True, nullable=False)]) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.004,59442,cf-pdman,cf-pdman,22,INFO,192.169.7.98,"2018-10-23 09:44:03.004 INFO  sqlalchemy.orm.mapper.Mapper (Monitor|monitor) constructed req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.008,59442,cf-pdman,cf-pdman,5,INFO,192.169.7.98,"2018-10-23 09:44:03.008 INFO  sqlalchemy.orm.mapper.Mapper (Deploy|deploy) _configure_property(created_at, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.009,59442,cf-pdman,cf-pdman,6,INFO,192.169.7.98,"2018-10-23 09:44:03.009 INFO  sqlalchemy.orm.mapper.Mapper (Deploy|deploy) _configure_property(updated_at, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.009,59442,cf-pdman,cf-pdman,7,INFO,192.169.7.98,"2018-10-23 09:44:03.009 INFO  sqlalchemy.orm.mapper.Mapper (Deploy|deploy) _configure_property(id, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.010,59442,cf-pdman,cf-pdman,7,INFO,192.169.7.98,"2018-10-23 09:44:03.010 INFO  sqlalchemy.orm.mapper.Mapper (Deploy|deploy) _configure_property(uuid, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.010,59442,cf-pdman,cf-pdman,57,INFO,192.169.7.98,"2018-10-23 09:44:03.010 INFO  sqlalchemy.orm.mapper.Mapper (Deploy|deploy) _configure_property(scenerio_type, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.010,59442,cf-pdman,cf-pdman,58,INFO,192.169.7.98,"2018-10-23 09:44:03.010 INFO  sqlalchemy.orm.mapper.Mapper (Deploy|deploy) _configure_property(scale, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.011,59442,cf-pdman,cf-pdman,13,INFO,192.169.7.98,"2018-10-23 09:44:03.011 INFO  sqlalchemy.orm.mapper.Mapper (Deploy|deploy) _configure_property(deploy_progress, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.011,59442,cf-pdman,cf-pdman,15,INFO,192.169.7.98,"2018-10-23 09:44:03.011 INFO  sqlalchemy.orm.mapper.Mapper (Deploy|deploy) _configure_property(deploy_info, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.012,59442,cf-pdman,cf-pdman,59,INFO,192.169.7.98,"2018-10-23 09:44:03.012 INFO  sqlalchemy.orm.mapper.Mapper (Deploy|deploy) _configure_property(deploy_detail, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.012,59442,cf-pdman,cf-pdman,60,INFO,192.169.7.98,"2018-10-23 09:44:03.012 INFO  sqlalchemy.orm.mapper.Mapper (Deploy|deploy) _configure_property(last_error, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.013,59442,cf-pdman,cf-pdman,61,INFO,192.169.7.98,"2018-10-23 09:44:03.013 INFO  sqlalchemy.orm.mapper.Mapper (Deploy|deploy) _configure_property(error_time, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.013,59442,cf-pdman,cf-pdman,62,INFO,192.169.7.98,"2018-10-23 09:44:03.013 INFO  sqlalchemy.orm.mapper.Mapper (Deploy|deploy) _configure_property(reservation, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.014,59442,cf-pdman,cf-pdman,63,INFO,192.169.7.98,"2018-10-23 09:44:03.014 INFO  sqlalchemy.orm.mapper.Mapper (Deploy|deploy) _configure_property(running_module, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.014,59442,cf-pdman,cf-pdman,64,INFO,192.169.7.98,"2018-10-23 09:44:03.014 INFO  sqlalchemy.orm.mapper.Mapper (Deploy|deploy) _configure_property(ha_enabled, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.014,59442,cf-pdman,cf-pdman,43,INFO,192.169.7.98,"2018-10-23 09:44:03.014 INFO  sqlalchemy.orm.mapper.Mapper (Deploy|deploy) _configure_property(all_in_one, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.015,59442,cf-pdman,cf-pdman,65,INFO,192.169.7.98,"2018-10-23 09:44:03.015 INFO  sqlalchemy.orm.mapper.Mapper (Deploy|deploy) _configure_property(op_service_ip, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.015,59442,cf-pdman,cf-pdman,66,INFO,192.169.7.98,"2018-10-23 09:44:03.015 INFO  sqlalchemy.orm.mapper.Mapper (Deploy|deploy) _configure_property(g_TaskDataList, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.016,59442,cf-pdman,cf-pdman,67,INFO,192.169.7.98,"2018-10-23 09:44:03.016 INFO  sqlalchemy.orm.mapper.Mapper (Deploy|deploy) _configure_property(offline, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.016,59442,cf-pdman,cf-pdman,68,INFO,192.169.7.98,"2018-10-23 09:44:03.016 INFO  sqlalchemy.orm.mapper.Mapper (Deploy|deploy) _configure_property(use_elk, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.017,59442,cf-pdman,cf-pdman,69,INFO,192.169.7.98,"2018-10-23 09:44:03.017 INFO  sqlalchemy.orm.mapper.Mapper (Deploy|deploy) _configure_property(sync_list, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.017,59442,cf-pdman,cf-pdman,70,INFO,192.169.7.98,"2018-10-23 09:44:03.017 INFO  sqlalchemy.orm.mapper.Mapper (Deploy|deploy) _configure_property(suspend, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.018,59442,cf-pdman,cf-pdman,71,INFO,192.169.7.98,"2018-10-23 09:44:03.018 INFO  sqlalchemy.orm.mapper.Mapper (Deploy|deploy) _configure_property(warnings, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.018,59442,cf-pdman,cf-pdman,72,INFO,192.169.7.98,"2018-10-23 09:44:03.018 INFO  sqlalchemy.orm.mapper.Mapper (Deploy|deploy) _configure_property(heartbeat, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.019,59442,cf-pdman,cf-pdman,73,INFO,192.169.7.98,"2018-10-23 09:44:03.019 INFO  sqlalchemy.orm.mapper.Mapper (Deploy|deploy) Identified primary key columns: ColumnSet([Column('id', Integer(), table=<deploy>, primary_key=True, nullable=False)]) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.019,59442,cf-pdman,cf-pdman,22,INFO,192.169.7.98,"2018-10-23 09:44:03.019 INFO  sqlalchemy.orm.mapper.Mapper (Deploy|deploy) constructed req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.022,59442,cf-pdman,cf-pdman,5,INFO,192.169.7.98,"2018-10-23 09:44:03.022 INFO  sqlalchemy.orm.mapper.Mapper (Backup|backup) _configure_property(created_at, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.022,59442,cf-pdman,cf-pdman,6,INFO,192.169.7.98,"2018-10-23 09:44:03.022 INFO  sqlalchemy.orm.mapper.Mapper (Backup|backup) _configure_property(updated_at, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.023,59442,cf-pdman,cf-pdman,7,INFO,192.169.7.98,"2018-10-23 09:44:03.023 INFO  sqlalchemy.orm.mapper.Mapper (Backup|backup) _configure_property(id, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.023,59442,cf-pdman,cf-pdman,7,INFO,192.169.7.98,"2018-10-23 09:44:03.023 INFO  sqlalchemy.orm.mapper.Mapper (Backup|backup) _configure_property(uuid, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.024,59442,cf-pdman,cf-pdman,74,INFO,192.169.7.98,"2018-10-23 09:44:03.024 INFO  sqlalchemy.orm.mapper.Mapper (Backup|backup) _configure_property(jobDn, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.024,59442,cf-pdman,cf-pdman,75,INFO,192.169.7.98,"2018-10-23 09:44:03.024 INFO  sqlalchemy.orm.mapper.Mapper (Backup|backup) _configure_property(type, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.024,59442,cf-pdman,cf-pdman,11,INFO,192.169.7.98,"2018-10-23 09:44:03.024 INFO  sqlalchemy.orm.mapper.Mapper (Backup|backup) _configure_property(state, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.025,59442,cf-pdman,cf-pdman,76,INFO,192.169.7.98,"2018-10-23 09:44:03.025 INFO  sqlalchemy.orm.mapper.Mapper (Backup|backup) _configure_property(progress, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.025,59442,cf-pdman,cf-pdman,77,INFO,192.169.7.98,"2018-10-23 09:44:03.025 INFO  sqlalchemy.orm.mapper.Mapper (Backup|backup) _configure_property(storage, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.026,59442,cf-pdman,cf-pdman,18,INFO,192.169.7.98,"2018-10-23 09:44:03.026 INFO  sqlalchemy.orm.mapper.Mapper (Backup|backup) _configure_property(try_times, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.026,59442,cf-pdman,cf-pdman,78,INFO,192.169.7.98,"2018-10-23 09:44:03.026 INFO  sqlalchemy.orm.mapper.Mapper (Backup|backup) Identified primary key columns: ColumnSet([Column('id', Integer(), table=<backup>, primary_key=True, nullable=False)]) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.027,59442,cf-pdman,cf-pdman,22,INFO,192.169.7.98,"2018-10-23 09:44:03.027 INFO  sqlalchemy.orm.mapper.Mapper (Backup|backup) constructed req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.029,59442,cf-pdman,cf-pdman,5,INFO,192.169.7.98,"2018-10-23 09:44:03.029 INFO  sqlalchemy.orm.mapper.Mapper (PsmTransaction|psmtransaction) _configure_property(created_at, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.030,59442,cf-pdman,cf-pdman,6,INFO,192.169.7.98,"2018-10-23 09:44:03.030 INFO  sqlalchemy.orm.mapper.Mapper (PsmTransaction|psmtransaction) _configure_property(updated_at, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.030,59442,cf-pdman,cf-pdman,7,INFO,192.169.7.98,"2018-10-23 09:44:03.030 INFO  sqlalchemy.orm.mapper.Mapper (PsmTransaction|psmtransaction) _configure_property(id, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.031,59442,cf-pdman,cf-pdman,7,INFO,192.169.7.98,"2018-10-23 09:44:03.031 INFO  sqlalchemy.orm.mapper.Mapper (PsmTransaction|psmtransaction) _configure_property(uuid, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.031,59442,cf-pdman,cf-pdman,8,INFO,192.169.7.98,"2018-10-23 09:44:03.031 INFO  sqlalchemy.orm.mapper.Mapper (PsmTransaction|psmtransaction) _configure_property(name, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.032,59442,cf-pdman,cf-pdman,75,INFO,192.169.7.98,"2018-10-23 09:44:03.032 INFO  sqlalchemy.orm.mapper.Mapper (PsmTransaction|psmtransaction) _configure_property(type, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.032,59442,cf-pdman,cf-pdman,11,INFO,192.169.7.98,"2018-10-23 09:44:03.032 INFO  sqlalchemy.orm.mapper.Mapper (PsmTransaction|psmtransaction) _configure_property(state, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.033,59442,cf-pdman,cf-pdman,79,INFO,192.169.7.98,"2018-10-23 09:44:03.033 INFO  sqlalchemy.orm.mapper.Mapper (PsmTransaction|psmtransaction) Identified primary key columns: ColumnSet([Column('id', Integer(), table=<psmtransaction>, primary_key=True, nullable=False)]) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.033,59442,cf-pdman,cf-pdman,22,INFO,192.169.7.98,"2018-10-23 09:44:03.033 INFO  sqlalchemy.orm.mapper.Mapper (PsmTransaction|psmtransaction) constructed req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.036,59442,cf-pdman,cf-pdman,5,INFO,192.169.7.98,"2018-10-23 09:44:03.036 INFO  sqlalchemy.orm.mapper.Mapper (PsmComponent|psmcomponents) _configure_property(created_at, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.036,59442,cf-pdman,cf-pdman,6,INFO,192.169.7.98,"2018-10-23 09:44:03.036 INFO  sqlalchemy.orm.mapper.Mapper (PsmComponent|psmcomponents) _configure_property(updated_at, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.037,59442,cf-pdman,cf-pdman,7,INFO,192.169.7.98,"2018-10-23 09:44:03.037 INFO  sqlalchemy.orm.mapper.Mapper (PsmComponent|psmcomponents) _configure_property(id, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.037,59442,cf-pdman,cf-pdman,7,INFO,192.169.7.98,"2018-10-23 09:44:03.037 INFO  sqlalchemy.orm.mapper.Mapper (PsmComponent|psmcomponents) _configure_property(uuid, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.038,59442,cf-pdman,cf-pdman,8,INFO,192.169.7.98,"2018-10-23 09:44:03.038 INFO  sqlalchemy.orm.mapper.Mapper (PsmComponent|psmcomponents) _configure_property(name, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.038,59442,cf-pdman,cf-pdman,80,INFO,192.169.7.98,"2018-10-23 09:44:03.038 INFO  sqlalchemy.orm.mapper.Mapper (PsmComponent|psmcomponents) _configure_property(vertype, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.038,59442,cf-pdman,cf-pdman,51,INFO,192.169.7.98,"2018-10-23 09:44:03.038 INFO  sqlalchemy.orm.mapper.Mapper (PsmComponent|psmcomponents) _configure_property(version, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.039,59442,cf-pdman,cf-pdman,81,INFO,192.169.7.98,"2018-10-23 09:44:03.039 INFO  sqlalchemy.orm.mapper.Mapper (PsmComponent|psmcomponents) _configure_property(domain, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.039,59442,cf-pdman,cf-pdman,82,INFO,192.169.7.98,"2018-10-23 09:44:03.039 INFO  sqlalchemy.orm.mapper.Mapper (PsmComponent|psmcomponents) _configure_property(parameters, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.040,59442,cf-pdman,cf-pdman,83,INFO,192.169.7.98,"2018-10-23 09:44:03.040 INFO  sqlalchemy.orm.mapper.Mapper (PsmComponent|psmcomponents) _configure_property(depend, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.040,59442,cf-pdman,cf-pdman,84,INFO,192.169.7.98,"2018-10-23 09:44:03.040 INFO  sqlalchemy.orm.mapper.Mapper (PsmComponent|psmcomponents) _configure_property(plugins, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.041,59442,cf-pdman,cf-pdman,85,INFO,192.169.7.98,"2018-10-23 09:44:03.041 INFO  sqlalchemy.orm.mapper.Mapper (PsmComponent|psmcomponents) Identified primary key columns: ColumnSet([Column('id', Integer(), table=<psmcomponents>, primary_key=True, nullable=False)]) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.041,59442,cf-pdman,cf-pdman,22,INFO,192.169.7.98,"2018-10-23 09:44:03.041 INFO  sqlalchemy.orm.mapper.Mapper (PsmComponent|psmcomponents) constructed req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.044,59442,cf-pdman,cf-pdman,5,INFO,192.169.7.98,"2018-10-23 09:44:03.044 INFO  sqlalchemy.orm.mapper.Mapper (PsmDomain|psmdomains) _configure_property(created_at, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.044,59442,cf-pdman,cf-pdman,6,INFO,192.169.7.98,"2018-10-23 09:44:03.044 INFO  sqlalchemy.orm.mapper.Mapper (PsmDomain|psmdomains) _configure_property(updated_at, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.044,59442,cf-pdman,cf-pdman,7,INFO,192.169.7.98,"2018-10-23 09:44:03.044 INFO  sqlalchemy.orm.mapper.Mapper (PsmDomain|psmdomains) _configure_property(id, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.045,59442,cf-pdman,cf-pdman,7,INFO,192.169.7.98,"2018-10-23 09:44:03.045 INFO  sqlalchemy.orm.mapper.Mapper (PsmDomain|psmdomains) _configure_property(uuid, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.045,59442,cf-pdman,cf-pdman,8,INFO,192.169.7.98,"2018-10-23 09:44:03.045 INFO  sqlalchemy.orm.mapper.Mapper (PsmDomain|psmdomains) _configure_property(name, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.046,59442,cf-pdman,cf-pdman,86,INFO,192.169.7.98,"2018-10-23 09:44:03.046 INFO  sqlalchemy.orm.mapper.Mapper (PsmDomain|psmdomains) _configure_property(parent_domain, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.046,59442,cf-pdman,cf-pdman,82,INFO,192.169.7.98,"2018-10-23 09:44:03.046 INFO  sqlalchemy.orm.mapper.Mapper (PsmDomain|psmdomains) _configure_property(parameters, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.047,59442,cf-pdman,cf-pdman,87,INFO,192.169.7.98,"2018-10-23 09:44:03.047 INFO  sqlalchemy.orm.mapper.Mapper (PsmDomain|psmdomains) Identified primary key columns: ColumnSet([Column('id', Integer(), table=<psmdomains>, primary_key=True, nullable=False)]) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.047,59442,cf-pdman,cf-pdman,22,INFO,192.169.7.98,"2018-10-23 09:44:03.047 INFO  sqlalchemy.orm.mapper.Mapper (PsmDomain|psmdomains) constructed req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.050,59442,cf-pdman,cf-pdman,5,INFO,192.169.7.98,"2018-10-23 09:44:03.050 INFO  sqlalchemy.orm.mapper.Mapper (PsmRole|psmroles) _configure_property(created_at, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.050,59442,cf-pdman,cf-pdman,6,INFO,192.169.7.98,"2018-10-23 09:44:03.050 INFO  sqlalchemy.orm.mapper.Mapper (PsmRole|psmroles) _configure_property(updated_at, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.051,59442,cf-pdman,cf-pdman,7,INFO,192.169.7.98,"2018-10-23 09:44:03.051 INFO  sqlalchemy.orm.mapper.Mapper (PsmRole|psmroles) _configure_property(id, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.051,59442,cf-pdman,cf-pdman,7,INFO,192.169.7.98,"2018-10-23 09:44:03.051 INFO  sqlalchemy.orm.mapper.Mapper (PsmRole|psmroles) _configure_property(uuid, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.051,59442,cf-pdman,cf-pdman,8,INFO,192.169.7.98,"2018-10-23 09:44:03.051 INFO  sqlalchemy.orm.mapper.Mapper (PsmRole|psmroles) _configure_property(name, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.052,59442,cf-pdman,cf-pdman,88,INFO,192.169.7.98,"2018-10-23 09:44:03.052 INFO  sqlalchemy.orm.mapper.Mapper (PsmRole|psmroles) _configure_property(manager, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.052,59442,cf-pdman,cf-pdman,89,INFO,192.169.7.98,"2018-10-23 09:44:03.052 INFO  sqlalchemy.orm.mapper.Mapper (PsmRole|psmroles) _configure_property(domains, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.053,59442,cf-pdman,cf-pdman,90,INFO,192.169.7.98,"2018-10-23 09:44:03.053 INFO  sqlalchemy.orm.mapper.Mapper (PsmRole|psmroles) _configure_property(components, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.053,59442,cf-pdman,cf-pdman,82,INFO,192.169.7.98,"2018-10-23 09:44:03.053 INFO  sqlalchemy.orm.mapper.Mapper (PsmRole|psmroles) _configure_property(parameters, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.054,59442,cf-pdman,cf-pdman,91,INFO,192.169.7.98,"2018-10-23 09:44:03.054 INFO  sqlalchemy.orm.mapper.Mapper (PsmRole|psmroles) Identified primary key columns: ColumnSet([Column('id', Integer(), table=<psmroles>, primary_key=True, nullable=False)]) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.054,59442,cf-pdman,cf-pdman,22,INFO,192.169.7.98,"2018-10-23 09:44:03.054 INFO  sqlalchemy.orm.mapper.Mapper (PsmRole|psmroles) constructed req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.057,59442,cf-pdman,cf-pdman,5,INFO,192.169.7.98,"2018-10-23 09:44:03.057 INFO  sqlalchemy.orm.mapper.Mapper (PsmNodegroup|psmnodegroups) _configure_property(created_at, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.057,59442,cf-pdman,cf-pdman,6,INFO,192.169.7.98,"2018-10-23 09:44:03.057 INFO  sqlalchemy.orm.mapper.Mapper (PsmNodegroup|psmnodegroups) _configure_property(updated_at, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.058,59442,cf-pdman,cf-pdman,7,INFO,192.169.7.98,"2018-10-23 09:44:03.058 INFO  sqlalchemy.orm.mapper.Mapper (PsmNodegroup|psmnodegroups) _configure_property(id, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.058,59442,cf-pdman,cf-pdman,7,INFO,192.169.7.98,"2018-10-23 09:44:03.058 INFO  sqlalchemy.orm.mapper.Mapper (PsmNodegroup|psmnodegroups) _configure_property(uuid, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.058,59442,cf-pdman,cf-pdman,8,INFO,192.169.7.98,"2018-10-23 09:44:03.058 INFO  sqlalchemy.orm.mapper.Mapper (PsmNodegroup|psmnodegroups) _configure_property(name, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.059,59442,cf-pdman,cf-pdman,92,INFO,192.169.7.98,"2018-10-23 09:44:03.059 INFO  sqlalchemy.orm.mapper.Mapper (PsmNodegroup|psmnodegroups) _configure_property(number, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.059,59442,cf-pdman,cf-pdman,54,INFO,192.169.7.98,"2018-10-23 09:44:03.059 INFO  sqlalchemy.orm.mapper.Mapper (PsmNodegroup|psmnodegroups) _configure_property(roles, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.060,59442,cf-pdman,cf-pdman,10,INFO,192.169.7.98,"2018-10-23 09:44:03.060 INFO  sqlalchemy.orm.mapper.Mapper (PsmNodegroup|psmnodegroups) _configure_property(nodepool, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.060,59442,cf-pdman,cf-pdman,82,INFO,192.169.7.98,"2018-10-23 09:44:03.060 INFO  sqlalchemy.orm.mapper.Mapper (PsmNodegroup|psmnodegroups) _configure_property(parameters, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.061,59442,cf-pdman,cf-pdman,93,INFO,192.169.7.98,"2018-10-23 09:44:03.061 INFO  sqlalchemy.orm.mapper.Mapper (PsmNodegroup|psmnodegroups) Identified primary key columns: ColumnSet([Column('id', Integer(), table=<psmnodegroups>, primary_key=True, nullable=False)]) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.061,59442,cf-pdman,cf-pdman,22,INFO,192.169.7.98,"2018-10-23 09:44:03.061 INFO  sqlalchemy.orm.mapper.Mapper (PsmNodegroup|psmnodegroups) constructed req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.066,59442,cf-pdman,cf-pdman,5,INFO,192.169.7.98,"2018-10-23 09:44:03.066 INFO  sqlalchemy.orm.mapper.Mapper (PsmNode|psmnodes) _configure_property(created_at, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.066,59442,cf-pdman,cf-pdman,6,INFO,192.169.7.98,"2018-10-23 09:44:03.066 INFO  sqlalchemy.orm.mapper.Mapper (PsmNode|psmnodes) _configure_property(updated_at, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.066,59442,cf-pdman,cf-pdman,7,INFO,192.169.7.98,"2018-10-23 09:44:03.066 INFO  sqlalchemy.orm.mapper.Mapper (PsmNode|psmnodes) _configure_property(id, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.067,59442,cf-pdman,cf-pdman,55,INFO,192.169.7.98,"2018-10-23 09:44:03.067 INFO  sqlalchemy.orm.mapper.Mapper (PsmNode|psmnodes) _configure_property(node_uuid, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.067,59442,cf-pdman,cf-pdman,94,INFO,192.169.7.98,"2018-10-23 09:44:03.067 INFO  sqlalchemy.orm.mapper.Mapper (PsmNode|psmnodes) _configure_property(nodegroup, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.068,59442,cf-pdman,cf-pdman,82,INFO,192.169.7.98,"2018-10-23 09:44:03.068 INFO  sqlalchemy.orm.mapper.Mapper (PsmNode|psmnodes) _configure_property(parameters, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.068,59442,cf-pdman,cf-pdman,95,INFO,192.169.7.98,"2018-10-23 09:44:03.068 INFO  sqlalchemy.orm.mapper.Mapper (PsmNode|psmnodes) Identified primary key columns: ColumnSet([Column('id', Integer(), table=<psmnodes>, primary_key=True, nullable=False)]) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.069,59442,cf-pdman,cf-pdman,22,INFO,192.169.7.98,"2018-10-23 09:44:03.069 INFO  sqlalchemy.orm.mapper.Mapper (PsmNode|psmnodes) constructed req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.071,59442,cf-pdman,cf-pdman,5,INFO,192.169.7.98,"2018-10-23 09:44:03.071 INFO  sqlalchemy.orm.mapper.Mapper (PsmMap|psmmap) _configure_property(created_at, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.072,59442,cf-pdman,cf-pdman,6,INFO,192.169.7.98,"2018-10-23 09:44:03.072 INFO  sqlalchemy.orm.mapper.Mapper (PsmMap|psmmap) _configure_property(updated_at, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.072,59442,cf-pdman,cf-pdman,7,INFO,192.169.7.98,"2018-10-23 09:44:03.072 INFO  sqlalchemy.orm.mapper.Mapper (PsmMap|psmmap) _configure_property(id, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.072,59442,cf-pdman,cf-pdman,96,INFO,192.169.7.98,"2018-10-23 09:44:03.072 INFO  sqlalchemy.orm.mapper.Mapper (PsmMap|psmmap) _configure_property(component_name, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.073,59442,cf-pdman,cf-pdman,55,INFO,192.169.7.98,"2018-10-23 09:44:03.073 INFO  sqlalchemy.orm.mapper.Mapper (PsmMap|psmmap) _configure_property(node_uuid, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.073,59442,cf-pdman,cf-pdman,51,INFO,192.169.7.98,"2018-10-23 09:44:03.073 INFO  sqlalchemy.orm.mapper.Mapper (PsmMap|psmmap) _configure_property(version, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.074,59442,cf-pdman,cf-pdman,97,INFO,192.169.7.98,"2018-10-23 09:44:03.074 INFO  sqlalchemy.orm.mapper.Mapper (PsmMap|psmmap) _configure_property(dest_version, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.074,59442,cf-pdman,cf-pdman,98,INFO,192.169.7.98,"2018-10-23 09:44:03.074 INFO  sqlalchemy.orm.mapper.Mapper (PsmMap|psmmap) _configure_property(task_uuid, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.075,59442,cf-pdman,cf-pdman,11,INFO,192.169.7.98,"2018-10-23 09:44:03.075 INFO  sqlalchemy.orm.mapper.Mapper (PsmMap|psmmap) _configure_property(state, Column) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.075,59442,cf-pdman,cf-pdman,99,INFO,192.169.7.98,"2018-10-23 09:44:03.075 INFO  sqlalchemy.orm.mapper.Mapper (PsmMap|psmmap) Identified primary key columns: ColumnSet([Column('id', Integer(), table=<psmmap>, primary_key=True, nullable=False)]) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.075,59442,cf-pdman,cf-pdman,22,INFO,192.169.7.98,"2018-10-23 09:44:03.075 INFO  sqlalchemy.orm.mapper.Mapper (PsmMap|psmmap) constructed req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.260,59442,cf-pdman,cf-pdman,100,INFO,192.169.7.98,"2018-10-23 09:44:03.260 INFO  sqlalchemy.orm.mapper.Mapper (Server|servers) _post_configure_properties() started req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.260,59442,cf-pdman,cf-pdman,101,INFO,192.169.7.98,"2018-10-23 09:44:03.260 INFO  sqlalchemy.orm.mapper.Mapper (Server|servers) initialize prop node_list req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.261,59442,cf-pdman,cf-pdman,102,INFO,192.169.7.98,"2018-10-23 09:44:03.261 INFO  sqlalchemy.orm.relationships.RelationshipProperty Server.node_list setup primary join servers.id = nodes.server_id req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.262,59442,cf-pdman,cf-pdman,103,INFO,192.169.7.98,"2018-10-23 09:44:03.262 INFO  sqlalchemy.orm.relationships.RelationshipProperty Server.node_list setup secondary join None req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.262,59442,cf-pdman,cf-pdman,104,INFO,192.169.7.98,"2018-10-23 09:44:03.262 INFO  sqlalchemy.orm.relationships.RelationshipProperty Server.node_list synchronize pairs [(servers.id => nodes.server_id)] req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.263,59442,cf-pdman,cf-pdman,105,INFO,192.169.7.98,"2018-10-23 09:44:03.263 INFO  sqlalchemy.orm.relationships.RelationshipProperty Server.node_list secondary synchronize pairs [] req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.263,59442,cf-pdman,cf-pdman,106,INFO,192.169.7.98,"2018-10-23 09:44:03.263 INFO  sqlalchemy.orm.relationships.RelationshipProperty Server.node_list local/remote pairs [(servers.id / nodes.server_id)] req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.263,59442,cf-pdman,cf-pdman,107,INFO,192.169.7.98,"2018-10-23 09:44:03.263 INFO  sqlalchemy.orm.relationships.RelationshipProperty Server.node_list remote columns [nodes.server_id] req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.263,59442,cf-pdman,cf-pdman,108,INFO,192.169.7.98,"2018-10-23 09:44:03.263 INFO  sqlalchemy.orm.relationships.RelationshipProperty Server.node_list local columns [servers.id] req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.264,59442,cf-pdman,cf-pdman,109,INFO,192.169.7.98,"2018-10-23 09:44:03.264 INFO  sqlalchemy.orm.relationships.RelationshipProperty Server.node_list relationship direction symbol('ONETOMANY') req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.264,59442,cf-pdman,cf-pdman,110,INFO,192.169.7.98,"2018-10-23 09:44:03.264 INFO  sqlalchemy.orm.strategies.LazyLoader Server.node_list lazy loading clause :param_1 = nodes.server_id req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.265,59442,cf-pdman,cf-pdman,110,INFO,192.169.7.98,"2018-10-23 09:44:03.265 INFO  sqlalchemy.orm.strategies.LazyLoader Server.node_list lazy loading clause :param_1 = nodes.server_id req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.266,59442,cf-pdman,cf-pdman,111,INFO,192.169.7.98,"2018-10-23 09:44:03.266 INFO  sqlalchemy.orm.mapper.Mapper (Server|servers) initialize prop created_at req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.266,59442,cf-pdman,cf-pdman,112,INFO,192.169.7.98,"2018-10-23 09:44:03.266 INFO  sqlalchemy.orm.mapper.Mapper (Server|servers) initialize prop updated_at req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.267,59442,cf-pdman,cf-pdman,113,INFO,192.169.7.98,"2018-10-23 09:44:03.267 INFO  sqlalchemy.orm.mapper.Mapper (Server|servers) initialize prop id req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.267,59442,cf-pdman,cf-pdman,113,INFO,192.169.7.98,"2018-10-23 09:44:03.267 INFO  sqlalchemy.orm.mapper.Mapper (Server|servers) initialize prop uuid req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.267,59442,cf-pdman,cf-pdman,114,INFO,192.169.7.98,"2018-10-23 09:44:03.267 INFO  sqlalchemy.orm.mapper.Mapper (Server|servers) initialize prop name req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.268,59442,cf-pdman,cf-pdman,115,INFO,192.169.7.98,"2018-10-23 09:44:03.268 INFO  sqlalchemy.orm.mapper.Mapper (Server|servers) initialize prop nodes_num req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.268,59442,cf-pdman,cf-pdman,116,INFO,192.169.7.98,"2018-10-23 09:44:03.268 INFO  sqlalchemy.orm.mapper.Mapper (Server|servers) initialize prop nodepool_uuid req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.269,59442,cf-pdman,cf-pdman,117,INFO,192.169.7.98,"2018-10-23 09:44:03.269 INFO  sqlalchemy.orm.mapper.Mapper (Server|servers) initialize prop state req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.269,59442,cf-pdman,cf-pdman,118,INFO,192.169.7.98,"2018-10-23 09:44:03.269 INFO  sqlalchemy.orm.mapper.Mapper (Server|servers) initialize prop deploy_state req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.269,59442,cf-pdman,cf-pdman,119,INFO,192.169.7.98,"2018-10-23 09:44:03.269 INFO  sqlalchemy.orm.mapper.Mapper (Server|servers) initialize prop deploy_progress req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.270,59442,cf-pdman,cf-pdman,120,INFO,192.169.7.98,"2018-10-23 09:44:03.270 INFO  sqlalchemy.orm.mapper.Mapper (Server|servers) initialize prop info req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.270,59442,cf-pdman,cf-pdman,121,INFO,192.169.7.98,"2018-10-23 09:44:03.270 INFO  sqlalchemy.orm.mapper.Mapper (Server|servers) initialize prop deploy_info req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.270,59442,cf-pdman,cf-pdman,122,INFO,192.169.7.98,"2018-10-23 09:44:03.270 INFO  sqlalchemy.orm.mapper.Mapper (Server|servers) initialize prop timestamp req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.271,59442,cf-pdman,cf-pdman,123,INFO,192.169.7.98,"2018-10-23 09:44:03.271 INFO  sqlalchemy.orm.mapper.Mapper (Server|servers) initialize prop lock req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.271,59442,cf-pdman,cf-pdman,124,INFO,192.169.7.98,"2018-10-23 09:44:03.271 INFO  sqlalchemy.orm.mapper.Mapper (Server|servers) initialize prop try_times req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.271,59442,cf-pdman,cf-pdman,125,INFO,192.169.7.98,"2018-10-23 09:44:03.271 INFO  sqlalchemy.orm.mapper.Mapper (Server|servers) initialize prop fail_reason req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.272,59442,cf-pdman,cf-pdman,126,INFO,192.169.7.98,"2018-10-23 09:44:03.272 INFO  sqlalchemy.orm.mapper.Mapper (Server|servers) initialize prop session_id req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.272,59442,cf-pdman,cf-pdman,127,INFO,192.169.7.98,"2018-10-23 09:44:03.272 INFO  sqlalchemy.orm.mapper.Mapper (Server|servers) _post_configure_properties() complete req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.272,59442,cf-pdman,cf-pdman,100,INFO,192.169.7.98,"2018-10-23 09:44:03.272 INFO  sqlalchemy.orm.mapper.Mapper (Backup|backup) _post_configure_properties() started req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.273,59442,cf-pdman,cf-pdman,111,INFO,192.169.7.98,"2018-10-23 09:44:03.273 INFO  sqlalchemy.orm.mapper.Mapper (Backup|backup) initialize prop created_at req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.273,59442,cf-pdman,cf-pdman,112,INFO,192.169.7.98,"2018-10-23 09:44:03.273 INFO  sqlalchemy.orm.mapper.Mapper (Backup|backup) initialize prop updated_at req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.273,59442,cf-pdman,cf-pdman,113,INFO,192.169.7.98,"2018-10-23 09:44:03.273 INFO  sqlalchemy.orm.mapper.Mapper (Backup|backup) initialize prop id req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.274,59442,cf-pdman,cf-pdman,113,INFO,192.169.7.98,"2018-10-23 09:44:03.274 INFO  sqlalchemy.orm.mapper.Mapper (Backup|backup) initialize prop uuid req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.274,59442,cf-pdman,cf-pdman,128,INFO,192.169.7.98,"2018-10-23 09:44:03.274 INFO  sqlalchemy.orm.mapper.Mapper (Backup|backup) initialize prop jobDn req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.275,59442,cf-pdman,cf-pdman,129,INFO,192.169.7.98,"2018-10-23 09:44:03.275 INFO  sqlalchemy.orm.mapper.Mapper (Backup|backup) initialize prop type req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.275,59442,cf-pdman,cf-pdman,117,INFO,192.169.7.98,"2018-10-23 09:44:03.275 INFO  sqlalchemy.orm.mapper.Mapper (Backup|backup) initialize prop state req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.275,59442,cf-pdman,cf-pdman,130,INFO,192.169.7.98,"2018-10-23 09:44:03.275 INFO  sqlalchemy.orm.mapper.Mapper (Backup|backup) initialize prop progress req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.276,59442,cf-pdman,cf-pdman,131,INFO,192.169.7.98,"2018-10-23 09:44:03.276 INFO  sqlalchemy.orm.mapper.Mapper (Backup|backup) initialize prop storage req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.276,59442,cf-pdman,cf-pdman,124,INFO,192.169.7.98,"2018-10-23 09:44:03.276 INFO  sqlalchemy.orm.mapper.Mapper (Backup|backup) initialize prop try_times req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.276,59442,cf-pdman,cf-pdman,127,INFO,192.169.7.98,"2018-10-23 09:44:03.276 INFO  sqlalchemy.orm.mapper.Mapper (Backup|backup) _post_configure_properties() complete req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.277,59442,cf-pdman,cf-pdman,100,INFO,192.169.7.98,"2018-10-23 09:44:03.277 INFO  sqlalchemy.orm.mapper.Mapper (PsmNode|psmnodes) _post_configure_properties() started req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.277,59442,cf-pdman,cf-pdman,111,INFO,192.169.7.98,"2018-10-23 09:44:03.277 INFO  sqlalchemy.orm.mapper.Mapper (PsmNode|psmnodes) initialize prop created_at req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.277,59442,cf-pdman,cf-pdman,112,INFO,192.169.7.98,"2018-10-23 09:44:03.277 INFO  sqlalchemy.orm.mapper.Mapper (PsmNode|psmnodes) initialize prop updated_at req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.278,59442,cf-pdman,cf-pdman,113,INFO,192.169.7.98,"2018-10-23 09:44:03.278 INFO  sqlalchemy.orm.mapper.Mapper (PsmNode|psmnodes) initialize prop id req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.278,59442,cf-pdman,cf-pdman,132,INFO,192.169.7.98,"2018-10-23 09:44:03.278 INFO  sqlalchemy.orm.mapper.Mapper (PsmNode|psmnodes) initialize prop node_uuid req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.278,59442,cf-pdman,cf-pdman,133,INFO,192.169.7.98,"2018-10-23 09:44:03.278 INFO  sqlalchemy.orm.mapper.Mapper (PsmNode|psmnodes) initialize prop nodegroup req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.279,59442,cf-pdman,cf-pdman,134,INFO,192.169.7.98,"2018-10-23 09:44:03.279 INFO  sqlalchemy.orm.mapper.Mapper (PsmNode|psmnodes) initialize prop parameters req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.279,59442,cf-pdman,cf-pdman,127,INFO,192.169.7.98,"2018-10-23 09:44:03.279 INFO  sqlalchemy.orm.mapper.Mapper (PsmNode|psmnodes) _post_configure_properties() complete req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.279,59442,cf-pdman,cf-pdman,100,INFO,192.169.7.98,"2018-10-23 09:44:03.279 INFO  sqlalchemy.orm.mapper.Mapper (Lock|locks) _post_configure_properties() started req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.280,59442,cf-pdman,cf-pdman,111,INFO,192.169.7.98,"2018-10-23 09:44:03.280 INFO  sqlalchemy.orm.mapper.Mapper (Lock|locks) initialize prop created_at req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.280,59442,cf-pdman,cf-pdman,112,INFO,192.169.7.98,"2018-10-23 09:44:03.280 INFO  sqlalchemy.orm.mapper.Mapper (Lock|locks) initialize prop updated_at req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.280,59442,cf-pdman,cf-pdman,113,INFO,192.169.7.98,"2018-10-23 09:44:03.280 INFO  sqlalchemy.orm.mapper.Mapper (Lock|locks) initialize prop id req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.281,59442,cf-pdman,cf-pdman,114,INFO,192.169.7.98,"2018-10-23 09:44:03.281 INFO  sqlalchemy.orm.mapper.Mapper (Lock|locks) initialize prop name req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.281,59442,cf-pdman,cf-pdman,117,INFO,192.169.7.98,"2018-10-23 09:44:03.281 INFO  sqlalchemy.orm.mapper.Mapper (Lock|locks) initialize prop state req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.281,59442,cf-pdman,cf-pdman,122,INFO,192.169.7.98,"2018-10-23 09:44:03.281 INFO  sqlalchemy.orm.mapper.Mapper (Lock|locks) initialize prop timestamp req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.282,59442,cf-pdman,cf-pdman,127,INFO,192.169.7.98,"2018-10-23 09:44:03.282 INFO  sqlalchemy.orm.mapper.Mapper (Lock|locks) _post_configure_properties() complete req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.282,59442,cf-pdman,cf-pdman,135,INFO,192.169.7.98,"2018-10-23 09:44:03.282 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) _post_configure_properties() started req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.282,59442,cf-pdman,cf-pdman,136,INFO,192.169.7.98,"2018-10-23 09:44:03.282 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) initialize prop created_at req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.283,59442,cf-pdman,cf-pdman,137,INFO,192.169.7.98,"2018-10-23 09:44:03.283 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) initialize prop updated_at req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.283,59442,cf-pdman,cf-pdman,138,INFO,192.169.7.98,"2018-10-23 09:44:03.283 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) initialize prop id req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.283,59442,cf-pdman,cf-pdman,138,INFO,192.169.7.98,"2018-10-23 09:44:03.283 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) initialize prop uuid req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.284,59442,cf-pdman,cf-pdman,139,INFO,192.169.7.98,"2018-10-23 09:44:03.284 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) initialize prop name req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.284,59442,cf-pdman,cf-pdman,140,INFO,192.169.7.98,"2018-10-23 09:44:03.284 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) initialize prop apptype req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.284,59442,cf-pdman,cf-pdman,141,INFO,192.169.7.98,"2018-10-23 09:44:03.284 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) initialize prop vertype req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.285,59442,cf-pdman,cf-pdman,142,INFO,192.169.7.98,"2018-10-23 09:44:03.285 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) initialize prop version req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.285,59442,cf-pdman,cf-pdman,143,INFO,192.169.7.98,"2018-10-23 09:44:03.285 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) initialize prop is_in_controller req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.285,59442,cf-pdman,cf-pdman,144,INFO,192.169.7.98,"2018-10-23 09:44:03.285 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) initialize prop is_alone req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.286,59442,cf-pdman,cf-pdman,145,INFO,192.169.7.98,"2018-10-23 09:44:03.286 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) initialize prop res_para req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.286,59442,cf-pdman,cf-pdman,146,INFO,192.169.7.98,"2018-10-23 09:44:03.286 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) initialize prop state req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.287,59442,cf-pdman,cf-pdman,147,INFO,192.169.7.98,"2018-10-23 09:44:03.287 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) initialize prop try_times req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.287,59442,cf-pdman,cf-pdman,148,INFO,192.169.7.98,"2018-10-23 09:44:03.287 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) initialize prop taskuuid req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.287,59442,cf-pdman,cf-pdman,149,INFO,192.169.7.98,"2018-10-23 09:44:03.287 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) initialize prop nodeuuid req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.288,59442,cf-pdman,cf-pdman,150,INFO,192.169.7.98,"2018-10-23 09:44:03.288 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) initialize prop info req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.288,59442,cf-pdman,cf-pdman,150,INFO,192.169.7.98,"2018-10-23 09:44:03.288 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) initialize prop deploy_info req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.289,59442,cf-pdman,cf-pdman,150,INFO,192.169.7.98,"2018-10-23 09:44:03.289 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) initialize prop msb_info req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.289,59442,cf-pdman,cf-pdman,151,INFO,192.169.7.98,"2018-10-23 09:44:03.289 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) initialize prop timestamp req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.289,59442,cf-pdman,cf-pdman,152,INFO,192.169.7.98,"2018-10-23 09:44:03.289 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) initialize prop lock req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.290,59442,cf-pdman,cf-pdman,150,INFO,192.169.7.98,"2018-10-23 09:44:03.290 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) initialize prop msb_info_v2 req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.290,59442,cf-pdman,cf-pdman,153,INFO,192.169.7.98,"2018-10-23 09:44:03.290 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) initialize prop tenant_id req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.290,59442,cf-pdman,cf-pdman,154,INFO,192.169.7.98,"2018-10-23 09:44:03.290 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) initialize prop replicas req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.291,59442,cf-pdman,cf-pdman,155,INFO,192.169.7.98,"2018-10-23 09:44:03.291 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) initialize prop ha_framework req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.291,59442,cf-pdman,cf-pdman,156,INFO,192.169.7.98,"2018-10-23 09:44:03.291 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) initialize prop all_in_one req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.291,59442,cf-pdman,cf-pdman,157,INFO,192.169.7.98,"2018-10-23 09:44:03.291 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) initialize prop ha_mode req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.292,59442,cf-pdman,cf-pdman,158,INFO,192.169.7.98,"2018-10-23 09:44:03.292 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) initialize prop vip_ip req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.292,59442,cf-pdman,cf-pdman,159,INFO,192.169.7.98,"2018-10-23 09:44:03.292 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) initialize prop storage req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.293,59442,cf-pdman,cf-pdman,158,INFO,192.169.7.98,"2018-10-23 09:44:03.293 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) initialize prop vip_ip_v6 req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.293,59442,cf-pdman,cf-pdman,160,INFO,192.169.7.98,"2018-10-23 09:44:03.293 INFO  sqlalchemy.orm.mapper.Mapper (Com_Server|com_servers) _post_configure_properties() complete req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.293,59442,cf-pdman,cf-pdman,100,INFO,192.169.7.98,"2018-10-23 09:44:03.293 INFO  sqlalchemy.orm.mapper.Mapper (PsmMap|psmmap) _post_configure_properties() started req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.293,59442,cf-pdman,cf-pdman,111,INFO,192.169.7.98,"2018-10-23 09:44:03.293 INFO  sqlalchemy.orm.mapper.Mapper (PsmMap|psmmap) initialize prop created_at req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.294,59442,cf-pdman,cf-pdman,112,INFO,192.169.7.98,"2018-10-23 09:44:03.294 INFO  sqlalchemy.orm.mapper.Mapper (PsmMap|psmmap) initialize prop updated_at req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.294,59442,cf-pdman,cf-pdman,113,INFO,192.169.7.98,"2018-10-23 09:44:03.294 INFO  sqlalchemy.orm.mapper.Mapper (PsmMap|psmmap) initialize prop id req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.294,59442,cf-pdman,cf-pdman,161,INFO,192.169.7.98,"2018-10-23 09:44:03.294 INFO  sqlalchemy.orm.mapper.Mapper (PsmMap|psmmap) initialize prop component_name req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.295,59442,cf-pdman,cf-pdman,132,INFO,192.169.7.98,"2018-10-23 09:44:03.295 INFO  sqlalchemy.orm.mapper.Mapper (PsmMap|psmmap) initialize prop node_uuid req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.295,59442,cf-pdman,cf-pdman,162,INFO,192.169.7.98,"2018-10-23 09:44:03.295 INFO  sqlalchemy.orm.mapper.Mapper (PsmMap|psmmap) initialize prop version req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.296,59442,cf-pdman,cf-pdman,163,INFO,192.169.7.98,"2018-10-23 09:44:03.296 INFO  sqlalchemy.orm.mapper.Mapper (PsmMap|psmmap) initialize prop dest_version req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.296,59442,cf-pdman,cf-pdman,164,INFO,192.169.7.98,"2018-10-23 09:44:03.296 INFO  sqlalchemy.orm.mapper.Mapper (PsmMap|psmmap) initialize prop task_uuid req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.296,59442,cf-pdman,cf-pdman,117,INFO,192.169.7.98,"2018-10-23 09:44:03.296 INFO  sqlalchemy.orm.mapper.Mapper (PsmMap|psmmap) initialize prop state req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.297,59442,cf-pdman,cf-pdman,127,INFO,192.169.7.98,"2018-10-23 09:44:03.297 INFO  sqlalchemy.orm.mapper.Mapper (PsmMap|psmmap) _post_configure_properties() complete req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.297,59442,cf-pdman,cf-pdman,100,INFO,192.169.7.98,"2018-10-23 09:44:03.297 INFO  sqlalchemy.orm.mapper.Mapper (PsmTransaction|psmtransaction) _post_configure_properties() started req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.297,59442,cf-pdman,cf-pdman,111,INFO,192.169.7.98,"2018-10-23 09:44:03.297 INFO  sqlalchemy.orm.mapper.Mapper (PsmTransaction|psmtransaction) initialize prop created_at req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.298,59442,cf-pdman,cf-pdman,112,INFO,192.169.7.98,"2018-10-23 09:44:03.298 INFO  sqlalchemy.orm.mapper.Mapper (PsmTransaction|psmtransaction) initialize prop updated_at req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.298,59442,cf-pdman,cf-pdman,113,INFO,192.169.7.98,"2018-10-23 09:44:03.298 INFO  sqlalchemy.orm.mapper.Mapper (PsmTransaction|psmtransaction) initialize prop id req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.298,59442,cf-pdman,cf-pdman,113,INFO,192.169.7.98,"2018-10-23 09:44:03.298 INFO  sqlalchemy.orm.mapper.Mapper (PsmTransaction|psmtransaction) initialize prop uuid req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.299,59442,cf-pdman,cf-pdman,114,INFO,192.169.7.98,"2018-10-23 09:44:03.299 INFO  sqlalchemy.orm.mapper.Mapper (PsmTransaction|psmtransaction) initialize prop name req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.299,59442,cf-pdman,cf-pdman,129,INFO,192.169.7.98,"2018-10-23 09:44:03.299 INFO  sqlalchemy.orm.mapper.Mapper (PsmTransaction|psmtransaction) initialize prop type req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.299,59442,cf-pdman,cf-pdman,117,INFO,192.169.7.98,"2018-10-23 09:44:03.299 INFO  sqlalchemy.orm.mapper.Mapper (PsmTransaction|psmtransaction) initialize prop state req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.300,59442,cf-pdman,cf-pdman,127,INFO,192.169.7.98,"2018-10-23 09:44:03.300 INFO  sqlalchemy.orm.mapper.Mapper (PsmTransaction|psmtransaction) _post_configure_properties() complete req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.300,59442,cf-pdman,cf-pdman,165,INFO,192.169.7.98,"2018-10-23 09:44:03.300 INFO  sqlalchemy.orm.mapper.Mapper (CtrlSwitch|ctrl_switch) _post_configure_properties() started req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.300,59442,cf-pdman,cf-pdman,166,INFO,192.169.7.98,"2018-10-23 09:44:03.300 INFO  sqlalchemy.orm.mapper.Mapper (CtrlSwitch|ctrl_switch) initialize prop created_at req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.301,59442,cf-pdman,cf-pdman,167,INFO,192.169.7.98,"2018-10-23 09:44:03.301 INFO  sqlalchemy.orm.mapper.Mapper (CtrlSwitch|ctrl_switch) initialize prop updated_at req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.301,59442,cf-pdman,cf-pdman,168,INFO,192.169.7.98,"2018-10-23 09:44:03.301 INFO  sqlalchemy.orm.mapper.Mapper (CtrlSwitch|ctrl_switch) initialize prop id req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.301,59442,cf-pdman,cf-pdman,168,INFO,192.169.7.98,"2018-10-23 09:44:03.301 INFO  sqlalchemy.orm.mapper.Mapper (CtrlSwitch|ctrl_switch) initialize prop uuid req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.302,59442,cf-pdman,cf-pdman,169,INFO,192.169.7.98,"2018-10-23 09:44:03.302 INFO  sqlalchemy.orm.mapper.Mapper (CtrlSwitch|ctrl_switch) initialize prop all_in_one req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.302,59442,cf-pdman,cf-pdman,170,INFO,192.169.7.98,"2018-10-23 09:44:03.302 INFO  sqlalchemy.orm.mapper.Mapper (CtrlSwitch|ctrl_switch) initialize prop is_in_controller req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.302,59442,cf-pdman,cf-pdman,171,INFO,192.169.7.98,"2018-10-23 09:44:03.302 INFO  sqlalchemy.orm.mapper.Mapper (CtrlSwitch|ctrl_switch) initialize prop timestamp req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.303,59442,cf-pdman,cf-pdman,172,INFO,192.169.7.98,"2018-10-23 09:44:03.303 INFO  sqlalchemy.orm.mapper.Mapper (CtrlSwitch|ctrl_switch) initialize prop lock req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.303,59442,cf-pdman,cf-pdman,173,INFO,192.169.7.98,"2018-10-23 09:44:03.303 INFO  sqlalchemy.orm.mapper.Mapper (CtrlSwitch|ctrl_switch) _post_configure_properties() complete req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.303,59442,cf-pdman,cf-pdman,100,INFO,192.169.7.98,"2018-10-23 09:44:03.303 INFO  sqlalchemy.orm.mapper.Mapper (PsmNodegroup|psmnodegroups) _post_configure_properties() started req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.304,59442,cf-pdman,cf-pdman,111,INFO,192.169.7.98,"2018-10-23 09:44:03.304 INFO  sqlalchemy.orm.mapper.Mapper (PsmNodegroup|psmnodegroups) initialize prop created_at req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.304,59442,cf-pdman,cf-pdman,112,INFO,192.169.7.98,"2018-10-23 09:44:03.304 INFO  sqlalchemy.orm.mapper.Mapper (PsmNodegroup|psmnodegroups) initialize prop updated_at req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.304,59442,cf-pdman,cf-pdman,113,INFO,192.169.7.98,"2018-10-23 09:44:03.304 INFO  sqlalchemy.orm.mapper.Mapper (PsmNodegroup|psmnodegroups) initialize prop id req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.305,59442,cf-pdman,cf-pdman,113,INFO,192.169.7.98,"2018-10-23 09:44:03.305 INFO  sqlalchemy.orm.mapper.Mapper (PsmNodegroup|psmnodegroups) initialize prop uuid req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.305,59442,cf-pdman,cf-pdman,114,INFO,192.169.7.98,"2018-10-23 09:44:03.305 INFO  sqlalchemy.orm.mapper.Mapper (PsmNodegroup|psmnodegroups) initialize prop name req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.305,59442,cf-pdman,cf-pdman,174,INFO,192.169.7.98,"2018-10-23 09:44:03.305 INFO  sqlalchemy.orm.mapper.Mapper (PsmNodegroup|psmnodegroups) initialize prop number req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.306,59442,cf-pdman,cf-pdman,175,INFO,192.169.7.98,"2018-10-23 09:44:03.306 INFO  sqlalchemy.orm.mapper.Mapper (PsmNodegroup|psmnodegroups) initialize prop roles req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.306,59442,cf-pdman,cf-pdman,116,INFO,192.169.7.98,"2018-10-23 09:44:03.306 INFO  sqlalchemy.orm.mapper.Mapper (PsmNodegroup|psmnodegroups) initialize prop nodepool req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.306,59442,cf-pdman,cf-pdman,134,INFO,192.169.7.98,"2018-10-23 09:44:03.306 INFO  sqlalchemy.orm.mapper.Mapper (PsmNodegroup|psmnodegroups) initialize prop parameters req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.307,59442,cf-pdman,cf-pdman,127,INFO,192.169.7.98,"2018-10-23 09:44:03.307 INFO  sqlalchemy.orm.mapper.Mapper (PsmNodegroup|psmnodegroups) _post_configure_properties() complete req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.307,59442,cf-pdman,cf-pdman,100,INFO,192.169.7.98,"2018-10-23 09:44:03.307 INFO  sqlalchemy.orm.mapper.Mapper (Node|nodes) _post_configure_properties() started req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.307,59442,cf-pdman,cf-pdman,176,INFO,192.169.7.98,"2018-10-23 09:44:03.307 INFO  sqlalchemy.orm.mapper.Mapper (Node|nodes) initialize prop servers req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.308,59442,cf-pdman,cf-pdman,177,INFO,192.169.7.98,"2018-10-23 09:44:03.308 INFO  sqlalchemy.orm.relationships.RelationshipProperty Node.servers setup primary join servers.id = nodes.server_id req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.309,59442,cf-pdman,cf-pdman,178,INFO,192.169.7.98,"2018-10-23 09:44:03.309 INFO  sqlalchemy.orm.relationships.RelationshipProperty Node.servers setup secondary join None req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.309,59442,cf-pdman,cf-pdman,179,INFO,192.169.7.98,"2018-10-23 09:44:03.309 INFO  sqlalchemy.orm.relationships.RelationshipProperty Node.servers synchronize pairs [(servers.id => nodes.server_id)] req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.309,59442,cf-pdman,cf-pdman,180,INFO,192.169.7.98,"2018-10-23 09:44:03.309 INFO  sqlalchemy.orm.relationships.RelationshipProperty Node.servers secondary synchronize pairs [] req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.310,59442,cf-pdman,cf-pdman,181,INFO,192.169.7.98,"2018-10-23 09:44:03.310 INFO  sqlalchemy.orm.relationships.RelationshipProperty Node.servers local/remote pairs [(nodes.server_id / servers.id)] req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.310,59442,cf-pdman,cf-pdman,182,INFO,192.169.7.98,"2018-10-23 09:44:03.310 INFO  sqlalchemy.orm.relationships.RelationshipProperty Node.servers remote columns [servers.id] req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.310,59442,cf-pdman,cf-pdman,183,INFO,192.169.7.98,"2018-10-23 09:44:03.310 INFO  sqlalchemy.orm.relationships.RelationshipProperty Node.servers local columns [nodes.server_id] req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.310,59442,cf-pdman,cf-pdman,184,INFO,192.169.7.98,"2018-10-23 09:44:03.310 INFO  sqlalchemy.orm.relationships.RelationshipProperty Node.servers relationship direction symbol('MANYTOONE') req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.311,59442,cf-pdman,cf-pdman,185,INFO,192.169.7.98,"2018-10-23 09:44:03.311 INFO  sqlalchemy.orm.mapper.Mapper (Server|servers) _configure_property(Node, RelationshipProperty) req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.312,59442,cf-pdman,cf-pdman,177,INFO,192.169.7.98,"2018-10-23 09:44:03.312 INFO  sqlalchemy.orm.relationships.RelationshipProperty Server.Node setup primary join servers.id = nodes.server_id req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.312,59442,cf-pdman,cf-pdman,186,INFO,192.169.7.98,"2018-10-23 09:44:03.312 INFO  sqlalchemy.orm.relationships.RelationshipProperty Server.Node setup secondary join None req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.313,59442,cf-pdman,cf-pdman,179,INFO,192.169.7.98,"2018-10-23 09:44:03.313 INFO  sqlalchemy.orm.relationships.RelationshipProperty Server.Node synchronize pairs [(servers.id => nodes.server_id)] req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.313,59442,cf-pdman,cf-pdman,187,INFO,192.169.7.98,"2018-10-23 09:44:03.313 INFO  sqlalchemy.orm.relationships.RelationshipProperty Server.Node secondary synchronize pairs [] req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.313,59442,cf-pdman,cf-pdman,181,INFO,192.169.7.98,"2018-10-23 09:44:03.313 INFO  sqlalchemy.orm.relationships.RelationshipProperty Server.Node local/remote pairs [(servers.id / nodes.server_id)] req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.313,59442,cf-pdman,cf-pdman,188,INFO,192.169.7.98,"2018-10-23 09:44:03.313 INFO  sqlalchemy.orm.relationships.RelationshipProperty Server.Node remote columns [nodes.server_id] req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.314,59442,cf-pdman,cf-pdman,189,INFO,192.169.7.98,"2018-10-23 09:44:03.314 INFO  sqlalchemy.orm.relationships.RelationshipProperty Server.Node local columns [servers.id] req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.314,59442,cf-pdman,cf-pdman,190,INFO,192.169.7.98,"2018-10-23 09:44:03.314 INFO  sqlalchemy.orm.relationships.RelationshipProperty Server.Node relationship direction symbol('ONETOMANY') req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.314,59442,cf-pdman,cf-pdman,191,INFO,192.169.7.98,"2018-10-23 09:44:03.314 INFO  sqlalchemy.orm.strategies.LazyLoader Server.Node lazy loading clause :param_1 = nodes.server_id req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.315,59442,cf-pdman,cf-pdman,191,INFO,192.169.7.98,"2018-10-23 09:44:03.315 INFO  sqlalchemy.orm.strategies.LazyLoader Server.Node lazy loading clause :param_1 = nodes.server_id req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.316,59442,cf-pdman,cf-pdman,192,INFO,192.169.7.98,"2018-10-23 09:44:03.316 INFO  sqlalchemy.orm.strategies.LazyLoader Node.servers lazy loading clause servers.id = :param_1 req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.317,59442,cf-pdman,cf-pdman,193,INFO,192.169.7.98,"2018-10-23 09:44:03.317 INFO  sqlalchemy.orm.strategies.LazyLoader Node.servers will use query.get() to optimize instance loads req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.318,59442,cf-pdman,cf-pdman,192,INFO,192.169.7.98,"2018-10-23 09:44:03.318 INFO  sqlalchemy.orm.strategies.LazyLoader Node.servers lazy loading clause servers.id = :param_1 req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.319,59442,cf-pdman,cf-pdman,193,INFO,192.169.7.98,"2018-10-23 09:44:03.319 INFO  sqlalchemy.orm.strategies.LazyLoader Node.servers will use query.get() to optimize instance loads req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.319,59442,cf-pdman,cf-pdman,111,INFO,192.169.7.98,"2018-10-23 09:44:03.319 INFO  sqlalchemy.orm.mapper.Mapper (Node|nodes) initialize prop created_at req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.319,59442,cf-pdman,cf-pdman,112,INFO,192.169.7.98,"2018-10-23 09:44:03.319 INFO  sqlalchemy.orm.mapper.Mapper (Node|nodes) initialize prop updated_at req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.320,59442,cf-pdman,cf-pdman,113,INFO,192.169.7.98,"2018-10-23 09:44:03.320 INFO  sqlalchemy.orm.mapper.Mapper (Node|nodes) initialize prop id req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.320,59442,cf-pdman,cf-pdman,113,INFO,192.169.7.98,"2018-10-23 09:44:03.320 INFO  sqlalchemy.orm.mapper.Mapper (Node|nodes) initialize prop uuid req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.321,59442,cf-pdman,cf-pdman,194,INFO,192.169.7.98,"2018-10-23 09:44:03.321 INFO  sqlalchemy.orm.mapper.Mapper (Node|nodes) initialize prop server_id req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.321,59442,cf-pdman,cf-pdman,117,INFO,192.169.7.98,"2018-10-23 09:44:03.321 INFO  sqlalchemy.orm.mapper.Mapper (Node|nodes) initialize prop state req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.321,59442,cf-pdman,cf-pdman,118,INFO,192.169.7.98,"2018-10-23 09:44:03.321 INFO  sqlalchemy.orm.mapper.Mapper (Node|nodes) initialize prop deploy_state req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.322,59442,cf-pdman,cf-pdman,121,INFO,192.169.7.98,"2018-10-23 09:44:03.322 INFO  sqlalchemy.orm.mapper.Mapper (Node|nodes) initialize prop deploy_info req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.322,59442,cf-pdman,cf-pdman,122,INFO,192.169.7.98,"2018-10-23 09:44:03.322 INFO  sqlalchemy.orm.mapper.Mapper (Node|nodes) initialize prop timestamp req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.322,59442,cf-pdman,cf-pdman,123,INFO,192.169.7.98,"2018-10-23 09:44:03.322 INFO  sqlalchemy.orm.mapper.Mapper (Node|nodes) initialize prop lock req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.323,59442,cf-pdman,cf-pdman,195,INFO,192.169.7.98,"2018-10-23 09:44:03.323 INFO  sqlalchemy.orm.mapper.Mapper (Node|nodes) initialize prop nodeuuid req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.323,59442,cf-pdman,cf-pdman,127,INFO,192.169.7.98,"2018-10-23 09:44:03.323 INFO  sqlalchemy.orm.mapper.Mapper (Node|nodes) _post_configure_properties() complete req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.323,59442,cf-pdman,cf-pdman,100,INFO,192.169.7.98,"2018-10-23 09:44:03.323 INFO  sqlalchemy.orm.mapper.Mapper (Monitor|monitor) _post_configure_properties() started req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.324,59442,cf-pdman,cf-pdman,111,INFO,192.169.7.98,"2018-10-23 09:44:03.324 INFO  sqlalchemy.orm.mapper.Mapper (Monitor|monitor) initialize prop created_at req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.324,59442,cf-pdman,cf-pdman,112,INFO,192.169.7.98,"2018-10-23 09:44:03.324 INFO  sqlalchemy.orm.mapper.Mapper (Monitor|monitor) initialize prop updated_at req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.324,59442,cf-pdman,cf-pdman,113,INFO,192.169.7.98,"2018-10-23 09:44:03.324 INFO  sqlalchemy.orm.mapper.Mapper (Monitor|monitor) initialize prop id req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.325,59442,cf-pdman,cf-pdman,196,INFO,192.169.7.98,"2018-10-23 09:44:03.325 INFO  sqlalchemy.orm.mapper.Mapper (Monitor|monitor) initialize prop svrname req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.325,59442,cf-pdman,cf-pdman,162,INFO,192.169.7.98,"2018-10-23 09:44:03.325 INFO  sqlalchemy.orm.mapper.Mapper (Monitor|monitor) initialize prop version req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.325,59442,cf-pdman,cf-pdman,197,INFO,192.169.7.98,"2018-10-23 09:44:03.325 INFO  sqlalchemy.orm.mapper.Mapper (Monitor|monitor) initialize prop srcname req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.326,59442,cf-pdman,cf-pdman,198,INFO,192.169.7.98,"2018-10-23 09:44:03.326 INFO  sqlalchemy.orm.mapper.Mapper (Monitor|monitor) initialize prop module req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.326,59442,cf-pdman,cf-pdman,175,INFO,192.169.7.98,"2018-10-23 09:44:03.326 INFO  sqlalchemy.orm.mapper.Mapper (Monitor|monitor) initialize prop roles req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.326,59442,cf-pdman,cf-pdman,132,INFO,192.169.7.98,"2018-10-23 09:44:03.326 INFO  sqlalchemy.orm.mapper.Mapper (Monitor|monitor) initialize prop node req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.327,59442,cf-pdman,cf-pdman,122,INFO,192.169.7.98,"2018-10-23 09:44:03.327 INFO  sqlalchemy.orm.mapper.Mapper (Monitor|monitor) initialize prop timestamp req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.327,59442,cf-pdman,cf-pdman,127,INFO,192.169.7.98,"2018-10-23 09:44:03.327 INFO  sqlalchemy.orm.mapper.Mapper (Monitor|monitor) _post_configure_properties() complete req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.328,59442,cf-pdman,cf-pdman,100,INFO,192.169.7.98,"2018-10-23 09:44:03.328 INFO  sqlalchemy.orm.mapper.Mapper (Deploy|deploy) _post_configure_properties() started req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.328,59442,cf-pdman,cf-pdman,111,INFO,192.169.7.98,"2018-10-23 09:44:03.328 INFO  sqlalchemy.orm.mapper.Mapper (Deploy|deploy) initialize prop created_at req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.328,59442,cf-pdman,cf-pdman,112,INFO,192.169.7.98,"2018-10-23 09:44:03.328 INFO  sqlalchemy.orm.mapper.Mapper (Deploy|deploy) initialize prop updated_at req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.329,59442,cf-pdman,cf-pdman,113,INFO,192.169.7.98,"2018-10-23 09:44:03.329 INFO  sqlalchemy.orm.mapper.Mapper (Deploy|deploy) initialize prop id req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.329,59442,cf-pdman,cf-pdman,113,INFO,192.169.7.98,"2018-10-23 09:44:03.329 INFO  sqlalchemy.orm.mapper.Mapper (Deploy|deploy) initialize prop uuid req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.330,59442,cf-pdman,cf-pdman,199,INFO,192.169.7.98,"2018-10-23 09:44:03.330 INFO  sqlalchemy.orm.mapper.Mapper (Deploy|deploy) initialize prop scenerio_type req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.330,59442,cf-pdman,cf-pdman,200,INFO,192.169.7.98,"2018-10-23 09:44:03.330 INFO  sqlalchemy.orm.mapper.Mapper (Deploy|deploy) initialize prop scale req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.330,59442,cf-pdman,cf-pdman,119,INFO,192.169.7.98,"2018-10-23 09:44:03.330 INFO  sqlalchemy.orm.mapper.Mapper (Deploy|deploy) initialize prop deploy_progress req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.331,59442,cf-pdman,cf-pdman,121,INFO,192.169.7.98,"2018-10-23 09:44:03.331 INFO  sqlalchemy.orm.mapper.Mapper (Deploy|deploy) initialize prop deploy_info req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.331,59442,cf-pdman,cf-pdman,201,INFO,192.169.7.98,"2018-10-23 09:44:03.331 INFO  sqlalchemy.orm.mapper.Mapper (Deploy|deploy) initialize prop deploy_detail req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.331,59442,cf-pdman,cf-pdman,202,INFO,192.169.7.98,"2018-10-23 09:44:03.331 INFO  sqlalchemy.orm.mapper.Mapper (Deploy|deploy) initialize prop last_error req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.332,59442,cf-pdman,cf-pdman,203,INFO,192.169.7.98,"2018-10-23 09:44:03.332 INFO  sqlalchemy.orm.mapper.Mapper (Deploy|deploy) initialize prop error_time req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.332,59442,cf-pdman,cf-pdman,204,INFO,192.169.7.98,"2018-10-23 09:44:03.332 INFO  sqlalchemy.orm.mapper.Mapper (Deploy|deploy) initialize prop reservation req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.333,59442,cf-pdman,cf-pdman,205,INFO,192.169.7.98,"2018-10-23 09:44:03.333 INFO  sqlalchemy.orm.mapper.Mapper (Deploy|deploy) initialize prop running_module req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.333,59442,cf-pdman,cf-pdman,206,INFO,192.169.7.98,"2018-10-23 09:44:03.333 INFO  sqlalchemy.orm.mapper.Mapper (Deploy|deploy) initialize prop ha_enabled req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.333,59442,cf-pdman,cf-pdman,169,INFO,192.169.7.98,"2018-10-23 09:44:03.333 INFO  sqlalchemy.orm.mapper.Mapper (Deploy|deploy) initialize prop all_in_one req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.334,59442,cf-pdman,cf-pdman,207,INFO,192.169.7.98,"2018-10-23 09:44:03.334 INFO  sqlalchemy.orm.mapper.Mapper (Deploy|deploy) initialize prop op_service_ip req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.334,59442,cf-pdman,cf-pdman,208,INFO,192.169.7.98,"2018-10-23 09:44:03.334 INFO  sqlalchemy.orm.mapper.Mapper (Deploy|deploy) initialize prop g_TaskDataList req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.334,59442,cf-pdman,cf-pdman,209,INFO,192.169.7.98,"2018-10-23 09:44:03.334 INFO  sqlalchemy.orm.mapper.Mapper (Deploy|deploy) initialize prop offline req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.335,59442,cf-pdman,cf-pdman,210,INFO,192.169.7.98,"2018-10-23 09:44:03.335 INFO  sqlalchemy.orm.mapper.Mapper (Deploy|deploy) initialize prop use_elk req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.336,59442,cf-pdman,cf-pdman,211,INFO,192.169.7.98,"2018-10-23 09:44:03.336 INFO  sqlalchemy.orm.mapper.Mapper (Deploy|deploy) initialize prop sync_list req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.337,59442,cf-pdman,cf-pdman,212,INFO,192.169.7.98,"2018-10-23 09:44:03.337 INFO  sqlalchemy.orm.mapper.Mapper (Deploy|deploy) initialize prop suspend req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.337,59442,cf-pdman,cf-pdman,213,INFO,192.169.7.98,"2018-10-23 09:44:03.337 INFO  sqlalchemy.orm.mapper.Mapper (Deploy|deploy) initialize prop warnings req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.337,59442,cf-pdman,cf-pdman,214,INFO,192.169.7.98,"2018-10-23 09:44:03.337 INFO  sqlalchemy.orm.mapper.Mapper (Deploy|deploy) initialize prop heartbeat req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.338,59442,cf-pdman,cf-pdman,127,INFO,192.169.7.98,"2018-10-23 09:44:03.338 INFO  sqlalchemy.orm.mapper.Mapper (Deploy|deploy) _post_configure_properties() complete req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.338,59442,cf-pdman,cf-pdman,100,INFO,192.169.7.98,"2018-10-23 09:44:03.338 INFO  sqlalchemy.orm.mapper.Mapper (PsmComponent|psmcomponents) _post_configure_properties() started req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.338,59442,cf-pdman,cf-pdman,111,INFO,192.169.7.98,"2018-10-23 09:44:03.338 INFO  sqlalchemy.orm.mapper.Mapper (PsmComponent|psmcomponents) initialize prop created_at req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.339,59442,cf-pdman,cf-pdman,112,INFO,192.169.7.98,"2018-10-23 09:44:03.339 INFO  sqlalchemy.orm.mapper.Mapper (PsmComponent|psmcomponents) initialize prop updated_at req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.339,59442,cf-pdman,cf-pdman,113,INFO,192.169.7.98,"2018-10-23 09:44:03.339 INFO  sqlalchemy.orm.mapper.Mapper (PsmComponent|psmcomponents) initialize prop id req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.339,59442,cf-pdman,cf-pdman,113,INFO,192.169.7.98,"2018-10-23 09:44:03.339 INFO  sqlalchemy.orm.mapper.Mapper (PsmComponent|psmcomponents) initialize prop uuid req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.340,59442,cf-pdman,cf-pdman,114,INFO,192.169.7.98,"2018-10-23 09:44:03.340 INFO  sqlalchemy.orm.mapper.Mapper (PsmComponent|psmcomponents) initialize prop name req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.340,59442,cf-pdman,cf-pdman,215,INFO,192.169.7.98,"2018-10-23 09:44:03.340 INFO  sqlalchemy.orm.mapper.Mapper (PsmComponent|psmcomponents) initialize prop vertype req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.341,59442,cf-pdman,cf-pdman,162,INFO,192.169.7.98,"2018-10-23 09:44:03.341 INFO  sqlalchemy.orm.mapper.Mapper (PsmComponent|psmcomponents) initialize prop version req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.341,59442,cf-pdman,cf-pdman,216,INFO,192.169.7.98,"2018-10-23 09:44:03.341 INFO  sqlalchemy.orm.mapper.Mapper (PsmComponent|psmcomponents) initialize prop domain req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.341,59442,cf-pdman,cf-pdman,134,INFO,192.169.7.98,"2018-10-23 09:44:03.341 INFO  sqlalchemy.orm.mapper.Mapper (PsmComponent|psmcomponents) initialize prop parameters req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.342,59442,cf-pdman,cf-pdman,217,INFO,192.169.7.98,"2018-10-23 09:44:03.342 INFO  sqlalchemy.orm.mapper.Mapper (PsmComponent|psmcomponents) initialize prop depend req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.342,59442,cf-pdman,cf-pdman,218,INFO,192.169.7.98,"2018-10-23 09:44:03.342 INFO  sqlalchemy.orm.mapper.Mapper (PsmComponent|psmcomponents) initialize prop plugins req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.342,59442,cf-pdman,cf-pdman,127,INFO,192.169.7.98,"2018-10-23 09:44:03.342 INFO  sqlalchemy.orm.mapper.Mapper (PsmComponent|psmcomponents) _post_configure_properties() complete req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.343,59442,cf-pdman,cf-pdman,100,INFO,192.169.7.98,"2018-10-23 09:44:03.343 INFO  sqlalchemy.orm.mapper.Mapper (PsmRole|psmroles) _post_configure_properties() started req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.343,59442,cf-pdman,cf-pdman,111,INFO,192.169.7.98,"2018-10-23 09:44:03.343 INFO  sqlalchemy.orm.mapper.Mapper (PsmRole|psmroles) initialize prop created_at req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.343,59442,cf-pdman,cf-pdman,112,INFO,192.169.7.98,"2018-10-23 09:44:03.343 INFO  sqlalchemy.orm.mapper.Mapper (PsmRole|psmroles) initialize prop updated_at req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.344,59442,cf-pdman,cf-pdman,113,INFO,192.169.7.98,"2018-10-23 09:44:03.344 INFO  sqlalchemy.orm.mapper.Mapper (PsmRole|psmroles) initialize prop id req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.344,59442,cf-pdman,cf-pdman,113,INFO,192.169.7.98,"2018-10-23 09:44:03.344 INFO  sqlalchemy.orm.mapper.Mapper (PsmRole|psmroles) initialize prop uuid req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.344,59442,cf-pdman,cf-pdman,114,INFO,192.169.7.98,"2018-10-23 09:44:03.344 INFO  sqlalchemy.orm.mapper.Mapper (PsmRole|psmroles) initialize prop name req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.345,59442,cf-pdman,cf-pdman,219,INFO,192.169.7.98,"2018-10-23 09:44:03.345 INFO  sqlalchemy.orm.mapper.Mapper (PsmRole|psmroles) initialize prop manager req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.345,59442,cf-pdman,cf-pdman,220,INFO,192.169.7.98,"2018-10-23 09:44:03.345 INFO  sqlalchemy.orm.mapper.Mapper (PsmRole|psmroles) initialize prop domains req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.345,59442,cf-pdman,cf-pdman,221,INFO,192.169.7.98,"2018-10-23 09:44:03.345 INFO  sqlalchemy.orm.mapper.Mapper (PsmRole|psmroles) initialize prop components req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.346,59442,cf-pdman,cf-pdman,134,INFO,192.169.7.98,"2018-10-23 09:44:03.346 INFO  sqlalchemy.orm.mapper.Mapper (PsmRole|psmroles) initialize prop parameters req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.346,59442,cf-pdman,cf-pdman,127,INFO,192.169.7.98,"2018-10-23 09:44:03.346 INFO  sqlalchemy.orm.mapper.Mapper (PsmRole|psmroles) _post_configure_properties() complete req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.346,59442,cf-pdman,cf-pdman,100,INFO,192.169.7.98,"2018-10-23 09:44:03.346 INFO  sqlalchemy.orm.mapper.Mapper (PsmDomain|psmdomains) _post_configure_properties() started req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.347,59442,cf-pdman,cf-pdman,111,INFO,192.169.7.98,"2018-10-23 09:44:03.347 INFO  sqlalchemy.orm.mapper.Mapper (PsmDomain|psmdomains) initialize prop created_at req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.347,59442,cf-pdman,cf-pdman,112,INFO,192.169.7.98,"2018-10-23 09:44:03.347 INFO  sqlalchemy.orm.mapper.Mapper (PsmDomain|psmdomains) initialize prop updated_at req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.347,59442,cf-pdman,cf-pdman,113,INFO,192.169.7.98,"2018-10-23 09:44:03.347 INFO  sqlalchemy.orm.mapper.Mapper (PsmDomain|psmdomains) initialize prop id req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.348,59442,cf-pdman,cf-pdman,113,INFO,192.169.7.98,"2018-10-23 09:44:03.348 INFO  sqlalchemy.orm.mapper.Mapper (PsmDomain|psmdomains) initialize prop uuid req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.348,59442,cf-pdman,cf-pdman,114,INFO,192.169.7.98,"2018-10-23 09:44:03.348 INFO  sqlalchemy.orm.mapper.Mapper (PsmDomain|psmdomains) initialize prop name req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.349,59442,cf-pdman,cf-pdman,222,INFO,192.169.7.98,"2018-10-23 09:44:03.349 INFO  sqlalchemy.orm.mapper.Mapper (PsmDomain|psmdomains) initialize prop parent_domain req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.349,59442,cf-pdman,cf-pdman,134,INFO,192.169.7.98,"2018-10-23 09:44:03.349 INFO  sqlalchemy.orm.mapper.Mapper (PsmDomain|psmdomains) initialize prop parameters req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:03.349,59442,cf-pdman,cf-pdman,127,INFO,192.169.7.98,"2018-10-23 09:44:03.349 INFO  sqlalchemy.orm.mapper.Mapper (PsmDomain|psmdomains) _post_configure_properties() complete req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 09:44:12.816,59442,cf-pdman,cf-pdman,223,INFO,192.169.7.98,"2018-10-23 09:44:12.816 INFO  cloudframe.pdman.manager TransactionID=null InstanceID=null [ObjectType=null,ObjectID=null] Create monitor lock 
+"
+2018-10-23 09:44:12.835,59442,cf-pdman,cf-pdman,224,INFO,192.169.7.98,"2018-10-23 09:44:12.835 INFO  cloudframe.pdman.manager TransactionID=null InstanceID=null [ObjectType=null,ObjectID=null] Create periodic_check lock 
+"
+2018-10-23 09:53:45.499,59442,cf-pdman,cf-pdman,225,INFO,192.169.7.98,"2018-10-23 09:53:45.499 INFO  cloudframe.pdman.manager TransactionID=null InstanceID=null [ObjectType=null,ObjectID=null] RPC _get_deploy_detail called req-78271f2d-7311-471b-8b03-fd4aeb0fa99f 
+"
+2018-10-23 09:53:45.504,59442,cf-pdman,cf-pdman,226,ERROR,192.169.7.98,"2018-10-23 09:53:45.504 ERROR  oslo_messaging.rpc.server Exception during message handling req-78271f2d-7311-471b-8b03-fd4aeb0fa99f 
+"
+2018-10-23 09:53:45.504,59442,cf-pdman,cf-pdman,227,ERROR,192.169.7.98,"2018-10-23 09:53:45.504 19 ERROR oslo_messaging.rpc.server Traceback (most recent call last):
+"
+2018-10-23 09:53:45.504,59442,cf-pdman,cf-pdman,228,ERROR,192.169.7.98,"2018-10-23 09:53:45.504 19 ERROR oslo_messaging.rpc.server   File ""/usr/lib/python2.7/site-packages/oslo_messaging/rpc/server.py"", line 155, in _process_incoming
+"
+2018-10-23 09:53:45.504,59442,cf-pdman,cf-pdman,229,ERROR,192.169.7.98,"2018-10-23 09:53:45.504 19 ERROR oslo_messaging.rpc.server     res = self.dispatcher.dispatch(message)
+"
+2018-10-23 09:53:45.504,59442,cf-pdman,cf-pdman,230,ERROR,192.169.7.98,"2018-10-23 09:53:45.504 19 ERROR oslo_messaging.rpc.server   File ""/usr/lib/python2.7/site-packages/oslo_messaging/rpc/dispatcher.py"", line 222, in dispatch
+"
+2018-10-23 09:53:45.504,59442,cf-pdman,cf-pdman,231,ERROR,192.169.7.98,"2018-10-23 09:53:45.504 19 ERROR oslo_messaging.rpc.server     return self._do_dispatch(endpoint, method, ctxt, args)
+"
+2018-10-23 09:53:45.504,59442,cf-pdman,cf-pdman,230,ERROR,192.169.7.98,"2018-10-23 09:53:45.504 19 ERROR oslo_messaging.rpc.server   File ""/usr/lib/python2.7/site-packages/oslo_messaging/rpc/dispatcher.py"", line 192, in _do_dispatch
+"
+2018-10-23 09:53:45.504,59442,cf-pdman,cf-pdman,232,ERROR,192.169.7.98,"2018-10-23 09:53:45.504 19 ERROR oslo_messaging.rpc.server     result = func(ctxt, **new_args)
+"
+2018-10-23 09:53:45.504,59442,cf-pdman,cf-pdman,233,ERROR,192.169.7.98,"2018-10-23 09:53:45.504 19 ERROR oslo_messaging.rpc.server   File ""/root/.local/lib/python2.7/site-packages/cloudframe/pdman/manager.py"", line 500, in _get_deploy_detail
+"
+2018-10-23 09:53:45.504,59442,cf-pdman,cf-pdman,234,ERROR,192.169.7.98,"2018-10-23 09:53:45.504 19 ERROR oslo_messaging.rpc.server     deploy = objects.Deploy.get(context, deploy_id)
+"
+2018-10-23 09:53:45.504,59442,cf-pdman,cf-pdman,235,ERROR,192.169.7.98,"2018-10-23 09:53:45.504 19 ERROR oslo_messaging.rpc.server   File ""/root/.local/lib/python2.7/site-packages/cloudframe/pdman/objects/deploy.py"", line 77, in get
+"
+2018-10-23 09:53:45.504,59442,cf-pdman,cf-pdman,236,ERROR,192.169.7.98,"2018-10-23 09:53:45.504 19 ERROR oslo_messaging.rpc.server     return cls.get_by_id(context, deploy_id)
+"
+2018-10-23 09:53:45.504,59442,cf-pdman,cf-pdman,235,ERROR,192.169.7.98,"2018-10-23 09:53:45.504 19 ERROR oslo_messaging.rpc.server   File ""/root/.local/lib/python2.7/site-packages/cloudframe/pdman/objects/deploy.py"", line 94, in get_by_id
+"
+2018-10-23 09:53:45.504,59442,cf-pdman,cf-pdman,237,ERROR,192.169.7.98,"2018-10-23 09:53:45.504 19 ERROR oslo_messaging.rpc.server     db_deploy = cls.dbapi.get_deploy_by_id(deploy_id)
+"
+2018-10-23 09:53:45.504,59442,cf-pdman,cf-pdman,238,ERROR,192.169.7.98,"2018-10-23 09:53:45.504 19 ERROR oslo_messaging.rpc.server   File ""/root/.local/lib/python2.7/site-packages/cloudframe/pdman/db/sqlalchemy/api.py"", line 752, in get_deploy_by_id
+"
+2018-10-23 09:53:45.504,59442,cf-pdman,cf-pdman,239,ERROR,192.169.7.98,"2018-10-23 09:53:45.504 19 ERROR oslo_messaging.rpc.server     raise exception.DeployNotFound(deploy=deploy_id)
+"
+2018-10-23 09:53:45.504,59442,cf-pdman,cf-pdman,240,ERROR,192.169.7.98,"2018-10-23 09:53:45.504 19 ERROR oslo_messaging.rpc.server DeployNotFound: Deploy 1 could not be found.
+"
+2018-10-23 09:53:45.504,59442,cf-pdman,cf-pdman,241,ERROR,192.169.7.98,"2018-10-23 09:53:45.504 19 ERROR oslo_messaging.rpc.server 
+"
+2018-10-23 09:54:08.385,59442,cf-pdman,cf-pdman,225,INFO,192.169.7.98,"2018-10-23 09:54:08.385 INFO  cloudframe.pdman.manager TransactionID=null InstanceID=null [ObjectType=null,ObjectID=null] RPC _get_deploy_detail called req-f896d7c2-fe7e-42fc-a812-5c912e00073a 
+"
+2018-10-23 09:54:53.528,59442,cf-pdman,cf-pdman,225,INFO,192.169.7.98,"2018-10-23 09:54:53.528 INFO  cloudframe.pdman.manager TransactionID=null InstanceID=null [ObjectType=null,ObjectID=null] RPC _get_deploy_detail called req-b0de286e-d19e-497a-9a78-0ffd886a1f3c 
+"
+2018-10-23 09:55:38.674,59442,cf-pdman,cf-pdman,225,INFO,192.169.7.98,"2018-10-23 09:55:38.674 INFO  cloudframe.pdman.manager TransactionID=null InstanceID=null [ObjectType=null,ObjectID=null] RPC _get_deploy_detail called req-fe94cd85-f3f0-4fc4-a7d3-8c47173f3fbc 
+"
+2018-10-23 09:56:23.861,59442,cf-pdman,cf-pdman,225,INFO,192.169.7.98,"2018-10-23 09:56:23.861 INFO  cloudframe.pdman.manager TransactionID=null InstanceID=null [ObjectType=null,ObjectID=null] RPC _get_deploy_detail called req-a37a00cd-042d-4852-93ed-45c71fcbd733 
+"
+2018-10-23 09:57:09.108,59442,cf-pdman,cf-pdman,225,INFO,192.169.7.98,"2018-10-23 09:57:09.108 INFO  cloudframe.pdman.manager TransactionID=null InstanceID=null [ObjectType=null,ObjectID=null] RPC _get_deploy_detail called req-2b29e9b0-4692-4f64-8c04-cbfde28b92dc 
+"
+2018-10-23 09:57:54.256,59442,cf-pdman,cf-pdman,225,INFO,192.169.7.98,"2018-10-23 09:57:54.256 INFO  cloudframe.pdman.manager TransactionID=null InstanceID=null [ObjectType=null,ObjectID=null] RPC _get_deploy_detail called req-67701950-7d3c-4145-a94e-98ddb7099e03 
+"
+2018-10-23 09:58:39.704,59442,cf-pdman,cf-pdman,225,INFO,192.169.7.98,"2018-10-23 09:58:39.704 INFO  cloudframe.pdman.manager TransactionID=null InstanceID=null [ObjectType=null,ObjectID=null] RPC _get_deploy_detail called req-57be9240-f260-4148-a039-63cc60def525 
+"
+2018-10-23 09:59:09.836,59442,cf-pdman,cf-pdman,225,INFO,192.169.7.98,"2018-10-23 09:59:09.836 INFO  cloudframe.pdman.manager TransactionID=null InstanceID=null [ObjectType=null,ObjectID=null] RPC _get_deploy_detail called req-f05218b5-b6dc-4c39-8e09-a7c582876891 
+"
+2018-10-23 09:59:55.132,59442,cf-pdman,cf-pdman,225,INFO,192.169.7.98,"2018-10-23 09:59:55.132 INFO  cloudframe.pdman.manager TransactionID=null InstanceID=null [ObjectType=null,ObjectID=null] RPC _get_deploy_detail called req-1417770e-9a3f-4bd3-97c8-0e84a71d40d5 
+"
+2018-10-23 10:00:40.238,59442,cf-pdman,cf-pdman,225,INFO,192.169.7.98,"2018-10-23 10:00:40.238 INFO  cloudframe.pdman.manager TransactionID=null InstanceID=null [ObjectType=null,ObjectID=null] RPC _get_deploy_detail called req-3dd2c1d6-0612-4d45-bcb1-6d566784599c 
+"
+2018-10-23 10:01:25.351,59442,cf-pdman,cf-pdman,225,INFO,192.169.7.98,"2018-10-23 10:01:25.351 INFO  cloudframe.pdman.manager TransactionID=null InstanceID=null [ObjectType=null,ObjectID=null] RPC _get_deploy_detail called req-10400353-dd4d-423b-8c19-13ade3b529ae 
+"
+2018-10-23 10:02:10.495,59442,cf-pdman,cf-pdman,225,INFO,192.169.7.98,"2018-10-23 10:02:10.495 INFO  cloudframe.pdman.manager TransactionID=null InstanceID=null [ObjectType=null,ObjectID=null] RPC _get_deploy_detail called req-34e96c15-2550-4a82-9a5f-8988b81df03a 
+"
+2018-10-23 10:02:55.394,59442,cf-pdman,cf-pdman,225,INFO,192.169.7.98,"2018-10-23 10:02:55.394 INFO  cloudframe.pdman.manager TransactionID=null InstanceID=null [ObjectType=null,ObjectID=null] RPC _get_deploy_detail called req-d0a5462c-e37a-4dca-943a-2522fab4a2ff 
+"
+2018-10-23 10:03:24.451,59442,cf-pdman,cf-pdman,242,INFO,192.169.7.98,"2018-10-23 10:03:24.451 INFO  cloudframe.pdman.manager TransactionID=null InstanceID=null [ObjectType=null,ObjectID=null] RPC create server called. req-ce585b95-9ff2-4d46-9969-bad57e648b22 
+"
+2018-10-23 10:03:32.815,59442,cf-pdman,cf-pdman,243,INFO,192.169.7.98,"2018-10-23 10:03:32.815 INFO  cloudframe.pdman.manager TransactionID=null InstanceID=null [ObjectType=null,ObjectID=null] RPC do_ansible_play called. req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 10:03:32.835,59442,cf-pdman,cf-pdman,244,INFO,192.169.7.98,"2018-10-23 10:03:32.835 INFO  cloudframe.pdman.manager TransactionID=null InstanceID=null [ObjectType=null,ObjectID=null] do_ansible_play lock=ansible_play is reserved req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 10:03:32.855,59442,cf-pdman,cf-pdman,245,INFO,192.169.7.98,"2018-10-23 10:03:32.855 INFO  cloudframe.pdman.manager TransactionID=null InstanceID=null [ObjectType=null,ObjectID=null] server is locked do_after_deploy! req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 10:03:32.855,59442,cf-pdman,cf-pdman,246,INFO,192.169.7.98,"2018-10-23 10:03:32.855 INFO  cloudframe.pdman.manager TransactionID=null InstanceID=null [ObjectType=null,ObjectID=null] _do_after_deploy_for_commsrv called req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 10:03:33.017,59442,cf-pdman,cf-pdman,247,INFO,192.169.7.98,"2018-10-23 10:03:33.017 INFO  cloudframe.pdman.manager TransactionID=null InstanceID=null [ObjectType=null,ObjectID=null] deploy_com_srv_set called, pkgname=com_srv_set req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 10:03:33.018,59442,cf-pdman,cf-pdman,248,INFO,192.169.7.98,"2018-10-23 10:03:33.018 INFO  cloudframe.pdman.restful.task TransactionID=null InstanceID=null [ObjectType=null,ObjectID=null] post url=http://192.169.7.101:1098/deployworker/v1/tenants/1/tasks req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 10:03:33.474,59442,cf-pdman,cf-pdman,249,INFO,192.169.7.98,"2018-10-23 10:03:33.474 INFO  cloudframe.pdman.restful.task TransactionID=null InstanceID=null [ObjectType=null,ObjectID=null] post response={'status': '200', 'content-length': '6233', 'connection': 'keep-alive', 'date': 'Tue, 23 Oct 2018 02:03:33 GMT', 'x-frame-options': 'SAMEORIGIN', 'content-type': 'application/json'}, content={
+"
+2018-10-23 10:03:33.475,59442,cf-pdman,cf-pdman,247,INFO,192.169.7.98,"2018-10-23 10:03:33.475 INFO  cloudframe.pdman.manager TransactionID=null InstanceID=null [ObjectType=null,ObjectID=null] deploy_com_srv_set called, pkgname=ha_cluster_set req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 10:03:33.475,59442,cf-pdman,cf-pdman,248,INFO,192.169.7.98,"2018-10-23 10:03:33.475 INFO  cloudframe.pdman.restful.task TransactionID=null InstanceID=null [ObjectType=null,ObjectID=null] post url=http://192.169.7.101:1098/deployworker/v1/tenants/1/tasks req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 10:03:33.575,59442,cf-pdman,cf-pdman,249,INFO,192.169.7.98,"2018-10-23 10:03:33.575 INFO  cloudframe.pdman.restful.task TransactionID=null InstanceID=null [ObjectType=null,ObjectID=null] post response={'status': '200', 'content-length': '2309', 'connection': 'keep-alive', 'date': 'Tue, 23 Oct 2018 02:03:33 GMT', 'x-frame-options': 'SAMEORIGIN', 'content-type': 'application/json'}, content={
+"
+2018-10-23 10:03:33.576,59442,cf-pdman,cf-pdman,250,INFO,192.169.7.98,"2018-10-23 10:03:33.576 INFO  cloudframe.pdman.manager TransactionID=null InstanceID=null [ObjectType=null,ObjectID=null] _get_from_comvars begin req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 10:03:33.733,59442,cf-pdman,cf-pdman,251,INFO,192.169.7.98,"2018-10-23 10:03:33.733 INFO  cloudframe.pdman.manager TransactionID=null InstanceID=null [ObjectType=null,ObjectID=null] __create_cluster_adoption called req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 10:03:33.734,59442,cf-pdman,cf-pdman,252,INFO,192.169.7.98,"2018-10-23 10:03:33.734 INFO  cloudframe.pdman.restful.node TransactionID=null InstanceID=null [ObjectType=null,ObjectID=null] getList url=http://192.169.7.101:1098/nodeworker/v1/tenants/1/nodes?roles=com_srv_share req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 10:03:33.779,59442,cf-pdman,cf-pdman,253,INFO,192.169.7.98,"2018-10-23 10:03:33.779 INFO  cloudframe.pdman.restful.node TransactionID=null InstanceID=null [ObjectType=null,ObjectID=null] getList rsp={'status': '200', 'content-length': '4096', 'content-location': u'http://192.169.7.101:1098/nodeworker/v1/tenants/1/nodes?roles=com_srv_share', 'connection': 'keep-alive', 'date': 'Tue, 23 Oct 2018 02:03:33 GMT', 'x-frame-options': 'SAMEORIGIN', 'content-type': 'application/json'}, content={
+"
+2018-10-23 10:03:33.931,59442,cf-pdman,cf-pdman,254,INFO,192.169.7.98,"2018-10-23 10:03:33.931 INFO  cloudframe.pdman.restful.cluster TransactionID=null InstanceID=null [ObjectType=null,ObjectID=null] post_action url=http://192.169.7.101:1098/clusterworker/v1/tenants/admin/clusters/0/action req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 10:03:33.955,59442,cf-pdman,cf-pdman,255,INFO,192.169.7.98,"2018-10-23 10:03:33.955 INFO  cloudframe.pdman.restful.cluster TransactionID=null InstanceID=null [ObjectType=null,ObjectID=null] post_action rsp={'status': '200', 'content-length': '1323', 'connection': 'keep-alive', 'date': 'Tue, 23 Oct 2018 02:03:33 GMT', 'x-frame-options': 'SAMEORIGIN', 'content-type': 'application/json'}, content={
+"
+2018-10-23 10:03:34.103,59442,cf-pdman,cf-pdman,256,INFO,192.169.7.98,"2018-10-23 10:03:34.103 INFO  cloudframe.pdman.restful.cluster TransactionID=null InstanceID=null [ObjectType=null,ObjectID=null] post url=http://192.169.7.101:1098/clusterworker/v1/tenants/admin/nodes req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
+2018-10-23 10:03:34.122,59442,cf-pdman,cf-pdman,249,INFO,192.169.7.98,"2018-10-23 10:03:34.122 INFO  cloudframe.pdman.restful.cluster TransactionID=null InstanceID=null [ObjectType=null,ObjectID=null] post response={'status': '200', 'content-length': '828', 'connection': 'keep-alive', 'date': 'Tue, 23 Oct 2018 02:03:34 GMT', 'x-frame-options': 'SAMEORIGIN', 'content-type': 'application/json'}, content={
+"
+2018-10-23 10:03:34.122,59442,cf-pdman,cf-pdman,257,INFO,192.169.7.98,"2018-10-23 10:03:34.122 INFO  cloudframe.pdman.restful.node TransactionID=null InstanceID=null [ObjectType=null,ObjectID=null] post_action url=http://192.169.7.101:1098/nodeworker/v1/tenants/1/nodes/8ba1fe1c-8987-4c4d-8eea-ed184b18bdf1/action req-15f72d4a-b9cf-4692-8454-fe34389e3a6e 
+"
