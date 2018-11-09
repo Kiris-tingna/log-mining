@@ -292,7 +292,7 @@ class BasicSignatureGrenGini(TreeParser):
                     if c_pos != -1:
                         for word in cluster.token_dict[c_pos]:
                             cluster.log_template[c_pos] = word
-                            clean_template = re.sub('(\* )+','* ', ' '.join(cluster.log_template)+' ')
+                            clean_template = re.sub('(\* )+', '* ', ' '.join(cluster.log_template) + ' ')
                             ans[clean_template] += cluster.token_dict[c_pos][word]
                         cluster.log_template[c_pos] = '*'
                     else:
