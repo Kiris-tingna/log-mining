@@ -11,7 +11,7 @@ from logparser.parser.tree_parser import TreeParser
 from logparser.utils import Timer, visualize_bsg_gvfile
 import math
 import gc
-
+import re
 
 class LogCluster(object):
     def __init__(self, log_template, idx, similarity_threshold=0.5):
@@ -62,7 +62,7 @@ class LogCluster(object):
         self.log_ids.append(idx)
 
 
-class BasicSignatureGrenGini(TreeParser):
+class BasicSignatureGrenGiniSplit(TreeParser):
     """
     @author: Shuting Guo
     @paper: Event Extraction from Streaming System Logs
@@ -221,7 +221,7 @@ class BasicSignatureGrenGini(TreeParser):
         :param log_template:
         :return:
         """
-        token_set = [token for token in log_template if token != '*' and 'PATTERN_' not in token]
+        token_set = ['Previous_Token'] + [token for token in log_template if token != '*' and 'PATTERN_' not in token]
 
         token_pair = itertools.combinations(token_set, 2)
         return set(token_pair)
@@ -292,7 +292,8 @@ class BasicSignatureGrenGini(TreeParser):
                     if c_pos != -1:
                         for word in cluster.token_dict[c_pos]:
                             cluster.log_template[c_pos] = word
-                            ans[' '.join(cluster.log_template)] += cluster.token_dict[c_pos][word]
+                            clean_template = re.sub('(\* )+','* ', ' '.join(cluster.log_template)+' ')
+                            ans[clean_template] += cluster.token_dict[c_pos][word]
                         cluster.log_template[c_pos] = '*'
                     else:
                         ans[' '.join(cluster.log_template)] += cluster.log_ids
@@ -313,7 +314,8 @@ class BasicSignatureGrenGini(TreeParser):
                     if c_pos != -1:
                         for word in cluster.token_dict[c_pos]:
                             cluster.log_template[c_pos] = word
-                            ans[' '.join(cluster.log_template)] += cluster.token_dict[c_pos][word]
+                            clean_template = re.sub('(\* )+','* ', ' '.join(cluster.log_template)+' ')
+                            ans[clean_template] += cluster.token_dict[c_pos][word]
                         cluster.log_template[c_pos] = '*'
                     else:
                         ans[' '.join(cluster.log_template)] += cluster.log_ids
@@ -329,7 +331,7 @@ if __name__ == '__main__':
     for i in range(7, 8):
         st = i * 0.1
 
-        bsg_parser = BasicSignatureGrenGini(reg_file='../config/config.reg_exps.txt', global_st=st)
+        bsg_parser = BasicSignatureGrenGiniSplit(reg_file='../config/config.reg_exps.txt', global_st=st)
         bsg_parser._online_train('blk 124219214 asa Receive from node 4', 1)
         bsg_parser._online_train('blk 124219214 ffwqwq 1241241 Done to node 4', 2)
         bsg_parser._online_train('blk 124219214 ffwqwq Done to node 4', 3)
@@ -351,4 +353,3 @@ if __name__ == '__main__':
     # where = visualize_bsg_gvfile(bsg_parser)
 
     gc.collect()
-#
