@@ -129,12 +129,14 @@ if __name__ == '__main__':
     read_mapping = {
         # 'VM_SYN_ERROR': '../data/zte_data_2018_10_15/pod11_tongbu_sort'
         # 'VM_DELETE_SAMPLE': '../data/zte_data_2018_10_15/instance_delete0802'
-        'VM_FAILED': '../data/slot1'
+        # 'VM_FAILED': '../data/slot1',
+        'IAAS': '../data/zte_iaas'
     }
     output_mapping = {
         # 'VM_SYN_ERROR': '../data/zte_tongbu_filtered.csv'
         # 'VM_DELETE_SAMPLE': '../data/zte_delete_filtered.csv'
-        'VM_FAILED': '../data/zte_failed_filtered.csv'
+        # 'VM_FAILED': '../data/zte_failed_filtered.csv',
+        'IAAS': '../data/iaas_filtered.csv'
     }
 
     zte = ZTEFormatter(rm=read_mapping, om=output_mapping)
