@@ -305,7 +305,7 @@ class BasicSignatureGrenGini(TreeParser):
         输出所有模板
         :return:
         '''
-        ret = []
+        final_templates = []
         ans = collections.defaultdict(list)
         for pos in self.bucket:
             for key in self.bucket[pos]:
@@ -322,8 +322,8 @@ class BasicSignatureGrenGini(TreeParser):
 
         for sid, signature in enumerate(ans):
             print('template {} has {} logs: {}'.format(sid, len(ans[signature]), signature))
-            ret.append((signature, ans[signature]))
-        return ret
+            final_templates.append((signature, ans[signature]))
+        return final_templates
 
 
 if __name__ == '__main__':
