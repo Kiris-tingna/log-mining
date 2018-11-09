@@ -281,9 +281,13 @@ class Drain(TreeParser):
         输出结果
         :return:
         '''
+        final_templates = []
         for item in self.LogClusterMap:
             print("template {} has {} log records: {}, {}".format(item.cluster_id, len(item.log_ids),
                                                               ' '.join(item.log_template), item.log_ids))
+            final_templates.append((' '.join(item.log_template), item.log_ids))
+        return final_templates
+
 
 if __name__ == '__main__':
     drain_parser = Drain(max_child=10, max_depth=3, min_similarity=0.5, reg_file='../config/config.reg_exps.txt')
