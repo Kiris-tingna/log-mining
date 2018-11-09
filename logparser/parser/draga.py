@@ -495,6 +495,7 @@ class Draga(TreeParser):
         输出现有的log template
         :return:
         '''
+        final_templates = []
         # 删除所有不活跃的输出节点 输出到 periodic_output_nodes
         periodic_output_nodes = []
         for current_output_node in self.Outputs:
@@ -512,7 +513,10 @@ class Draga(TreeParser):
         for idx, output_node in enumerate(periodic_output_nodes):
             # reporter.write(str(idx + 1) + '\t' + output_node.output_templates + '\n')
             print(idx+1, output_node.output_templates, output_node.log_ids)
+            final_templates.append((output_node.output_templates.strip('\n'), output_node.log_ids))
             # print(idx+1, output_node.output_templates)
+
+        return final_templates
 
 
 if __name__ == '__main__':
