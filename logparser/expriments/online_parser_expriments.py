@@ -45,11 +45,11 @@ stream = STREAMFormatter()
 '''
 start = strict_time()
 # following part is for call parsers ...
-stream.online_parse_one_dir(data_dir, spell_parser)
+# stream.online_parse_one_dir(data_dir, spell_parser)
 # stream.online_parse_one_dir(data_dir, drain_parser)
 # stream.online_parse_one_dir(data_dir, draga_parser)
 # stream.online_parse_one_dir(data_dir, bsg_parser)
-# stream.online_parse_one_dir(data_dir, bsgi_parser)
+stream.online_parse_one_dir(data_dir, bsgi_parser)
 end = strict_time()
 print(end - start)
 
@@ -59,9 +59,9 @@ gc.collect()
  Example: 
 '''
 # 1. spell 的模板可视化
-spell_parser.get_final_template()
+# spell_parser.get_final_template()
 # print(len(spell_parser.signature_map))
-visualize_spell_gvfile(spell_parser, path='../data/Ex2/graphviz_spell_paas.gv')
+# visualize_spell_gvfile(spell_parser, path='../data/Ex2/graphviz_spell_paas.gv')
 
 # 2. drain的 模板可视化
 # drain_parser.get_final_template()
@@ -76,7 +76,7 @@ visualize_spell_gvfile(spell_parser, path='../data/Ex2/graphviz_spell_paas.gv')
 
 # 5. bsgi 的模板可视化
 # bsgi_parser.get_final_template()
-# print(bsgi_parser.get_templates_number())
+print(bsgi_parser.get_templates_number())
 # visualize_bsg_gvfile(bsgi_parser, path='../data/Ex2/graphviz_bsgi_paas.gv')
 
 
@@ -93,4 +93,4 @@ visualize_spell_gvfile(spell_parser, path='../data/Ex2/graphviz_spell_paas.gv')
 # parser_tocsv(drain_parser, '../../loggraph/data')
 # parser_tocsv(draga_parser, '../../loggraph/data')
 # parser_tocsv(bsg_parser, '../../loggraph/data')
-# parser_tocsv(bsgi_parser, '../../loggraph/data')
+parser_tocsv(bsgi_parser, '../../loggraph/data')
