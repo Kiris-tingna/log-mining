@@ -35,7 +35,7 @@ draga_parser = Draga(reg_file='../config/config.paas.txt', max_child=20, merge_t
 bsg_parser = BSG(reg_file='../config/config.paas.txt', global_st=0.7)
 bsgi_parser = BSGI(reg_file='../config/config.paas.txt', global_st=0.7)
 
-data_dir = '../../../Paas/54556'
+data_dir = '../../../Paas/54534'
 # data_dir = '../data/test'
 stream = STREAMFormatter()
 
@@ -59,8 +59,9 @@ gc.collect()
  Example: 
 '''
 # 1. spell 的模板可视化
-# spell_parser.get_final_template()
-# visualize_spell_gvfile(spell_parser, path='../data/Ex2/graphviz_spell_paas.gv')
+spell_parser.get_final_template()
+# print(len(spell_parser.signature_map))
+visualize_spell_gvfile(spell_parser, path='../data/Ex2/graphviz_spell_paas.gv')
 
 # 2. drain的 模板可视化
 # drain_parser.get_final_template()
@@ -75,19 +76,20 @@ gc.collect()
 
 # 5. bsgi 的模板可视化
 # bsgi_parser.get_final_template()
+# print(bsgi_parser.get_templates_number())
 # visualize_bsg_gvfile(bsgi_parser, path='../data/Ex2/graphviz_bsgi_paas.gv')
 
 
 # ========== 部分的手动可视化  for gv 的 大图bug ==============
 # visualize_gv_manually('../data/Ex2/graphviz_spell_paas-2018-11-06.gv', render_mode='twopi')
 # visualize_gv_manually('../data/Ex2/graphviz_drain_paas-2018-11-06.gv', render_mode='twopi')
-# visualize_gv_manually('../data/Ex2/graphviz_bsgi_paas-2018-11-06.gv', render_mode='twopi')
+# visualize_gv_manually('../data/Ex2/graphviz_bsgi_paas-2018-11-09.gv', render_mode='twopi')
 
 '''
 ----------------------------- step3-2. 记录并解析结果转为csv文件存储 ------------------------------------
  Example: 
 '''
-parser_tocsv(spell_parser, '../../loggraph/data')
+# parser_tocsv(spell_parser, '../../loggraph/data')
 # parser_tocsv(drain_parser, '../../loggraph/data')
 # parser_tocsv(draga_parser, '../../loggraph/data')
 # parser_tocsv(bsg_parser, '../../loggraph/data')
