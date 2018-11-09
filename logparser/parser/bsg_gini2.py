@@ -279,6 +279,26 @@ class BasicSignatureGrenGini(TreeParser):
                     split_pos, split_gini = c_pos, split_gini
         return split_pos
 
+    def get_templates_number(self):
+        '''
+        得到模板的数量
+        :return:
+        '''
+        ans = collections.defaultdict(list)
+        for pos in self.bucket:
+            for key in self.bucket[pos]:
+                for cluster in self.bucket[pos][key]:
+                    c_pos = self.cluster_refinement(cluster)
+                    if c_pos != -1:
+                        for word in cluster.token_dict[c_pos]:
+                            cluster.log_template[c_pos] = word
+                            ans[' '.join(cluster.log_template)] += cluster.token_dict[c_pos][word]
+                        cluster.log_template[c_pos] = '*'
+                    else:
+                        ans[' '.join(cluster.log_template)] += cluster.log_ids
+
+        return len(ans)
+
     def get_final_template(self):
         '''
         输出所有模板
