@@ -478,6 +478,18 @@ class Draga(TreeParser):
             remove_output_node.log_ids = None
             remove_output_node.active = False
 
+    def get_templates_number(self):
+        '''
+        得到模板的数量
+        :return:
+        '''
+        periodic_output_nodes = []
+        for current_output_node in self.Outputs:
+            if current_output_node.active:
+                periodic_output_nodes.append(current_output_node)
+        return len(periodic_output_nodes)
+
+
     def get_final_tempalte(self):
         '''
         输出现有的log template
