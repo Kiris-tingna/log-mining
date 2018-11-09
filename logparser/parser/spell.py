@@ -241,8 +241,11 @@ class Spell(TreeParser):
         输出结果
         :return:
         '''
+        final_templates = []
         for item in self.signature_map.values():
             print("template {} has {} log records: {}, {}".format(item.sig_id, len(item.log_ids), ' '.join(item.signature), item.log_ids))
+            final_templates.append((' '.join(item.signature), item.log_ids))
+        return final_templates
 
 
 if __name__ == '__main__':
