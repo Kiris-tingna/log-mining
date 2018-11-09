@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
- @Time    : 2018/10/30 09:05
+ @Time    : 2018/11/06 14:41
  @Author  : Tinkle
  @File    : bsg_gini.py
  @Software: PyCharm
@@ -11,7 +11,7 @@ from logparser.parser.tree_parser import TreeParser
 from logparser.utils import Timer, visualize_bsg_gvfile
 import math
 import gc
-
+import re
 
 class LogCluster(object):
     def __init__(self, log_template, idx, similarity_threshold=0.5):
@@ -30,12 +30,12 @@ class LogCluster(object):
         # token_dict=[
         #     模板上词的相应位置: {替换的参数列表}
         # ]
-        self.token_dict = [collections.defaultdict(int) for _ in range(self.nc)]
+        self.token_dict = [collections.defaultdict(list) for _ in range(self.nc)]
         # 统计参数情况
         for i, token in enumerate(log_template):
-            self.token_dict[i][token] = 1
+            self.token_dict[i][token].append(idx)
 
-    def update(self, nc, new_log_template, new_log_seq, idx, change_gini):
+    def update(self, nc, new_log_template, new_log_seq, idx):
         '''
         Example：
             new_log_template: [a, b, * , d]
@@ -57,12 +57,9 @@ class LogCluster(object):
         self.cnt += 1
         # log_seq 为新的日志序列
         for i, token in enumerate(new_log_seq):
-            self.token_dict[i][token] += 1
+            self.token_dict[i][token].append(idx)
         #  当前日志组日志id的增加
         self.log_ids.append(idx)
-        # 修改熵值
-        for i in change_gini:
-            self.token_square_sum[i] = change_gini[i]
 
 
 class BasicSignatureGrenGini(TreeParser):
@@ -145,18 +142,17 @@ class BasicSignatureGrenGini(TreeParser):
         else:
             # 存在就从template列表中找出最合适（熵变最小的情况）的插入
             token_layer = self.bucket[pos][keyValue]
-            sim, new_nc, new_template, idx, gini, change_gini = -1, -1, -1, -1, 100000, dict()
+            sim, new_nc, new_template, idx = -1, -1, -1, -1
 
             for i, cluster in enumerate(token_layer):
                 # sim: 相似度 new_nc: 常量字符的长度 entropy: 熵
-                sim_, new_nc_, new_template_, gini_, change_gini_ = self.min_gini(log_filter, cluster)
-                if sim_ > -1 and gini_ < gini:
-                    sim, new_nc, new_template, gini, change_gini = sim_, new_nc_, new_template_, \
-                                                                   gini_, change_gini_
+                sim_, new_nc_, new_template_ = self.edit_distance(log_filter, cluster)
+                if sim_ > sim:
+                    sim, new_nc, new_template = sim_, new_nc_, new_template_
                     idx = i
             if sim > -1:
                 # token layer 更新
-                token_layer[idx].update(new_nc, new_template, log_filter, (id, timestamp), change_gini)
+                token_layer[idx].update(new_nc, new_template, log_filter, (id, timestamp))
             else:
                 # new cluster 的创建
                 new_cluster = self.create_cluster(log_filter, log_length, (id, timestamp))
@@ -187,48 +183,34 @@ class BasicSignatureGrenGini(TreeParser):
         new_cluster = LogCluster(log_filter, idx, st_init)
         return new_cluster
 
-    def min_gini(self, seq, cluster):
+    def edit_distance(self, seq, cluster):
         '''
-        计算最小的熵变
+        计算seq 和 template 的编辑距离
         :param seq:
         :param cluster:
         :return:
         '''
         log_template = cluster.log_template
-        token_dict = cluster.token_dict
-        token_square_sum = cluster.token_square_sum
 
         new_template = []
         st = cluster.st
         nc = cluster.nc
-        cnt = cluster.cnt
         threshold = math.ceil((1 - st) * nc)
 
         # 与模板不同的个数
-        new_square_sum = 0
         diff = 0
-        change_gini = collections.defaultdict(int)
         for i in range(len(seq)):
             s1 = seq[i]
             s2 = log_template[i]
             if s1 != s2:
-                old_square_sum = token_square_sum[i]
-                new_square_sum += old_square_sum
                 diff += 1
-                if len(token_dict[i]) < 20:
-                    if s1 in token_dict[i]:
-                        change_gini[i] = (token_dict[i][s1] + 1) * (token_dict[i][s1] + 1)
-                        new_square_sum += token_dict[i][s1] * 2 + 1
-                    else:
-                        change_gini[i] += 1
-                        new_square_sum += 1
                 if diff > threshold:
-                    return -1, -1, [], -1, dict()
+                    return -1, -1, []
                 new_template.append('*')
             else:
                 new_template.append(s1)
 
-        return 1 - float(diff) / nc, len(seq) - diff, new_template, cnt - float(new_square_sum) / cnt , change_gini
+        return 1 - float(diff) / nc, len(seq) - diff, new_template
 
     def template_to_token_pairs(self, log_template):
         """
@@ -239,7 +221,7 @@ class BasicSignatureGrenGini(TreeParser):
         :param log_template:
         :return:
         """
-        token_set = [token for token in log_template if token != '*' and 'PATTERN_' not in token]
+        token_set = ['Previous_Token'] + [token for token in log_template if token != '*' and 'PATTERN_' not in token]
 
         token_pair = itertools.combinations(token_set, 2)
         return set(token_pair)
@@ -276,6 +258,48 @@ class BasicSignatureGrenGini(TreeParser):
         # Todo: x ????
         return average_compactness * average_similarity
 
+    def cluster_refinement(self, cluster):
+        '''
+        将keyword 从* 中提取出来
+        :param cluster:
+        :return:
+        '''
+        cnt = cluster.cnt
+        log_template = cluster.log_template
+        split_pos, split_gini = -1, 1
+
+        for c_pos, token in enumerate(log_template):
+            if token == '*':
+                square_sum = 0
+                for word in cluster.token_dict[c_pos]:
+                    num = len(cluster.token_dict[c_pos][word])
+                    square_sum += float(num) ** 2
+                gini = 1 - square_sum / (cnt ** 2)
+                if gini <= 0.5 and gini < split_gini:
+                    split_pos, split_gini = c_pos, split_gini
+        return split_pos
+
+    def get_templates_number(self):
+        '''
+        得到模板的数量
+        :return:
+        '''
+        ans = collections.defaultdict(list)
+        for pos in self.bucket:
+            for key in self.bucket[pos]:
+                for cluster in self.bucket[pos][key]:
+                    c_pos = self.cluster_refinement(cluster)
+                    if c_pos != -1:
+                        for word in cluster.token_dict[c_pos]:
+                            cluster.log_template[c_pos] = word
+                            clean_template = re.sub('(\* )+','* ', ' '.join(cluster.log_template)+' ')
+                            ans[clean_template] += cluster.token_dict[c_pos][word]
+                        cluster.log_template[c_pos] = '*'
+                    else:
+                        ans[' '.join(cluster.log_template)] += cluster.log_ids
+
+        return len(ans)
+
     def get_final_template(self):
         '''
         输出所有模板
@@ -286,11 +310,21 @@ class BasicSignatureGrenGini(TreeParser):
         for pos in self.bucket:
             for key in self.bucket[pos]:
                 for cluster in self.bucket[pos][key]:
-                    ans[' '.join(cluster.log_template)] += cluster.log_ids
+                    c_pos = self.cluster_refinement(cluster)
+                    if c_pos != -1:
+                        for word in cluster.token_dict[c_pos]:
+                            cluster.log_template[c_pos] = word
+                            clean_template = re.sub('(\* )+','* ', ' '.join(cluster.log_template)+' ')
+                            ans[clean_template] += cluster.token_dict[c_pos][word]
+                        cluster.log_template[c_pos] = '*'
+                    else:
+                        ans[' '.join(cluster.log_template)] += cluster.log_ids
+
         for sid, signature in enumerate(ans):
-            print('template {} has {} logs: {}, {}'.format(sid, len(ans[signature]), signature, ans[signature]))
+            print('template {} has {} logs: {}'.format(sid, len(ans[signature]), signature))
             ret.append((signature, ans[signature]))
         return ret
+
 
 if __name__ == '__main__':
     # 0.7 是最好的阈值
@@ -312,6 +346,7 @@ if __name__ == '__main__':
         bsg_parser._online_train('delete block_1', 10)
         bsg_parser._online_train('delete block_3 block_4', 11)
         bsg_parser._online_train('delete block_6', 12)
+
         bsg_parser.get_final_template()
 
         print(bsg_parser.quality())
