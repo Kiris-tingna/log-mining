@@ -298,6 +298,7 @@ class BasicSignatureGren(TreeParser):
         :return:
         '''
         ans = collections.defaultdict(list)
+        final_templates = []
         for pos in self.bucket:
             for key in self.bucket[pos]:
                 for cluster in self.bucket[pos][key]:
@@ -305,6 +306,9 @@ class BasicSignatureGren(TreeParser):
 
         for sid, signature in enumerate(ans):
             print('template {} has {} logs: {}, {}'.format(sid, len(ans[signature]), signature, ans[signature]))
+            final_templates.append((signature, ans[signature]))
+
+        return final_templates
 
 
 if __name__ == '__main__':
