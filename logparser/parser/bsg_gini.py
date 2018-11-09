@@ -94,6 +94,7 @@ class BasicSignatureGrenGini(TreeParser):
     def __init__(self, reg_file, global_st=1.0, max_length=300):
         self.max_length = max_length  # 日志最大长度阈值
         self.global_st = global_st
+        self.current_index = 0 # 解析的日志数量
         # bucket 的形式:
         # bucket = [   ...
         #       该长度日志 起始字符位置可以用作分桶情况: { 首token: [对应的模板] ....}
@@ -113,6 +114,8 @@ class BasicSignatureGrenGini(TreeParser):
         :param log:
         :return:
         """
+        self.current_index += 1
+        print(id, log)
         # 1.首先预处理某一条日志 并且拆分成数组
         log_filter = self.pre_process_single(log)
         log_length = len(log_filter)
@@ -265,6 +268,8 @@ class BasicSignatureGrenGini(TreeParser):
         :return:
         '''
         cnt = cluster.cnt
+        if float(cnt) / self.current_index < 0.1:
+            return -1
         log_template = cluster.log_template
         split_pos, split_gini = -1, 1
 
@@ -293,10 +298,11 @@ class BasicSignatureGrenGini(TreeParser):
                         for word in cluster.token_dict[c_pos]:
                             cluster.log_template[c_pos] = word
                             clean_template = re.sub('(\* )+', '* ', ' '.join(cluster.log_template) + ' ')
-                            ans[clean_template] += cluster.token_dict[c_pos][word]
+                            ans[clean_template.strip()] += cluster.token_dict[c_pos][word]
                         cluster.log_template[c_pos] = '*'
                     else:
-                        ans[' '.join(cluster.log_template)] += cluster.log_ids
+                        clean_template = re.sub('(\* )+', '* ', ' '.join(cluster.log_template) + ' ')
+                        ans[clean_template.strip()] += cluster.log_ids
 
         return len(ans)
 
@@ -314,11 +320,12 @@ class BasicSignatureGrenGini(TreeParser):
                     if c_pos != -1:
                         for word in cluster.token_dict[c_pos]:
                             cluster.log_template[c_pos] = word
-                            clean_template = re.sub('(\* )+','* ', ' '.join(cluster.log_template)+' ')
-                            ans[clean_template] += cluster.token_dict[c_pos][word]
+                            clean_template = re.sub('(\* )+', '* ', ' '.join(cluster.log_template) + ' ')
+                            ans[clean_template.strip()] += cluster.token_dict[c_pos][word]
                         cluster.log_template[c_pos] = '*'
                     else:
-                        ans[' '.join(cluster.log_template)] += cluster.log_ids
+                        clean_template = re.sub('(\* )+', '* ', ' '.join(cluster.log_template) + ' ')
+                        ans[clean_template.strip()] += cluster.log_ids
 
         for sid, signature in enumerate(ans):
             print('template {} has {} logs: {}'.format(sid, len(ans[signature]), signature))
