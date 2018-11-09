@@ -11,13 +11,11 @@ from .drain import Drain
 from .draga import Draga
 from .bsg import BasicSignatureGren as BSG
 from .bsg_gini import BasicSignatureGrenGini as BSGI
-from .bsg_gini_split import BasicSignatureGrenGiniSplit as BSGIS
 
 __all__ = [
     'Spell',
     'Drain',
     'Draga',
     'BSG',
-    'BSGI',
-    'BSGIS'
+    'BSGI'
 ]
