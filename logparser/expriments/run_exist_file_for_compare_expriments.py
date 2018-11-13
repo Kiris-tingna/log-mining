@@ -71,8 +71,8 @@ if __name__ == '__main__':
     # file = '../data/cc.csv'
     # c_parser = spell_parser
     # c_parser = drain_parser
-    c_parser = draga_parser
-    # c_parser = bsg_parser
+    # c_parser = draga_parser
+    c_parser = bsg_parser
     # c_parser = bsgi_parser
 
     RULE_LIST = [
@@ -122,7 +122,7 @@ if __name__ == '__main__':
     parser_name = c_parser.__class__.__name__
 
     start = strict_time()
-    final_templates = c_parser.get_final_tempalte(verbose=False)
+    final_templates = c_parser.get_final_template(verbose=False)
     end = strict_time()
     print(end - start)
 
