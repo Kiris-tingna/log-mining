@@ -2,6 +2,8 @@ zte.com.cn zte_company
 \d+(.)?\d*\s?GB <size1>
 \d+(.)?\d*\s?MB <size2>
 \d+(.)?\d*\s?VCPU <size3>
+\d+(.)?\d*\s?CPU <size4>
 \d{1,}\.\d{1,}\.\d{1,}\.\d{1,} <ip>
 -\s- <nothing>
 [\:\=]{1}\s?[\d]+ :<param>
+/(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+ <url>
