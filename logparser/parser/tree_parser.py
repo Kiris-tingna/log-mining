@@ -57,7 +57,7 @@ class TreeParser(object):
             x = re.sub(p[0], p[1], x, flags=re.S)
 
         # 消去括号之间的空格
-        x = re.sub('\(.*\)', lambda str: re.sub('\s+|\\n|\.', '-', str.group(0)), x)
+        # x = re.sub('\(.*\)', lambda str: re.sub('\s+|\\n|\.', '-', str.group(0)), x)
 
         # ---------------- 消去引号之间的分隔符  (aim is to split with rule) -------------------
         # Example1:
@@ -68,11 +68,13 @@ class TreeParser(object):
         #       ['nova', 'osapi_compute', 'wsgi', 'server', '<ip>', '"POST /v2.1/servers HTTP/1.1"', 'status:',
         #           '202', 'len:', '796']
 
-        lex_object = shlex.shlex(x)
-        lex_object.whitespace = " |\."
-        lex_object.whitespace_split = True
+        # lex_object = shlex.shlex()
+        # lex_object.whitespace = " |\."
+        # lex_object.debug = 1
+        # lex_object.whitespace_split = True
 
-        log_sequence_list = list(lex_object)
+        log_sequence_list = re.split(r' |\.', x)
+        # log_sequence_list = list(lex_object)
         # log_len = len(log_sequence_list)
 
         # if log_len > 100:
