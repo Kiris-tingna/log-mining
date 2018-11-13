@@ -276,14 +276,15 @@ class Drain(TreeParser):
 
             current_depth += 1
 
-    def get_final_template(self):
+    def get_final_template(self, verbose=True):
         '''
         输出结果
         :return:
         '''
         final_templates = []
         for item in self.LogClusterMap:
-            print("template {} has {} log records: {}, {}".format(item.cluster_id, len(item.log_ids),
+            if verbose:
+                print("template {} has {} log records: {}, {}".format(item.cluster_id, len(item.log_ids),
                                                               ' '.join(item.log_template), item.log_ids))
             final_templates.append((' '.join(item.log_template), item.log_ids))
         return final_templates
