@@ -236,14 +236,15 @@ class Spell(TreeParser):
         # 将log 的 id 给予叶子节点
         ptr.signature_id = log_id
 
-    def get_final_template(self):
+    def get_final_template(self, verbose=True):
         '''
         输出结果
         :return:
         '''
         final_templates = []
         for item in self.signature_map.values():
-            print("template {} has {} log records: {}, {}".format(item.sig_id, len(item.log_ids), ' '.join(item.signature), item.log_ids))
+            if verbose:
+                print("template {} has {} log records: {}, {}".format(item.sig_id, len(item.log_ids), ' '.join(item.signature), item.log_ids))
             final_templates.append((' '.join(item.signature), item.log_ids))
         return final_templates
 
