@@ -489,7 +489,7 @@ class Draga(TreeParser):
                 periodic_output_nodes.append(current_output_node)
         return len(periodic_output_nodes)
 
-    def get_final_tempalte(self, verbose=True):
+    def get_final_template(self, verbose=True):
         '''
         输出现有的log template
         :return:
