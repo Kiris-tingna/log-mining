@@ -57,18 +57,24 @@ if __name__ == '__main__':
 
     '''
     spell_parser = Spell(reg_file='../config/config.paas.txt', threshold=0.7)
-    # drain_parser = Drain(reg_file='../config/config.paas.txt', max_child=10, max_depth=4, min_similarity=0.5)
-    # draga_parser = Draga(reg_file='../config/config.paas.txt', max_child=10, merge_threshold=0.9)
-    # bsg_parser = BSG(reg_file='../config/config.paas.txt', global_st=0.7)
-    # bsgi_parser = BSGI(reg_file='../config/config.paas.txt', global_st=0.7)
+    drain_parser = Drain(reg_file='../config/config.paas.txt', max_child=10, max_depth=4, min_similarity=0.5)
+    draga_parser = Draga(reg_file='../config/config.paas.txt', max_child=10, merge_threshold=0.9)
+    bsg_parser = BSG(reg_file='../config/config.paas.txt', global_st=0.7)
+    bsgi_parser = BSGI(reg_file='../config/config.paas.txt', global_st=0.7)
 
     '''
      -------------------- step 2 : train data line step by line  -------------------
      Example: 以下用法适用于dataframe的部分
     '''
 
-    # file = '../../../event_type_ansible.csv'
-    file = '../data/cc.csv'
+    file = '../../../event_type_ansible.csv'
+    # file = '../data/cc.csv'
+    # c_parser = spell_parser
+    # c_parser = drain_parser
+    c_parser = draga_parser
+    # c_parser = bsg_parser
+    # c_parser = bsgi_parser
+
     RULE_LIST = [
         '\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}.\d{3} \d+',
         '\sINFO|\sWARNING|\sWARN|\sCRIT|\sDEBUG|\sTRACE|\sFATAL|\sERROR|\swarning|\sinfo',
@@ -101,11 +107,7 @@ if __name__ == '__main__':
         for p in time_stamps:
             message = re.sub(p, '', message)
 
-        spell_parser.online_train(message, idx, row.time)
-        # drain_parser.online_train(message, row.log_id, row.time)
-        # draga_parser.online_train(message, row.log_id, row.time)
-        # bsg_parser.online_train(message, row.log_id, row.time)
-        # bsgi_parser.online_train(message, row.log_id, row.time)
+        c_parser.online_train(message, idx, row.time)
 
     end = strict_time()
     print(end - start)
@@ -116,12 +118,11 @@ if __name__ == '__main__':
     ----------------------------- step3-2. 记录并解析结果转为csv文件存储 ------------------------------------
      Example: 
     '''
-    parser_name = spell_parser.__class__.__name__
+
+    parser_name = c_parser.__class__.__name__
 
     start = strict_time()
-    final_templates = []
-    for item in spell_parser.signature_map.values():
-        final_templates.append((' '.join(item.signature), item.sig_id, item.log_ids))
+    final_templates = c_parser.get_final_tempalte(verbose=False)
     end = strict_time()
     print(end - start)
 
