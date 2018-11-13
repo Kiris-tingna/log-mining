@@ -292,7 +292,7 @@ class BasicSignatureGren(TreeParser):
                     ans[' '.join(cluster.log_template)] += cluster.log_ids
         return len(ans)
 
-    def get_final_template(self):
+    def get_final_template(self, verbose=True):
         '''
         输出所有模板
         :return:
@@ -305,7 +305,8 @@ class BasicSignatureGren(TreeParser):
                     ans[' '.join(cluster.log_template)] += cluster.log_ids
 
         for sid, signature in enumerate(ans):
-            print('template {} has {} logs: {}, {}'.format(sid, len(ans[signature]), signature, ans[signature]))
+            if verbose:
+                print('template {} has {} logs: {}, {}'.format(sid, len(ans[signature]), signature, ans[signature]))
             final_templates.append((signature, ans[signature]))
 
         return final_templates
