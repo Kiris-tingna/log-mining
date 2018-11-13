@@ -115,7 +115,7 @@ class BasicSignatureGrenGini(TreeParser):
         :return:
         """
         self.current_index += 1
-        print(id, log)
+        # print(id, log)
         # 1.首先预处理某一条日志 并且拆分成数组
         log_filter = self.pre_process_single(log)
         log_length = len(log_filter)
@@ -280,7 +280,7 @@ class BasicSignatureGrenGini(TreeParser):
                     num = len(cluster.token_dict[c_pos][word])
                     square_sum += float(num) ** 2
                 gini = 1 - square_sum / (cnt ** 2)
-                if gini <= 0.5 and gini < split_gini:
+                if gini <= 0.75 and gini < split_gini:
                     split_pos, split_gini = c_pos, split_gini
         return split_pos
 
