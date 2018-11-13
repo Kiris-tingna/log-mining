@@ -306,7 +306,7 @@ class BasicSignatureGrenGini(TreeParser):
 
         return len(ans)
 
-    def get_final_template(self):
+    def get_final_template(self, verbose=True):
         '''
         输出所有模板
         :return:
@@ -328,7 +328,8 @@ class BasicSignatureGrenGini(TreeParser):
                         ans[clean_template.strip()] += cluster.log_ids
 
         for sid, signature in enumerate(ans):
-            print('template {} has {} logs: {}'.format(sid, len(ans[signature]), signature))
+            if verbose:
+                print('template {} has {} logs: {}'.format(sid, len(ans[signature]), signature))
             final_templates.append((signature, ans[signature]))
         return final_templates
 
