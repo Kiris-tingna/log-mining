@@ -57,6 +57,7 @@ if __name__ == '__main__':
 
     '''
     spell_parser = Spell(reg_file='../config/config.paas.txt', threshold=0.7)
+    spell_parser2 = Spell(reg_file='../config/config.paas.txt', threshold=0.95)
     drain_parser = Drain(reg_file='../config/config.paas.txt', max_child=10, max_depth=4, min_similarity=0.5)
     draga_parser = Draga(reg_file='../config/config.paas.txt', max_child=10, merge_threshold=0.9)
     bsg_parser = BSG(reg_file='../config/config.paas.txt', global_st=0.7)
@@ -70,9 +71,10 @@ if __name__ == '__main__':
     file = '../../../event_type_ansible.csv'
     # file = '../data/cc.csv'
     # c_parser = spell_parser
+    c_parser = spell_parser2
     # c_parser = drain_parser
     # c_parser = draga_parser
-    c_parser = bsg_parser
+    # c_parser = bsg_parser
     # c_parser = bsgi_parser
 
     RULE_LIST = [
@@ -128,8 +130,8 @@ if __name__ == '__main__':
 
     #  ----------------------------------- Need Optimization Start ---------------------------------
     start = strict_time()
-
-    td = pd.DataFrame(final_templates, columns=['template', 'event_id', 'log_ids'])
+    td = pd.DataFrame(final_templates, columns=['template', 'log_ids'])
+    td['event_id'] = pd.Series([i for i in range(len(td))])
     td.apply(lambda x: thread_task(x['template'], x['event_id'], x['log_ids']), axis=1)
 
     end = strict_time()
