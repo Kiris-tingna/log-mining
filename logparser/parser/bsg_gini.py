@@ -14,26 +14,25 @@ import gc
 import re
 
 class LogCluster(object):
-    def __init__(self, log_template, idx, similarity_threshold=0.5):
+    def __init__(self, log_length):
         '''
         日志模板结构体
-        :param log_template:
-        :param idx:  日志id 集合
-        :param similarity_threshold: 相似度初始阈值
+        log_template: 日志模板, type: list<str>
+        st:  阈值，type: float
+        similarity_threshold: 相似度初始阈值, type: float
+        nc: 常量个数, type: int
+        log_ids: 日志id集合, type: list<int>
+        cnt: 当前解析到该cluster的日志个数, type: int
         '''
-        self.log_template = log_template
-        self.st = similarity_threshold
-        self.nc = len(log_template)
-        self.log_ids = [idx]
-        self.cnt = 1
-        self.token_square_sum = [0 for _ in range(self.nc)]
+        self.log_template = ['' for _ in range(log_length)]
+        self.st = 0
+        self.nc = log_length
+        self.log_ids = []
+        self.cnt = 0
         # token_dict=[
         #     模板上词的相应位置: {替换的参数列表}
         # ]
-        self.token_dict = [collections.defaultdict(list) for _ in range(self.nc)]
-        # 统计参数情况
-        for i, token in enumerate(log_template):
-            self.token_dict[i][token].append(idx)
+        self.token_dict = [collections.defaultdict(list) for _ in range(log_length)]
 
     def update(self, nc, new_log_template, new_log_seq, idx):
         '''
@@ -91,10 +90,17 @@ class BasicSignatureGrenGini(TreeParser):
     )
     SPECIAL_CHARS_IN_WORD = '^[\w]+[#$&\'*+,\/<=>@^_`|~.]+$'
 
-    def __init__(self, reg_file, global_st=1.0, max_length=300):
+    def __init__(self,
+                 reg_file,
+                 global_st=1.0,
+                 max_length=300,
+                 split_token_num_threshold = 20,
+                 gini_threshold = 0.75):
         self.max_length = max_length  # 日志最大长度阈值
         self.global_st = global_st
         self.current_index = 0 # 解析的日志数量
+        self.split_token_num_threshold = split_token_num_threshold # * 里token个数的阈值（小于该阈值方可分裂）
+        self.gini_threshold = gini_threshold # gini分裂阈值
         # bucket 的形式:
         # bucket = [   ...
         #       该长度日志 起始字符位置可以用作分桶情况: { 首token: [对应的模板] ....}
@@ -102,6 +108,10 @@ class BasicSignatureGrenGini(TreeParser):
         #       该长度日志 中间字符位置可以用作分桶情况: { 中间token: [对应的模板] ....}
         # ]
         self.bucket = dict()
+        # raw template -> event_template
+        self.template2event = dict()
+        # event_template -> event_id
+        self.event2id = dict()
         super(BasicSignatureGrenGini, self).__init__(reg_file)  # 装载正则表达式
 
     @Timer
@@ -161,6 +171,7 @@ class BasicSignatureGrenGini(TreeParser):
                 new_cluster = self.create_cluster(log_filter, log_length, (id, timestamp))
                 self.bucket[pos][keyValue].append(new_cluster)
 
+
     # Check if there is number
     def has_numbers(self, s):
         return any(c.isdigit() for c in s)
@@ -183,8 +194,63 @@ class BasicSignatureGrenGini(TreeParser):
                 digit_len += 1
         # 计算初始的相似度下界
         st_init = self.global_st - self.global_st * (digit_len / log_length)
-        new_cluster = LogCluster(log_filter, idx, st_init)
+        new_cluster = LogCluster(log_length)
+        new_cluster.st = st_init
+        new_cluster.update(log_length, log_filter, log_filter, idx)
         return new_cluster
+
+    # 在线分类
+    def online_classification(self, log):
+        '''
+        在线分类
+        notes: 不允许解析和分类同时进行
+        :return: 日志对应的event ID
+        '''
+        if self.template2event == {}:
+            self.get_final_template()
+
+        event_id = -1
+        event = ''
+        # 1.首先预处理某一条日志 并且拆分成数组
+        log_filter = self.pre_process_single(log)
+        log_length = len(log_filter)
+
+        # 2.查找KeyValue
+        keyValue = ''
+        # 首字符有效的情况 放在0位置
+        if not self.has_numbers(log_filter[0]) and not self.has_special(log_filter[0]):
+            pos = log_length * 3
+            keyValue = log_filter[0]
+        # 尾字符有效的情况 放在1位置
+        elif not self.has_numbers(log_filter[-1]) and not self.has_special(log_filter[-1]):
+            pos = log_length * 3 + 1
+            keyValue = log_filter[-1]
+        # 中间字符 放在2位置 key 为空
+        else:
+            pos = log_length * 3 + 2
+
+        # 3.Token Layer匹配
+        if pos not in self.bucket:
+            self.bucket[pos] = collections.defaultdict(list)
+
+        if keyValue in self.bucket[pos]:
+            # 存在就从template列表中找出最合适（熵变最小的情况）的插入
+            token_layer = self.bucket[pos][keyValue]
+            sim, new_nc, new_template, idx = -1, -1, -1, -1
+
+            for i, cluster in enumerate(token_layer):
+                # sim: 相似度 new_nc: 常量字符的长度 entropy: 熵
+                sim_, new_nc_, new_template_ = self.edit_distance(log_filter, cluster)
+                if sim_ > sim:
+                    sim, new_nc, new_template = sim_, new_nc_, new_template_
+                    idx = i
+            if sim > -1:
+                # token layer 更新
+                raw_template = ' '.join(token_layer[idx].log_template)
+                event = self.template2event[raw_template]
+                event_id = self.event2id[event]
+
+        return event, event_id
 
     def edit_distance(self, seq, cluster):
         '''
@@ -274,13 +340,13 @@ class BasicSignatureGrenGini(TreeParser):
         split_pos, split_gini = -1, 1
 
         for c_pos, token in enumerate(log_template):
-            if token == '*':
+            if token == '*' and len(cluster.token_dict[c_pos]) < self.split_token_num_threshold:
                 square_sum = 0
                 for word in cluster.token_dict[c_pos]:
                     num = len(cluster.token_dict[c_pos][word])
                     square_sum += float(num) ** 2
                 gini = 1 - square_sum / (cnt ** 2)
-                if gini <= 0.75 and gini < split_gini:
+                if gini <= self.gini_threshold and gini < split_gini:
                     split_pos, split_gini = c_pos, split_gini
         return split_pos
 
@@ -306,31 +372,62 @@ class BasicSignatureGrenGini(TreeParser):
 
         return len(ans)
 
+    def rebuild_template(self):
+        '''
+        拆分*，重建cluster
+        :return:
+        '''
+        for pos in self.bucket:
+            for key in self.bucket[pos]:
+                new_cluster_list = []
+                for cluster in self.bucket[pos][key]:
+                    c_pos = self.cluster_refinement(cluster)
+                    if c_pos != -1:
+                        for word in cluster.token_dict[c_pos]:
+                            new_cluster = LogCluster(len(cluster.log_template))
+                            new_cluster.log_template = cluster.log_template[:]
+                            new_cluster.log_template[c_pos] = word
+                            new_cluster.nc += 1
+                            new_cluster.log_ids = cluster.token_dict[c_pos][word]
+                            new_cluster.cnt = len(new_cluster.log_ids)
+                            for second_index in range(len(cluster.token_dict)):
+                                if len(cluster.token_dict[second_index]) >= self.split_token_num_threshold:
+                                    # 如果一个'*'下token数量超过split_token_num_threshold，则直接用'*'代替
+                                    # to do : '*' 下如果有 '*'，则要merge，该情况只会在模型的重载入中出现
+                                    new_cluster.token_dict[second_index]['*'] = new_cluster.log_ids
+                                else:
+                                    for second_token in cluster.token_dict[second_index]:
+                                        new_cluster.token_dict[second_index][second_token] = \
+                                            list(filter(lambda x: x in new_cluster.log_ids, \
+                                                        cluster.token_dict[second_index][second_token]))
+                            new_cluster_list.append(new_cluster)
+                    else:
+                        new_cluster_list.append(cluster)
+                self.bucket[pos][key] = new_cluster_list[:]
+
     def get_final_template(self, verbose=True):
         '''
         输出所有模板
         :return:
         '''
+        self.rebuild_template()
+
         final_templates = []
         ans = collections.defaultdict(list)
         for pos in self.bucket:
             for key in self.bucket[pos]:
                 for cluster in self.bucket[pos][key]:
-                    c_pos = self.cluster_refinement(cluster)
-                    if c_pos != -1:
-                        for word in cluster.token_dict[c_pos]:
-                            cluster.log_template[c_pos] = word
-                            clean_template = re.sub('(\* )+', '* ', ' '.join(cluster.log_template) + ' ')
-                            ans[clean_template.strip()] += cluster.token_dict[c_pos][word]
-                        cluster.log_template[c_pos] = '*'
-                    else:
-                        clean_template = re.sub('(\* )+', '* ', ' '.join(cluster.log_template) + ' ')
-                        ans[clean_template.strip()] += cluster.log_ids
+                    clean_template = re.sub('(\* )+', '* ', ' '.join(cluster.log_template) + ' ').strip()
+                    ans[clean_template] += cluster.log_ids
+                    print(' '.join(cluster.log_template), cluster.log_ids)
+                    self.template2event[' '.join(cluster.log_template)] = clean_template
 
         for sid, signature in enumerate(ans):
             if verbose:
-                print('template {} has {} logs: {}'.format(sid, len(ans[signature]), signature))
+                print('template {} has {} logs: {}'.format(sid + 1, len(ans[signature]), signature))
+            self.event2id[signature] = sid + 1
             final_templates.append((signature, ans[signature]))
+
         return final_templates
 
 
@@ -340,24 +437,25 @@ if __name__ == '__main__':
         st = i * 0.1
 
         bsg_parser = BasicSignatureGrenGini(reg_file='../config/config.reg_exps.txt', global_st=st)
-        bsg_parser._online_train('blk 124219214 asa Receive from node 4', 1)
-        bsg_parser._online_train('blk 124219214 ffwqwq 1241241 Done to node 4', 2)
-        bsg_parser._online_train('blk 124219214 ffwqwq Done to node 4', 3)
-        bsg_parser._online_train('blk 782174184 Instance raer1421MManf142v Receive from node 356', 4)
+        bsg_parser._online_train('blk 124219214 asa Receive from node 4', 1, 1)
+        bsg_parser._online_train('blk 124219214 ffwqwq 1241241 Done to node 4', 2, 1)
+        bsg_parser._online_train('blk 124219214 ffwqwq Done to node 4', 3, 1)
 
-        bsg_parser._online_train('Tcp net down daafa aswf qe 1241', 5)
-        bsg_parser._online_train('Tcp net down daafa 12 qe 1241', 6)
-        bsg_parser._online_train('Tcp qws down daafa 214 qe 1241', 7)
-        bsg_parser._online_train('Tcp qws down daafa 421 qe 1241', 8)
-        bsg_parser._online_train('Tcp qws down daafa 14 qe 1241', 9)
+        bsg_parser._online_train('blk 782174184 Instance raer1421MManf142v Receive from node 356', 4, 1)
 
-        bsg_parser._online_train('delete block_1', 10)
-        bsg_parser._online_train('delete block_3 block_4', 11)
-        bsg_parser._online_train('delete block_6', 12)
+        bsg_parser._online_train('Tcp net down daafa aswf qe 1241', 5, 1)
+        bsg_parser._online_train('Tcp net down daafa 12 qe 1241', 6, 1)
+        bsg_parser._online_train('Tcp qws down daafa 214 qe 1241', 7, 1)
+        bsg_parser._online_train('Tcp qws down daafa 421 qe 1241', 8, 1)
+        bsg_parser._online_train('Tcp qws down daafa 14 qe 1241', 9, 1)
+
+        bsg_parser._online_train('delete block_1', 10, 1)
+        bsg_parser._online_train('delete block_3 block_4', 11, 1)
+        bsg_parser._online_train('delete block_6', 12, 1)
 
         bsg_parser.get_final_template()
-
+        print(bsg_parser.online_classification('delete block_6'))
         print(bsg_parser.quality())
-    # where = visualize_bsg_gvfile(bsg_parser)
+    where = visualize_bsg_gvfile(bsg_parser)
 
     gc.collect()
