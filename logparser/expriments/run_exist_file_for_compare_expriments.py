@@ -62,6 +62,7 @@ if __name__ == '__main__':
     draga_parser = Draga(reg_file='../config/config.paas.txt', max_child=10, merge_threshold=0.9)
     bsg_parser = BSG(reg_file='../config/config.paas.txt', global_st=0.7)
     bsgi_parser = BSGI(reg_file='../config/config.paas.txt', global_st=0.7)
+    bsgi_parser2 = BSGI(reg_file='../config/config.paas.txt', global_st=0.95)
 
     '''
      -------------------- step 2 : train data line step by line  -------------------
@@ -71,11 +72,12 @@ if __name__ == '__main__':
     file = '../../../event_type_ansible.csv'
     # file = '../data/cc.csv'
     # c_parser = spell_parser
-    c_parser = spell_parser2
+    # c_parser = spell_parser2
     # c_parser = drain_parser
     # c_parser = draga_parser
     # c_parser = bsg_parser
-    # c_parser = bsgi_parser
+    c_parser = bsgi_parser
+    # c_parser = bsgi_parser2
 
     RULE_LIST = [
         '\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}.\d{3} \d+',
