@@ -97,7 +97,7 @@ class BasicSignatureGren(TreeParser):
     )
     SPECIAL_CHARS_IN_WORD = '^[\w]+[#$&\'*+,\/<=>@^_`|~.]+$'
 
-    def __init__(self, reg_file, global_st=1.0, max_length=300):
+    def __init__(self, reg_file, global_st=1.0, max_length=300, split_token_num_threshold=20):
         self.max_length = max_length  # 日志最大长度阈值
         self.global_st = global_st
         # bucket 的形式:
@@ -107,6 +107,7 @@ class BasicSignatureGren(TreeParser):
         #       该长度日志 中间字符位置可以用作分桶情况: { 中间token: [对应的模板] ....}
         # ]
         self.bucket = dict()
+        self.split_token_num_threshold = split_token_num_threshold
         super(BasicSignatureGren, self).__init__(reg_file)  # 装载正则表达式
 
     @Timer
@@ -218,17 +219,20 @@ class BasicSignatureGren(TreeParser):
             if s1 != s2:
                 old_entropy = cluster_entropy[i]
                 diff += 1
-                new_entropy = 0
-                for token in token_dict[i]:
-                    if s1 == token:
-                        new_entropy += (token_dict[i][token] + 1) * math.log((token_dict[i][token] + 1))
-                    else:
-                        new_entropy += token_dict[i][token] * math.log(token_dict[i][token])
-                new_entropy = - (1.0 / (cnt + 1) * new_entropy - math.log(cnt + 1))
-                diff_entropy += abs(old_entropy - new_entropy)
-                change_entropy[i] = new_entropy
                 if diff > threshold:
                     return -1, -1, [], -1, dict()
+
+                if len(token_dict[i]) < self.split_token_num_threshold:
+                    new_entropy = 0
+                    for token in token_dict[i]:
+                        if s1 == token:
+                            new_entropy += (token_dict[i][token] + 1) * math.log((token_dict[i][token] + 1))
+                        else:
+                            new_entropy += token_dict[i][token] * math.log(token_dict[i][token])
+                    new_entropy = - (1.0 / (cnt + 1) * new_entropy - math.log(cnt + 1))
+                    diff_entropy += abs(old_entropy - new_entropy)
+                    change_entropy[i] = new_entropy
+                    
                 new_template.append('*')
             else:
                 new_template.append(s1)
