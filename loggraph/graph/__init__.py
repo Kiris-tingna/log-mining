@@ -6,3 +6,8 @@
  @File    : __init__.py.py
  @Software: PyCharm
 """
+from .logsed import *
+
+__all__ = [
+    'LogSed'
+]
