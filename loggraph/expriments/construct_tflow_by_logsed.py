@@ -3,7 +3,7 @@
 """
  @Time    : 2018/11/14 10:39
  @Author  : Kiristingna
- @File    : construct_tflow.py
+ @File    : construct_tflow_by_logsed.py
  @Software: PyCharm
 """
 import sys, os
@@ -20,11 +20,11 @@ if __name__ == "__main__":
     ''' -----------------Step 1. 确定读取数据 格式如下----------------
     ===========================================================
     event(事件id) | instance_name(实例名) | time_stamp(时间戳)
-    ====================================================
+    ===========================================================
     54,da5bf2a5-6af4-4c06-88b1-61b83fb2f9cf,1504589505
     117,da5bf2a5-6af4-4c06-88b1-61b83fb2f9cf,1504590497
     288,83d92ad3-b83f-43c0-962b-ed79b153236a,1504627040
-    ====================================================
+    ===========================================================
     '''
     # file = '../data/message.csv'
     file = '../data/BasicSignatureGrenGini.csv'
@@ -45,8 +45,8 @@ if __name__ == "__main__":
     '''
 
     for idx, row in df.iterrows():
-        id_max = max(id_max, int(row.event))
-        time_series.append((int(row.event), row.time_stamp))
+        id_max = max(id_max, int(row.event_id))
+        time_series.append((int(row.event_id), row.time))
 
     ''' ------------------ Step 3. 过滤操作日志 -------------------- 
     Example:
