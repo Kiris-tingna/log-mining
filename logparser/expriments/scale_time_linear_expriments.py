@@ -49,30 +49,25 @@ if __name__ == '__main__':
 
     total = 330000
     df = pd.read_csv(file, nrows=total)
-    k = int(total // 105)
-    dfs = {0: df[:k],
-           1: df[k: 3* k],
-           2: df[3*k:6* k],
-           3: df[6*k: 10* k],
-           4: df[10*k:15* k],
-           5: df[15*k:21* k],
-           6: df[21*k:28* k],
-           7: df[28*k:36* k],
-           8: df[36*k:45* k],
-           9: df[45*k:55* k],
-           10: df[55:k: 66 * k],
-           11: df[66:k: 78 * k],
-           12: df[78:k: 91 * k],
-           13: df[91:k: 105 * k],
-        }
+    steps = 10
+    total_steps = sum([i for i in range(1, steps + 1)])
+    k = int(total // total_steps)
 
-    time_spell = {i:0 for i in range(14)}
-    time_bsg = {i:0 for i in range(14)}
-    time_bsgi = {i:0 for i in range(14)}
-    time_draga = {i:0 for i in range(14)}
-    time_drain = {i:0 for i in range(14)}
+    dfs = dict()
+    s = 0
+    e = 1
+    dfs[0] = df[:k]
+    for i in range(1, 14):
+        s, e = e, e+i+1
+        dfs[i] = df[s*k:e*k]
 
-    for i in range(14):
+    time_spell = {i:0 for i in range(steps)}
+    time_bsg = {i:0 for i in range(steps)}
+    time_bsgi = {i:0 for i in range(steps)}
+    time_draga = {i:0 for i in range(steps)}
+    time_drain = {i:0 for i in range(steps)}
+
+    for i in range(steps):
         t_spell, t_bsg, t_bsgi, t_draga, t_drain = 0, 0, 0, 0, 0
 
         spell_parser = Spell(reg_file='../config/config.paas.txt', threshold=0.7)
@@ -140,7 +135,7 @@ if __name__ == '__main__':
     ax.spines['right'].set_color('none')
     ax.spines['top'].set_color('none')
 
-    p1 = ax.plot(x, y_spell, 'rX:', label="spell(0.7)")
+    p1 = ax.plot(x, y_spell, 'rx:', label="spell(0.7)")
     p2 = ax.plot(x, y_bsg, 'bs-', label="bsg(0.7)")
     p3 = ax.plot(x, y_bsgi, 'g^-', label="bsgi(0.7)")
     p4 = ax.plot(x, y_draga, 'yd-', label="draga")
@@ -149,6 +144,6 @@ if __name__ == '__main__':
     handles, labels = ax.get_legend_handles_labels()
     ax.legend(handles[::-1], labels[::-1], loc='upper left')
 
-    ax.set_xticklabels([str(i* k) for i in range(1, 15)])
+    ax.set_xticklabels([str(i * k) for i in range(1, steps + 1)])
     ax.grid(True)
     plt.show()
