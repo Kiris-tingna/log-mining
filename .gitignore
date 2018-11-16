@@ -1,3 +1,4 @@
 .idea/*
 logparser/data/*
 loggraph/data/*
+logparser/utils/__pycache__/*

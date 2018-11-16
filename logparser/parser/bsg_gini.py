@@ -77,10 +77,8 @@ class BasicSignatureGrenGini(TreeParser):
     5）输出层使用函数 get_final_template 来呈现
 
     =================================================
-    todo 2018 10 30:
-    add gini explanation
-    keyword split procession
-    cache mechanism
+    to do 1116
+    model save and load
     """
     REPL = '*'  # 通配符
 
@@ -112,6 +110,9 @@ class BasicSignatureGrenGini(TreeParser):
         self.template2event = dict()
         # event_template -> event_id
         self.event2id = dict()
+        # cache pointer
+        # (kevalue, index) rather than cluster object
+        self.pointer = collections.defaultdict(list)
         super(BasicSignatureGrenGini, self).__init__(reg_file)  # 装载正则表达式
 
     @Timer
@@ -131,7 +132,7 @@ class BasicSignatureGrenGini(TreeParser):
         log_length = len(log_filter)
 
         # 2.查找KeyValue
-        keyValue = ''
+        keyValue = '*'
         # 首字符有效的情况 放在0位置
         if not self.has_numbers(log_filter[0]) and not self.has_special(log_filter[0]):
             pos = log_length * 3
@@ -144,6 +145,19 @@ class BasicSignatureGrenGini(TreeParser):
         else:
             pos = log_length * 3 + 2
 
+        #  ---------------------  Caching mechanism  -------------------------
+        cache_index = -1
+        if pos in self.pointer:
+            cache_keyvalue = self.pointer[pos][0]
+            cache_index = self.pointer[pos][1]
+            if cache_keyvalue == keyValue:
+                log_cluster_cached = self.bucket[pos][cache_keyvalue][cache_index]
+                sim_, new_nc_, new_template_ = self.edit_distance(log_filter, log_cluster_cached)
+                if sim_ > -1:
+                    log_cluster_cached.update(new_nc_, new_template_, log_filter, (id, timestamp))
+                    return
+        #  ----------------------------  END   ------------------------------
+
         # 3.Token Layer匹配
         if pos not in self.bucket:
             self.bucket[pos] = collections.defaultdict(list)
@@ -152,25 +166,29 @@ class BasicSignatureGrenGini(TreeParser):
             # 在bucket中尚未存在当前的模板则新建一个新的模板 并放在相应位置的字典中
             new_cluster = self.create_cluster(log_filter, log_length, (id, timestamp))
             self.bucket[pos][keyValue].append(new_cluster)
+            self.pointer[pos] = [keyValue, 0]
         else:
             # 存在就从template列表中找出最合适（熵变最小的情况）的插入
             token_layer = self.bucket[pos][keyValue]
             sim, new_nc, new_template, idx = -1, -1, -1, -1
-
             for i, cluster in enumerate(token_layer):
                 # sim: 相似度 new_nc: 常量字符的长度 entropy: 熵
+                if i == cache_index:
+                    continue
                 sim_, new_nc_, new_template_ = self.edit_distance(log_filter, cluster)
                 if sim_ > sim:
                     sim, new_nc, new_template = sim_, new_nc_, new_template_
                     idx = i
+                    break
             if sim > -1:
                 # token layer 更新
                 token_layer[idx].update(new_nc, new_template, log_filter, (id, timestamp))
+                self.pointer[pos] = [keyValue, idx]
             else:
                 # new cluster 的创建
                 new_cluster = self.create_cluster(log_filter, log_length, (id, timestamp))
                 self.bucket[pos][keyValue].append(new_cluster)
-
+                self.pointer[pos] = [keyValue, len(self.bucket[pos][keyValue]) - 1]
 
     # Check if there is number
     def has_numbers(self, s):
@@ -244,6 +262,7 @@ class BasicSignatureGrenGini(TreeParser):
                 if sim_ > sim:
                     sim, new_nc, new_template = sim_, new_nc_, new_template_
                     idx = i
+                    break
             if sim > -1:
                 # token layer 更新
                 raw_template = ' '.join(token_layer[idx].log_template)
@@ -456,6 +475,6 @@ if __name__ == '__main__':
         bsg_parser.get_final_template()
         print(bsg_parser.online_classification('delete block_6'))
         print(bsg_parser.quality())
-    where = visualize_bsg_gvfile(bsg_parser)
+    #where = visualize_bsg_gvfile(bsg_parser)
 
     gc.collect()
