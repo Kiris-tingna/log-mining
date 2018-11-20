@@ -438,7 +438,7 @@ class BasicSignatureGrenGini(TreeParser):
                 for cluster in self.bucket[pos][key]:
                     clean_template = re.sub('(\* )+', '* ', ' '.join(cluster.log_template) + ' ').strip()
                     ans[clean_template] += cluster.log_ids
-                    print(' '.join(cluster.log_template), cluster.log_ids)
+                    # print(' '.join(cluster.log_template), cluster.log_ids)
                     self.template2event[' '.join(cluster.log_template)] = clean_template
 
         for sid, signature in enumerate(ans):
