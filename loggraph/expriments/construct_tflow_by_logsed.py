@@ -19,15 +19,14 @@ from logparser.utils import visualize_logsed_gvfile
 if __name__ == "__main__":
     ''' -----------------Step 1. 确定读取数据 格式如下----------------
     ===========================================================
-    event(事件id) | instance_name(实例名) | time_stamp(时间戳)
+    event_id(事件id) | instance_name(实例名) | time(时间戳)
     ===========================================================
     54,da5bf2a5-6af4-4c06-88b1-61b83fb2f9cf,1504589505
     117,da5bf2a5-6af4-4c06-88b1-61b83fb2f9cf,1504590497
     288,83d92ad3-b83f-43c0-962b-ed79b153236a,1504627040
     ===========================================================
     '''
-    # file = '../data/message.csv'
-    file = '../data/BasicSignatureGrenGini.csv'
+    file = '../data/message.csv'
     df = pd.read_csv(file)
     time_series = []
     id_max = 0
