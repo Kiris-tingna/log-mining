@@ -100,7 +100,8 @@ if __name__ == '__main__':
         time_stamp_7
     ]
 
-    df = pd.read_csv(file, nrows=32600)
+    df = pd.read_csv(file)
+    
     start = strict_time()
 
     for idx, row in df.iterrows():
