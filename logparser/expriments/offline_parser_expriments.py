@@ -8,7 +8,7 @@
 """
 # import multiprocessing
 from logparser.parser import *
-from logparser.utils import visualize_spell_gvfile, visualize_drain_gvfile, strict_time
+from logparser.utils import visualize_spell_gvfile, visualize_drain_gvfile, visualize_bsg_gvfile, strict_time, parser_tocsv
 import gc
 import pandas as pd
 
@@ -38,14 +38,15 @@ spell_parser = Spell(reg_file='../config/config.iaas.txt', threshold=0.7)
 drain_parser = Drain(reg_file='../config/config.iaas.txt', max_child=10, max_depth=4, min_similarity=0.5)
 draga_parser = Draga(reg_file='../config/config.iaas.txt', max_child=10, merge_threshold=0.9)
 bsg_parser = BSG(reg_file='../config/config.iaas.txt', global_st=0.7)
-bsgi_parser = BSGI(reg_file='../config/config.iaas.txt', global_st=0.7)
+bsgi_parser = BSGI(reg_file='../config/config.iaas.txt', global_st=1)
 
 '''
  -------------------- step 2 : train data line step by line  -------------------
  Example: 以下用法适用于dataframe的部分
 '''
 
-file = '../data/zte_tongbu_filtered.csv'
+# file = '../data/zte_tongbu_filtered.csv'
+file = '../data/iaas_filtered.csv'
 # file = '../data/zte_delete_filtered.csv'
 # file = '../data/zte_failed_filtered.csv'
 
@@ -78,10 +79,18 @@ gc.collect()
 # visualize_drain_gvfile(drain_parser, path="../data/Ex1/graphviz_drain_iaas.gv")
 
 # 3. drage 的模板可视化
-# draga_parser.get_final_tempalte()
+# draga_parser.get_final_template()
 
 # 4. bsg 的模板可视化
 # bsg_parser.get_final_template()
+# visualize_bsg_gvfile(bsg_parser, path="../data/Ex1/graphviz_bsg_iaas.gv")
 
 # 5. bsgi 的 模板可视化
-bsgi_parser.get_final_template()
+# bsgi_parser.get_final_template()
+# visualize_bsg_gvfile(bsgi_parser, path="../data/Ex1/graphviz_bsgi_iaas.gv")
+
+# parser_tocsv(spell_parser, '../data/准确率待测试数据')
+# parser_tocsv(drain_parser, '../data/准确率待测试数据')
+# parser_tocsv(draga_parser, '../data/准确率待测试数据')
+# parser_tocsv(bsg_parser, '../data/准确率待测试数据')
+parser_tocsv(bsgi_parser, '../data/准确率待测试数据')
