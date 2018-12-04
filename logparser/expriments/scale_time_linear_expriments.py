@@ -47,9 +47,9 @@ if __name__ == '__main__':
         time_stamp_7
     ]
 
-    total = 330000
+    total = 1000000
     df = pd.read_csv(file, nrows=total)
-    steps = 10
+    steps = 14
     total_steps = sum([i for i in range(1, steps + 1)])
     k = int(total // total_steps)
 
@@ -57,7 +57,7 @@ if __name__ == '__main__':
     s = 0
     e = 1
     dfs[0] = df[:k]
-    for i in range(1, 14):
+    for i in range(1, steps+1):
         s, e = e, e+i+1
         dfs[i] = df[s*k:e*k]
 
