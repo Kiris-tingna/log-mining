@@ -26,12 +26,6 @@ import math
 #     df.to_csv('../data/准确率待测试数据/standard.csv', index=False)
 
 
-# --------------------------- 开始比对 ----------------------------------
-data_to_compare = '../data/准确率待测试数据/Spell.csv'
-data_standard = '../data/准确率待测试数据/standard.csv'
-
-df1 = pd.read_csv(data_to_compare, engine='python')
-df2 = pd.read_csv(data_standard, engine='python')
 
 def exact_mapping_and_ids(df):
     '''
@@ -48,25 +42,69 @@ def exact_mapping_and_ids(df):
     return set_mapping
 
 
-G = exact_mapping_and_ids(df1)
+def bupt_metic(merged_df):
+    '''
+    北邮的衡量方式
+    :param merged_df:
+    :return:
+    '''
+    s = 0
+    for idx, row in merged_df.iterrows():
+        # 经过我们的方法得到的id
+        g_i = row['event_x']
+        # 标准的id
+        f_i = row['event_y']
+
+        c1 = len(G[g_i] & F[f_i]) / len(G[g_i])
+        c2 = len(G[g_i] & F[f_i]) / len(F[f_i])
+
+        s += c1 ** 2 + math.sqrt(c2)
+
+    p = s / (2 * len(merged_df))
+
+    return p
+
+
+def njupt_metic(merged_df):
+    s = 0
+    for idx, row in merged_df.iterrows():
+        # 经过我们的方法得到的id
+        g_i = row['event_x']
+        # 标准的id
+        f_i = row['event_y']
+
+        c1 = len(G[g_i] & F[f_i]) / len(G[g_i])
+        c2 = len(G[g_i] & F[f_i]) / len(F[f_i])
+
+        s += c1 + c2
+
+    p = s / (2 * len(merged_df))
+
+    return p
+
+
+# --------------------------- 开始比对 ----------------------------------
+data_to_compare = {
+    'BSG_GINI': '../data/准确率待测试数据/BasicSignatureGrenGini.csv',
+    'BSG': '../data/准确率待测试数据/BasicSignatureGren.csv',
+    'Spell': '../data/准确率待测试数据/Spell.csv',
+    'Draga': '../data/准确率待测试数据/Draga.csv',
+    'Drain': '../data/准确率待测试数据/Drain.csv'
+}
+
+data_standard = '../data/准确率待测试数据/standard.csv'
+df2 = pd.read_csv(data_standard, engine='python')
 F = exact_mapping_and_ids(df2)
 
-df = pd.merge(df1, df2, how='left', on='log_id')
-merged_df = df[['log_id', 'event_x', 'event_y']].sort_values(by='log_id')
-merged_df.set_index('log_id', inplace=True)
+for p, file in data_to_compare.items():
+    df1 = pd.read_csv(file, engine='python')
+    G = exact_mapping_and_ids(df1)
+    df = pd.merge(df1, df2, how='left', on='log_id')
 
-s = 0
-for idx, row in merged_df.iterrows():
-    # 经过我们的方法得到的id
-    g_i = row['event_x']
-    # 标准的id
-    f_i = row['event_y']
+    merged_df = df[['log_id', 'event_x', 'event_y']].sort_values(by='log_id')
+    merged_df.set_index('log_id', inplace=True)
 
-    c1 = len(G[g_i] & F[f_i]) / len(G[g_i])
-    c2 = len(G[g_i] & F[f_i]) / len(F[f_i])
+    r1 = bupt_metic(merged_df)
+    r2 = njupt_metic(merged_df)
 
-    s += c1 ** 2 + math.sqrt(c2)
-
-p = s / (2 * len(merged_df))
-
-print(p)
+    print("parser name: {}, bupt evalution: {}, njupt evalution: {}".format(p, r1, r2))
